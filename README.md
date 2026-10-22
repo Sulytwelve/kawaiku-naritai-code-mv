@@ -1,4 +1,4 @@
-# Kawaii Naritai · 代码动画 MV
+# Kawaiku Naritai · 代码动画 MV
 
 以 HoneyWorks《可愛くなりたい》的镜头与动作时序为参考，用 Canvas 2D、SVG 和代码动画，让大肥鱼与 AI 拟人角色进入这支 MV。画面按帧合成，人物图层、镜头轨迹、转场与社交界面共同组成完整动画。
 

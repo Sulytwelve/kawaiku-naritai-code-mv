@@ -1,4 +1,4 @@
-// Whole-film and bounded-range renderer for the Kawaii Naritai MV.
+// Whole-film and bounded-range renderer for the Kawaiku Naritai MV.
 // Coverage, output-clock ranges, source-clock ranges, and sidecar subtitles
 // share this entry point. Uncovered footage is rejected unless explicitly filled.
 //
