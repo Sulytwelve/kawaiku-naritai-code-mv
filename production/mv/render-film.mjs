@@ -155,7 +155,9 @@ function exitAfterIncompleteOutputCleanup(){
   const child=encoderProcess;
   const childAlive=child&&child.exitCode===null&&child.signalCode===null;
   const finish=()=>{
-    if(outputStarted&&outputPath&&!outputPreexisted){
+    // An encoder can fail before it creates the file (bad arguments, missing
+    // input), so only report a removal when there is something to remove.
+    if(outputStarted&&outputPath&&!outputPreexisted&&fs.existsSync(outputPath)){
       try{
         fs.rmSync(outputPath,{force:true});
         console.error(`  removed      ${path.relative(ROOT,outputPath)} (incomplete output from this run)`);
