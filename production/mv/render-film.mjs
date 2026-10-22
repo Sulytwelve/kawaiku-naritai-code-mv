@@ -142,23 +142,45 @@ function refuse(message){
 let outputPath=null;
 let outputPreexisted=true;
 let outputStarted=false;
+let encoderProcess=null;
+
+// A frame error can happen while ffmpeg is still between spawn and opening
+// --out: unlinking immediately lets the child recreate a tiny header file
+// after the cleanup message. Wait until the encoder is gone before removing,
+// with a timer fallback so a wedged child cannot hide the failure.
+let incompleteOutputCleanupStarted=false;
+function exitAfterIncompleteOutputCleanup(){
+  if(incompleteOutputCleanupStarted)return;
+  incompleteOutputCleanupStarted=true;
+  const child=encoderProcess;
+  const childAlive=child&&child.exitCode===null&&child.signalCode===null;
+  const finish=()=>{
+    if(outputStarted&&outputPath&&!outputPreexisted){
+      try{
+        fs.rmSync(outputPath,{force:true});
+        console.error(`  removed      ${path.relative(ROOT,outputPath)} (incomplete output from this run)`);
+      }catch(error){
+        console.error(`  warning      could not remove ${path.relative(ROOT,outputPath)}: ${error.message}`);
+      }
+    }
+    process.exit(1);
+  };
+  if(!childAlive)return finish();
+  child.once('close',finish);
+  child.kill('SIGKILL');
+  const timer=setTimeout(finish,3000);
+  if(typeof timer.unref==='function')timer.unref();
+}
 
 function runtimeFailure(message,{stderrTail=null,argsLine=null}={}){
+  if(incompleteOutputCleanupStarted)return; // already scheduled once; let the cleanup finish own the exit
   console.error(`ERROR: ${message}`);
   console.error(`  ffmpeg       ${ffmpegPath}`);
   console.error(`  encoder      ${encoding?`${encoding.encoder} (${encoding.bitDepth}-bit, ${encoding.outputPixelFormat})`:'not resolved'}`);
   if(argsLine)console.error(`  ffmpeg args  ${argsLine}`);
   const tail=stderrTail===null||stderrTail===undefined?'':String(stderrTail);
   if(tail.trim()!=='')console.error(`--- ffmpeg stderr (last 3000 chars) ---\n${tail.slice(-3000)}`);
-  if(outputStarted&&outputPath&&!outputPreexisted){
-    try{
-      fs.rmSync(outputPath,{force:true});
-      console.error(`  removed      ${path.relative(ROOT,outputPath)} (incomplete output from this run)`);
-    }catch(error){
-      console.error(`  warning      could not remove ${path.relative(ROOT,outputPath)}: ${error.message}`);
-    }
-  }
-  process.exit(1);
+  exitAfterIncompleteOutputCleanup();
 }
 
 let cli;
@@ -476,6 +498,7 @@ if(formatProbe.pixelFormatListRead&&!formatProbe.supported.includes(encoding.out
 if(!formatProbe.pixelFormatListRead)console.warn(`WARNING: could not read the supported pixel formats for ${encoding.encoder}; relying on the post-encode ffprobe check. ${formatProbe.detail}`);
 
 const ff=spawn(ffmpegPath,ffargs,{stdio:['pipe','ignore','pipe'],windowsHide:true});
+encoderProcess=ff;
 let log='',spawnError=null,aborted=false;
 // Resolve on either event: a failed spawn may emit 'error' without a usable
 // 'close' code, and once(ff,'close') would reject and hide the real cause.
@@ -533,6 +556,10 @@ for(let k=0;k<n;k++){
     if(aborted||e.code==='EPIPE')break;
     ff.kill();
     runtimeFailure(`frame ${k} at source PTS ${p.toFixed(3)} failed: ${e.message}`,{stderrTail:log,argsLine:ffargs.join(' ')});
+    // runtimeFailure now waits for the encoder to close before removing --out;
+    // stop rendering here so the scheduling path is the only thing left to run.
+    aborted=true;
+    break;
   }
   if(k%600===0)console.log(JSON.stringify({frame:k,total:n,pts:+p.toFixed(3),
     elapsedSeconds:+((performance.now()-began)/1000).toFixed(1),
