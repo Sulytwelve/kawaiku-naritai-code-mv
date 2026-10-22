@@ -29,7 +29,7 @@ npm run coverage
 
 FFmpeg 默认从 PATH 查找，也可通过 `FFMPEG_PATH` 或 `--ffmpeg` 指定。字体可用 `MV_FONT_PATH`、`MV_TITLE_FONT_PATH`、`MV_SOURCE_FONT_PATH` 配置；Windows 默认使用现有系统字体，标题源字体需按其自身许可另行准备。更换字体会影响字形与排版。
 
-音乐、字体、原 MV 派生图及未获再分发许可的素材不随代码仓库提供。完整渲染前，按 [素材清单](assets/asset-licenses.json) 准备对应输入；正式音轨的位置由 `assets/ASSET_INDEX.json` 声明。人物素材的源图与运行时派生图有各自文件记录，不应相互替代。
+音乐、字体、原 MV 派生图及未获再分发许可的素材不随代码仓库提供。音乐和字体目录仅随仓库提供 [音轨准备说明](assets/audio/README.md) 与 [字体替换说明](assets/fonts/README.md)；音轨获取默认优先雨宮天版，也可使用 Sana 版，现有制作按 Sana 版校时。完整渲染前，按 [素材清单](assets/asset-licenses.json) 准备对应输入；正式音轨的位置由 `assets/ASSET_INDEX.json` 声明。人物素材的源图与运行时派生图有各自文件记录，不应相互替代。
 
 AMD GPU 的 720p60 快速输出：
 
@@ -56,7 +56,7 @@ CPU 编码可将编码选项替换为 `--encoder libx264 --preset fast --crf 19`
 | `assets/third-party-derived/` | 需自行准备的原片派生素材 |
 | `assets/audio/`、`assets/fonts/` | 需自行准备的音乐与字体 |
 
-SNS 烘焙帧、人物表情补层及轨迹数据都是渲染输入。替换素材时应保留登记坐标、透明通道与图像比例；技术参数相同不代表替换后画面一致。
+SNS 烘焙帧、人物表情补层及轨迹数据都是渲染输入。`runtime/` 只分发 JSON 和白名单图片，具体边界见 [运行输入说明](assets/runtime/README.md)。替换素材时应保留登记坐标、透明通道与图像比例；技术参数相同不代表替换后画面一致。
 
 ## 作者与许可
 

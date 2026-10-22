@@ -23,6 +23,8 @@
 
 原 MV 视频不是渲染器的逐帧解码输入。只把一段原 MV 放入工程，不能补出缺少的清理底板、透明人物、表情补层或 SNS 烘焙纹理。
 
+音乐与字体目录仅随仓库提供占位说明：Agent 应先阅读 [音轨准备](../assets/audio/README.md) 与 [字体替换](../assets/fonts/README.md)，自行查找并准备有使用依据的输入。音轨获取默认优先雨宮天版，也可使用 Sana 版；现有音轨声明与校时基于 Sana 版，换版本后需同步路径、时序核对与署名。`assets/runtime/` 中公开数据与本地图片的区别见 [运行输入说明](../assets/runtime/README.md)。
+
 ## 运行环境
 
 根 `package.json` 锁定 `@napi-rs/canvas` 为 `0.1.100`，`package-lock.json` 固定 npm 依赖解析。使用：

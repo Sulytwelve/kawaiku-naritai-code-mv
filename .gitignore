@@ -23,10 +23,12 @@ renders/
 *.log
 
 # Music, lyrics, fonts, and mixed source packages retain separate rights
-assets/audio/
+assets/audio/*
+!assets/audio/README.md
 assets/subtitles/
 assets/source-packs/
-assets/fonts/
+assets/fonts/*
+!assets/fonts/README.md
 assets/third-party-derived/
 *.mp3
 *.wav

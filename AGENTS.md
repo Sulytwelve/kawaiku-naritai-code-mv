@@ -7,7 +7,7 @@
 1. 阅读 [README](README.md)、[复现条件与命令](docs/REPRODUCING.md)、[许可范围](LICENSING.md)。先确认手上有公开仓库，还是已补齐本地素材的工作副本。
 2. 阅读 [架构与时间轴](docs/ARCHITECTURE.md)，检查 `production/mv/film-clock.mjs`、`tracks.json` 和目标场景模块。用脚本提取区间、ID 和路径，不必把大型采样 JSON 整份放进上下文。
 3. 执行 `npm ci`、`npm run coverage`。覆盖检查能核对时间区间，不能证明素材齐全或画面正确。
-4. 按 `assets/asset-licenses.json` 清点所需输入。公开仓库不包含全部角色、背景、歌曲、字体和烘焙画面；缺少文件时先合法取得或自行重制对应资源。
+4. 按 `assets/asset-licenses.json` 清点所需输入。公开仓库不包含全部角色、背景、歌曲、字体和烘焙画面；缺少文件时先合法取得或自行重制对应资源。歌曲与字体分别按 [音轨准备](assets/audio/README.md)、[字体替换](assets/fonts/README.md) 执行，运行数据的分发边界见 [runtime 说明](assets/runtime/README.md)。
 5. 选一个镜头，依照 [制作与验证流程](docs/PRODUCTION.md) 先输出基准短片，再做最小修改、比较和局部验收，最后决定是否整片渲染。
 
 ## 能力要求
