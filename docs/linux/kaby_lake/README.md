@@ -12,7 +12,7 @@
    - VAAPI：`h264_vaapi` 实际硬件编码成功（`VAProfileH264High` / `VAEntrypointEncSlice`），640×360 与 1280×720@60fps 短样本均成功；`-hwaccel vaapi` 硬件解码成功；HEVC 编/解码、VP9 解码同样成功。
    - QSV：使用者补齐 `intel-media-driver` + `intel-media-sdk` 后复测，`h264_qsv`/`hevc_qsv` 编码、QSV H.264/HEVC/VP9 解码、1280×720@60 编码、真实 MV 片段重编码与项目 CPU 输出硬解全部 exit 0。日志显示 oneVPL `implementation version 1.35`，普通 `h264_qsv` 明确报告 `hardware accelerated implementation`；坏 `qsv_device` 对照 exit 234，未发生软件回退。
    - 首轮因缺 oneVPL GPU 运行时 QSV 曾记为 blocked；运行时由使用者安装后该问题已解决，报告按最终状态记录并保留历史证据。项目入口仍拒绝 `h264_qsv`/`h264_vaapi`（`REFUSED`，exit 2），这是设计约束，不是硬件能力证据。
-5. **测试基线有一处与公开克隆不完全兼容。** 未准备本地字幕时 `npm test` 为 72 项中 67 通过、1 失败、4 跳过；补齐本地 `ja` SRT 后为 68 通过、0 失败、4 跳过。失败项是测试对本地字幕文件的隐式依赖，不是渲染代码失败，详见[问题与最小修复建议](#问题与最小修复建议)。
+5. **测试基线曾与公开克隆不完全兼容（F1，已修复）。** 基线 `8a344e2` 上，未准备本地字幕时 `npm test` 为 72 项中 67 通过、1 失败、4 跳过；补齐本地 `ja` SRT 后为 68 通过、0 失败、4 跳过。失败项是测试对本地字幕文件的隐式依赖，不是渲染代码失败。修复后公开克隆无需本地字幕同样全通过（当前 75 项），详见[问题与处理结果](#问题与处理结果)。
 6. **没有修改源码、动画、时间轴、素材或 `assets/ASSET_INDEX.json`。** 新增内容只有本报告与忽略目录 `qa/linux/kaby_lake/`；QSV 运行时由使用者安装，不属于本轮代码或素材变更。
 
 ## 测试对象与输入状态
@@ -188,7 +188,7 @@ REFUSED: Unsupported encoder "h264_qsv";   supported encoders: libx264, libx265,
 REFUSED: Unsupported encoder "h264_vaapi"; supported encoders: libx264, libx265, av1_amf.  (exit 2)
 ```
 
-设备与驱动：`/dev/dri/renderD128`（226:128，0666）可访问；`vainfo` 使用 **i965 旧驱动**（`Intel i965 driver for Intel(R) Kaby Lake - 2.4.5`，VA-API 1.24）。iHD 驱动文件不存在，`LIBVA_DRIVER_NAME=iHD vainfo` 失败。
+设备与驱动：`/dev/dri/renderD128`（226:128，0666）可访问。本节 VAAPI 表格记录**首轮**环境：`vainfo` 使用 i965 旧驱动（`Intel i965 driver for Intel(R) Kaby Lake - 2.4.5`，VA-API 1.24），当时 iHD 未安装、`LIBVA_DRIVER_NAME=iHD vainfo` 失败。补齐 QSV 运行时后，最终环境默认选中 iHD 26.3.5，i965 仍可通过 `LIBVA_DRIVER_NAME=i965` 使用（见 [environment.md](environment.md)）；VAAPI 表格来自 i965 阶段，未记录在 iHD 下逐项重跑。
 
 ### VAAPI（硬件路径已确认）
 
@@ -251,33 +251,34 @@ REFUSED: Unsupported encoder "h264_vaapi"; supported encoders: libx264, libx265,
 
 本地已提供但不在公开仓库中的输入：歌曲、字体、`ja`/`bilingual` 字幕。它们不随报告提交；`zh-CN` 字幕虽由使用者提供，但入口不支持该值。
 
-## 问题与最小修复建议
+## 问题与处理结果
 
-> 后续状态（本次修复已提交）：F1–F4 均已按建议修复——`cli-plan` 测试改为对照 `fs.existsSync` 判断 `sourceExists`，不再要求本地字幕；覆盖报告的 draft 模式提示改为按实际旗标输出，`--preview-release` 不再被写成 `--qa`；图片加载统一经 `load-asset.mjs`，缺图/坏图错误带 `assets/...` 相对路径；编码失败时会删除本次新建的不完整输出（运行前已存在的 `--out` 不会被主动删除）。F5 已由运行时安装解决，F6 仍是已知限制。**F4 复核补记**：`43eca7b` 的失败清理在 frame 0 时存在竞态（打印 `removed` 后 ffmpeg 仍可能重建 261 字节头部文件），已由 `765c2d5` 改为等待编码子进程 `close` 后再删除，并对仍存活的子进程 `SIGKILL` + 3 秒兜底；复验 frame 0 ×4、后段失败、运行前已存在输出对照与成功路径均通过，证据在 `qa/linux/kaby_lake/logs/fixcheck-fixed2-f4-*.log`（已忽略）。本页其余计数与证据仍是基线 `8a344e2` 的测试记录。
+以下问题都基于基线 `8a344e2` 的记录；F1–F4 的修复已提交（`43eca7b`，F4 的 frame 0 清理竞态由 `765c2d5` 修正，清理提示的准确性由 `35e13d5` 补齐）。F5 已由运行时安装解决，F6 仍是已知限制。本节保留原始复现方式，计数与证据仍对应基线测试记录。
 
-### F1（重要）测试对本地字幕文件存在隐式依赖
+### F1（重要，已修复）测试对本地字幕文件存在隐式依赖
 
-- 复现：干净公开克隆 → `npm ci` → `npm test`，退出码 1，失败项 `production/mv/tests/cli-plan.test.mjs:168` 的 `sourceExists === true` 断言。
-- 影响：`docs/REPRODUCING.md` 声称测试不要求字幕文件存在；实际公开克隆会红一项，容易被误读为渲染代码回归。
-- 最小修复建议（未实施）：让该测试自带 fixture——在测试开始前于固定路径写入自拟占位 SRT，并在 `t.after` 中恢复/删除；或者把断言改成读取实际 `fs.existsSync` 结果，并在文档注明该用例依赖本地字幕输入。两种改法都不应改变编码前的字幕校验逻辑。
+- 基线复现：干净公开克隆 → `npm ci` → `npm test`，退出码 1，失败项是 `production/mv/tests/cli-plan.test.mjs` 中 `--srt ja --no-audio plans subtitles without reading cue data` 的 `sourceExists === true` 断言。
+- 影响：`docs/REPRODUCING.md` 声称测试不要求字幕文件存在；基线公开克隆会红一项，容易被误读为渲染代码回归。
+- 处理（`43eca7b`）：断言改为对照 `fs.existsSync(path.join(ROOT,'assets/subtitles/KAWAIKU NARITAI.ja.srt'))`，公开克隆（无本地字幕）同样全通过；未采用“测试内写 fixture”的建议，测试不会改动 `assets/`。当前 `npm test` 为 75 项。
 
-### F2（可诊断性）缺图时错误只显示 `Invalid URL`，不含路径
+### F2（可诊断性，已修复）缺图时错误只显示 `Invalid URL`，不含路径
 
-- 复现：`loadImage("assets/third-party-derived/home-assets/curled-base.png")` 对不存在的路径抛 `TypeError: Invalid URL`；真实渲染 49.5 s 区间时入口只打印 `ERROR: frame 0 ... failed: Invalid URL`。镜像开场等 SVG 缺失则报 ENOENT 并带路径。
+- 基线复现：`loadImage("assets/third-party-derived/home-assets/curled-base.png")` 对不存在的路径抛 `TypeError: Invalid URL`；真实渲染 49.5 s 区间时入口只打印 `ERROR: frame 0 ... failed: Invalid URL`。镜像开场等 SVG 缺失则报 ENOENT 并带路径。
 - 影响：公开克隆用户无法从错误日志直接定位缺失素材，排查成本高。
-- 最小修复建议（未实施）：在 `loadImage` 调用处包一层，先检查文件存在或捕获异常并重新抛出带相对路径的错误；或在启动阶段集中检查当前区间所需输入并列出缺失文件。
+- 处理（`43eca7b`）：新增 `production/mv/load-asset.mjs`，`scene.asset`、`home-scenes.img`、`ad-scenes.img`、`social-web-film` 统一经它加载；错误变为 `Asset "assets/…" is missing` 或 `cannot be decoded`，带仓库相对路径。当前实际输出示例：`ERROR: frame 0 … failed: Asset "assets/third-party-derived/home-assets/curled-base.png" is missing: Protocol "d:" not supported…`。
 
-### F3（提示信息）`--preview-release` 被描述成 `--qa`
+### F3（提示信息，已修复）`--preview-release` 被描述成 `--qa`
 
-- 复现：仅传 `--preview-release` 时日志打印 `--qa supplied, drafts render with the watermark.`，但实际 `watermark = qa && !previewRelease` 为 false，水印被关闭。
+- 基线复现：仅传 `--preview-release` 时日志打印 `--qa supplied, drafts render with the watermark.`，但实际 `watermark = qa && !previewRelease` 为 false，水印被关闭。
 - 影响：只影响日志可读性，不影响输出；测试记录时容易误判渲染模式。
-- 最小修复建议（未实施）：按 `qa`、`previewRelease`、`fillGaps` 分别生成提示，或直接打印实际的 watermark 状态。
+- 处理（`43eca7b`）：覆盖报告按实际传入的旗标输出（`--preview-release supplied; drafts render without the watermark.`），并保留 `--fill-gaps …; uncovered gaps get a slate` 的说明。
 
-### F4（交付检查）失败渲染可能留下 0 字节或部分 MP4
+### F4（交付检查，已修复）失败渲染可能留下 0 字节或部分 MP4
 
-- 复现：QSV 运行时缺失阶段，直接编码失败曾留下 0 字节 mp4；部分画布帧失败的探测也曾留下不完整 mp4。
+- 基线复现：QSV 运行时缺失阶段，直接编码失败曾留下 0 字节 mp4；部分画布帧失败的探测也曾留下不完整 mp4。
 - 影响：只看“文件存在/变大”会误判成功。
-- 最小修复建议（未实施）：失败时删除本次 `--out` 的部分文件，或先写临时文件、成功后再改名；现有 exit code 与旁车已是可靠判据，文档也可再次强调不要用文件存在性判定。
+- 处理（`43eca7b` + `765c2d5`）：编码失败时删除本次新建的不完整输出；`765c2d5` 改为等待编码子进程 `close` 后再删除，对仍存活的子进程 `SIGKILL` + 3 秒兜底，关闭 frame 0 时 ffmpeg 重建头部文件的竞态；`35e13d5` 只在文件确实存在时打印 `removed`。运行前已存在的 `--out` 不会被主动删除，成功与否仍以退出码和旁车为准。
+- 复验（`765c2d5` 记录，证据在忽略目录 `qa/linux/kaby_lake/logs/fixcheck-fixed2-f4-*.log`）：frame 0 ×4、后段失败、运行前已存在输出对照与成功路径均通过；清理提示分支另在 Windows 工作副本用注入的失败编码器复核（存在半成品时打印 `removed` 并删除，无半成品时不打印）。
 
 ### F5（已解决）QSV 需要额外运行时
 

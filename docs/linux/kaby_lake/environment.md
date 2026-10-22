@@ -48,7 +48,7 @@
 | `mesa` | `1:26.2.5-1` |
 | `libva` | `2.24.1-1`（运行时报告 VA-API 1.24） |
 | `libva-utils`（含 `vainfo`） | `2.24.0-1` |
-| `libva-intel-driver`（i965 旧驱动，含 `i965_drv_video.so`） | `2.4.5-1`，**实际启用** |
+| `libva-intel-driver`（i965 旧驱动，含 `i965_drv_video.so`） | `2.4.5-1`；**首轮默认** VA-API 驱动（当时 iHD 未安装）。最终环境默认选中 iHD，i965 仍可通过 `LIBVA_DRIVER_NAME=i965` 使用 |
 | `libvpl` | `2.17.0-1` |
 | `libmfx` | `23.2.2-6`（dispatcher/兼容层；QSV 的 GPU 实现由 `intel-media-sdk` 的 `libmfxhw64.so.1.35` 提供） |
 | `intel-media-driver`（iHD） | `26.3.5-1`（测试中途由使用者安装；`iHD_drv_video.so` 存在，`vainfo` 默认选中） |
