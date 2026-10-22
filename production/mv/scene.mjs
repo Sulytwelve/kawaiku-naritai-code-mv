@@ -27,6 +27,7 @@ import {drawBookshop} from './bookshop-scenes.mjs';
 import {drawFriendAdSquare,FRIEND_AD_SQUARE} from './friend-ad-square-transition.mjs';
 import {drawTrainSeatBackground} from './train-seat-background-canvas.mjs';
 import {registerFontSlot} from './font-slots.mjs';
+import {loadAsset} from './load-asset.mjs';
 const require=createRequire(import.meta.url);
 export const {createCanvas,loadImage,GlobalFonts}=require('@napi-rs/canvas');
 export const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
@@ -40,7 +41,7 @@ registerFontSlot({slot:'MV Gothic',family:'MV Gothic',env:'MV_FONT_PATH',default
 // SourceDisplay contains Chinese glyphs; Japanese credits intentionally keep MV Gothic fallback.
 registerFontSlot({slot:'SourceDisplay',family:'SourceDisplay',env:'MV_SOURCE_FONT_PATH',defaultPath:path.join(ROOT,'assets/fonts/汉仪跳跳体简5.0.ttf'),defaultSource:'repository-default'});
 const cache=new Map();
-export async function asset(relative){if(!cache.has(relative)){cache.set(relative,loadImage(path.join(ROOT,relative)));if(cache.size>96)cache.delete(cache.keys().next().value)}else{const v=cache.get(relative);cache.delete(relative);cache.set(relative,v)}return await cache.get(relative)}
+export async function asset(relative){if(!cache.has(relative)){cache.set(relative,loadAsset(path.join(ROOT,relative),relative));if(cache.size>96)cache.delete(cache.keys().next().value)}else{const v=cache.get(relative);cache.delete(relative);cache.set(relative,v)}return await cache.get(relative)}
 // A sequence may be inline or a path to a JSON file, so long per-frame mappings
 // (transition pack playback) stay out of tracks.json.
 const seqCache=new Map();

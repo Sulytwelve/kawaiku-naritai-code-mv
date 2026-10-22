@@ -2,7 +2,7 @@
 
 本工程使用 Node.js 与 `@napi-rs/canvas` 绘制二维动画，再将 RGBA 帧送入 FFmpeg 编码。人物主要由透明图片、局部表情、图层变换与镜头运动组成；背景和转场混合使用 Canvas 几何、SVG、登记数据及预处理图片。
 
-主入口是 [`production/mv/render-film.mjs`](../production/mv/render-film.mjs)。从该入口的静态导入与再导出可达 53 个本地 JavaScript 模块，包括入口自身与 `spin-transition/src/` 中的两个 `.js` 模块。运行素材能否取得，与代码模块能否加载是两项独立条件；公开资源范围见 [许可说明](../LICENSING.md) 和 [逐文件素材清单](../assets/asset-licenses.json)。
+主入口是 [`production/mv/render-film.mjs`](../production/mv/render-film.mjs)。从该入口的静态导入与再导出可达 54 个本地 JavaScript 模块，包括入口自身与 `spin-transition/src/` 中的两个 `.js` 模块。运行素材能否取得，与代码模块能否加载是两项独立条件；公开资源范围见 [许可说明](../LICENSING.md) 和 [逐文件素材清单](../assets/asset-licenses.json)。
 
 ## 数据如何变成视频
 
@@ -30,6 +30,8 @@ FFmpeg 接收固定宽高、固定帧率的 `rawvideo/rgba` 输入（始终 8-bi
 `-pix_fmt` 只是请求：入口编码前读取 `ffmpeg -h encoder=<名称>` 的 `Supported pixel formats:`，目标格式不受支持时 `ERROR` 退出 1；编码后再用 ffprobe 核对实际 `pix_fmt`，不一致同样失败且不写 SRT/旁车。ffprobe 依次取 `FFPROBE_PATH`、所选 FFmpeg 同目录、PATH，缺失时只降级为 WARNING 并在旁车记 `actualOutput.verified: false`。
 
 其余输入同样在启动时解析和校验：[`font-slots.mjs`](../production/mv/font-slots.mjs) 记录三个字体槽位的 `registered`/`missing-file`/`register-failed`/`not-configured` 状态并各打印一次 WARNING；[`audio-input.mjs`](../production/mv/audio-input.mjs) 解析 `MV_AUDIO_PATH` 或 `ASSET_INDEX.audio`，真实有声渲染要求文件存在，coverage/dry-run/`--no-audio` 不要求；[`srt.mjs`](../production/mv/srt.mjs) 只接受 `ja`/`bilingual`，非法值在编码前拒绝，并按输出窗口 `[AUDIO_SEEK, AUDIO_SEEK + n/fps)` 平移、裁剪并重新编号。
+
+图像加载统一经过 [`load-asset.mjs`](../production/mv/load-asset.mjs)：缺图或损坏图片的错误会带 `assets/...` 相对路径（`Asset "<path>" is missing` / `cannot be decoded`），而不是只抛 canvas 的 URL/协议错误。渲染在编码失败时会删除本次新建的不完整输出，但不会删除运行前已存在的 `--out` 文件。
 
 `--dry-run` 的 plan 与旁车记录对应关系为：plan 的 `encoder` 与旁车的 `encoding` 是同一结构；plan 的 `probe` 与 `formatProbe` 在 dry-run 为 `null`，旁车的 `encoderProbe`、`formatProbe` 与 `actualOutput` 保存真实的编码器列表、像素格式列表与 ffprobe 实测结果；`audio`、`fonts`、`subtitles` 两侧都记录。`subtitles.stats` 只有实际读取并裁剪 cue 后才有统计，规划阶段保持 `null`；片段内没有歌词时 `stats.output` 为 0、写出空 SRT，不视为错误。契约违反退出 2；运行期失败（FFmpeg 无法启动、编码器初始化失败、非零退出、像素格式不符）退出 1。
 

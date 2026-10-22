@@ -2,15 +2,16 @@
 import {drawSnsBackground} from './social-mvp-ui.mjs';
 import {drawPerspectivePanel} from './social-mvp-project.mjs';
 import {drawSocial} from './social-scenes.mjs';
-import fs from'node:fs';import path from'node:path';import{fileURLToPath}from'node:url';import{createRequire}from'node:module';
-const require=createRequire(import.meta.url),{loadImage}=require('@napi-rs/canvas');
+import fs from'node:fs';import path from'node:path';import{fileURLToPath}from'node:url';import{loadAsset}from'./load-asset.mjs';
+const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
+const assetLabel=absolute=>path.relative(ROOT,absolute).split(path.sep).join('/');
 const EXPORT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../assets/runtime/social-web-export');let manifest,lastName,lastImage,firstImage,angleLayer;
 export const SNS_MVP_RANGE=[116.017,142.998];
 const ease=u=>1-(1-Math.min(1,Math.max(0,u)))**3;
-async function screen(t){manifest??=JSON.parse(fs.readFileSync(path.join(EXPORT,'timeline.json'),'utf8'));const k=Math.min(manifest.frames.length-1,Math.max(0,Math.floor((t-manifest.start)*60+1e-5))),name=manifest.frames[k];if(lastName!==name){lastName=name;lastImage=await loadImage(path.join(EXPORT,name))}return lastImage}
+async function screen(t){manifest??=JSON.parse(fs.readFileSync(path.join(EXPORT,'timeline.json'),'utf8'));const k=Math.min(manifest.frames.length-1,Math.max(0,Math.floor((t-manifest.start)*60+1e-5))),name=manifest.frames[k];if(lastName!==name){lastName=name;const file=path.join(EXPORT,name);lastImage=await loadAsset(file,assetLabel(file))}return lastImage}
 function poly(g,q,fill){g.fillStyle=fill;g.beginPath();g.moveTo(...q[0]);for(const p of q.slice(1))g.lineTo(...p);g.closePath();g.fill()}
 async function bakePhoneGeometry(g,t,{asset,createCanvas}){
- if(!angleLayer){firstImage??=await loadImage(path.join(EXPORT,'screen-phone.png'));const phone=createCanvas(1290,2700),c=phone.getContext('2d');c.scale(3,3);
+ if(!angleLayer){const phoneScreen=path.join(EXPORT,'screen-phone.png');firstImage??=await loadAsset(phoneScreen,assetLabel(phoneScreen));const phone=createCanvas(1290,2700),c=phone.getContext('2d');c.scale(3,3);
  c.fillStyle='#9493a5';c.beginPath();c.roundRect(0,0,430,900,58);c.fill();const rim=c.createLinearGradient(0,0,430,900);rim.addColorStop(0,'#e0e0ed');rim.addColorStop(.15,'#9f9ba9');rim.addColorStop(.6,'#32323b');rim.addColorStop(1,'#c0bdcb');c.strokeStyle=rim;c.lineWidth=3;c.stroke();c.fillStyle='#111218';c.beginPath();c.roundRect(4,4,422,892,55);c.fill();c.save();c.beginPath();c.roundRect(11,11,408,878,49);c.clip();c.fillStyle='#fff';c.fillRect(11,11,408,878);c.drawImage(firstImage,11,57,408,856.8);c.fillStyle='#fff';c.fillRect(11,11,408,46);c.font='bold 13px Arial';c.fillStyle='#111';c.fillText('9:41',37,37);c.fillRect(343,29,3,6);c.fillRect(349,26,3,9);c.fillRect(355,23,3,12);c.strokeStyle='#111';c.lineWidth=1;c.strokeRect(383,25,22,10);c.fillRect(385,27,17,6);c.fillRect(406,28,2,4);c.fillStyle='#040405';c.beginPath();c.roundRect(159,21,112,30,16);c.fill();c.fillStyle='#16213b';c.beginPath();c.arc(253,36,5,0,Math.PI*2);c.fill();c.fillStyle='#111';c.beginPath();c.roundRect(145,874,140,5,3);c.fill();c.restore();
  angleLayer=createCanvas(3840,2160);const a=angleLayer.getContext('2d');a.scale(4,4);const q=[[110,132],[415,82],[865,640],[420,691]],d=[-12,10];
  // Project one CLOSED rounded aluminium slab, then sweep it continuously from
@@ -34,8 +35,8 @@ async function bakePhoneGeometry(g,t,{asset,createCanvas}){
 export async function preparePhoneHardware(env){const c=env.createCanvas(960,540);await bakePhoneGeometry(c.getContext('2d'),135.033,env)}
 let phoneManifest,phoneSidewall,lastPhoneName,lastPhoneImage;
 async function drawAngle(g,t,{asset}){
- phoneManifest??=JSON.parse(fs.readFileSync(path.join(EXPORT,'phone-timeline.json'),'utf8'));phoneSidewall??=await loadImage(path.join(EXPORT,'sidewall-once.png'));
- const k=Math.max(0,Math.min(phoneManifest.frames.length-1,Math.floor((t-phoneManifest.start)*60+1e-5))),name=phoneManifest.frames[k];if(lastPhoneName!==name){lastPhoneName=name;lastPhoneImage=await loadImage(path.join(EXPORT,'phone-projected',name))}
+ phoneManifest??=JSON.parse(fs.readFileSync(path.join(EXPORT,'phone-timeline.json'),'utf8'));const sidewall=path.join(EXPORT,'sidewall-once.png');phoneSidewall??=await loadAsset(sidewall,assetLabel(sidewall));
+ const k=Math.max(0,Math.min(phoneManifest.frames.length-1,Math.floor((t-phoneManifest.start)*60+1e-5))),name=phoneManifest.frames[k];if(lastPhoneName!==name){lastPhoneName=name;const file=path.join(EXPORT,'phone-projected',name);lastPhoneImage=await loadAsset(file,assetLabel(file))}
  g.save();g.translate(-(t-135.033)*6.67,0);g.drawImage(phoneSidewall,0,0,960,540);g.drawImage(lastPhoneImage,0,0,960,540);g.drawImage(await asset('assets/third-party-derived/social-assets/foreground-thumb.png'),0,0,960,540);g.restore();
 }
 export async function drawSnsMvp(g,scene,t,env){const{asset}=env,stage=scene.social?.stage??(t<133.49?'posts':t<134.199?'bridge':t<134.824?'reveal':t<138.411?'angle':t<138.911?'dissolve':'portrait');

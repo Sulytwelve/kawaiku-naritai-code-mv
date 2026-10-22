@@ -11,6 +11,7 @@
 - 理解工程：阅读 [架构、时间轴与合成系统](docs/ARCHITECTURE.md)。
 - 修改一个镜头或重新生成角色：按照 [制作、替换与 QA 流程](docs/PRODUCTION.md) 从局部短片开始。
 - 复用素材：同时查 [许可范围](LICENSING.md)、[署名来源](docs/ASSET_ATTRIBUTION.md) 和 [逐文件清单](assets/asset-licenses.json)。
+- 平台实机记录：阅读 [Arch Linux / Intel Kaby Lake 测试记录](docs/linux/kaby_lake/README.md)，其中区分公开克隆可渲染区间、缺失素材导致的 blocked 项与硬件编解码结论。
 
 ## 实现范围
 

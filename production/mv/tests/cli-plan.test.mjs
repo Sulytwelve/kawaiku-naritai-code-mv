@@ -172,7 +172,13 @@ test('--srt ja --no-audio plans subtitles without reading cue data', () => {
   assert.equal(plan.subtitles.shiftSeconds, 44);
   assert.equal(plan.subtitles.durationSeconds, 0.5);
   assert.equal(plan.subtitles.stats, null);
-  assert.equal(plan.subtitles.sourceExists, true);
+  // The public clone ships no lyrics, so the flag must mirror the working copy
+  // instead of assuming a prepared subtitle file (which would fail `npm test`
+  // on a clean clone with no local media).
+  assert.equal(
+    plan.subtitles.sourceExists,
+    fs.existsSync(path.join(ROOT, 'assets/subtitles/KAWAIKU NARITAI.ja.srt')),
+  );
   assert.equal(plan.audio.enabled, false);
 });
 

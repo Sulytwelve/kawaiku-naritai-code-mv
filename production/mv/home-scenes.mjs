@@ -1,10 +1,10 @@
 import {drawStudioRedrawnActor} from './studio-lower-redraw.mjs';
 import {drawStudioSpin,SPIN_SWITCH} from './spin-transition-adapter.mjs';
 import {drawStudioCrewMvp} from './studio-crew-mvp.mjs';
-import fs from'node:fs';import path from'node:path';import{fileURLToPath}from'node:url';import{createRequire}from'node:module';
+import fs from'node:fs';import path from'node:path';import{fileURLToPath}from'node:url';import{loadAsset}from'./load-asset.mjs';
 import{drawPhotos}from'./photo-scenes.mjs';
-const require=createRequire(import.meta.url);const{loadImage}=require('@napi-rs/canvas');const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');const D=JSON.parse(fs.readFileSync(path.join(ROOT,'assets/runtime/home-assets/home-data.json'),'utf8'));const cache=new Map();
-async function img(p){if(cache.has(p)){const v=cache.get(p);cache.delete(p);cache.set(p,v);return v}const v=await loadImage(path.join(ROOT,p));cache.set(p,v);while(cache.size>6)cache.delete(cache.keys().next().value);return v}
+const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');const D=JSON.parse(fs.readFileSync(path.join(ROOT,'assets/runtime/home-assets/home-data.json'),'utf8'));const cache=new Map();
+async function img(p){if(cache.has(p)){const v=cache.get(p);cache.delete(p);cache.set(p,v);return v}const v=await loadAsset(path.join(ROOT,p),p);cache.set(p,v);while(cache.size>6)cache.delete(cache.keys().next().value);return v}
 const CREW_EQUIPMENT=JSON.parse(fs.readFileSync(path.join(ROOT,'assets/runtime/home-assets/crew-equipment-mvp.json'),'utf8'));
 const clamp=x=>Math.max(0,Math.min(1,x)),mix=(a,b,u)=>a+(b-a)*u;const RIGHT=[[342,21],[900,21],[900,516],[431,516]],LEFT=[[58,21],[332,21],[420,516],[58,516]];
 function poly(g,q){g.beginPath();q.forEach(([x,y],i)=>i?g.lineTo(x,y):g.moveTo(x,y));g.closePath()}

@@ -136,6 +136,13 @@ function refuse(message){
   process.exit(2);
 }
 
+// Set once the output path is known and the encoder actually starts. A failed
+// run must not leave a 0-byte or half-written file at --out, but an existing
+// file from an earlier run is never deleted just because this run failed.
+let outputPath=null;
+let outputPreexisted=true;
+let outputStarted=false;
+
 function runtimeFailure(message,{stderrTail=null,argsLine=null}={}){
   console.error(`ERROR: ${message}`);
   console.error(`  ffmpeg       ${ffmpegPath}`);
@@ -143,6 +150,14 @@ function runtimeFailure(message,{stderrTail=null,argsLine=null}={}){
   if(argsLine)console.error(`  ffmpeg args  ${argsLine}`);
   const tail=stderrTail===null||stderrTail===undefined?'':String(stderrTail);
   if(tail.trim()!=='')console.error(`--- ffmpeg stderr (last 3000 chars) ---\n${tail.slice(-3000)}`);
+  if(outputStarted&&outputPath&&!outputPreexisted){
+    try{
+      fs.rmSync(outputPath,{force:true});
+      console.error(`  removed      ${path.relative(ROOT,outputPath)} (incomplete output from this run)`);
+    }catch(error){
+      console.error(`  warning      could not remove ${path.relative(ROOT,outputPath)}: ${error.message}`);
+    }
+  }
   process.exit(1);
 }
 
@@ -248,7 +263,11 @@ function reportCoverage(runs){
   console.log(`Gaps (${gaps.length} intervals):`);
   for(const g of gaps)console.log(`  ${g.start.toFixed(3)} .. ${g.end.toFixed(3)}   ${g.seconds.toFixed(3)}s   frames ${g.startFrame}..${g.endFrame}`);
   console.log('');
-  console.log(`Draft scenes: ${drafts.length} run(s). ${!qa&&drafts.length?'Non-QA render will throw at the first one (scene.ready=false).':'--qa supplied, drafts render with the watermark.'}`);
+  const draftFlags=['--qa','--preview-release','--fill-gaps'].filter(flag=>has(flag));
+  const draftNote=!qa
+    ?'Non-QA render will throw at the first one (scene.ready=false).'
+    :`${draftFlags.join(' + ')} supplied; drafts render ${previewRelease?'without the watermark':'with the watermark'}${fillGaps?'; uncovered gaps get a slate':''}.`;
+  console.log(`Draft scenes: ${drafts.length} run(s). ${draftNote}`);
   return{runs,gaps,drafts,ready,transitionRuns:trans,
     seconds:{ready:sum(ready),draft:sum(drafts),transition:sum(trans),gap:sum(gaps),total:FILM_SECONDS}};
 }
@@ -328,6 +347,8 @@ if(isFull&&!qa&&!completion().renderReady)refuse('whole-film readiness gate is f
 if(fillGaps&&(pathKey(out)===deliverablesDir||pathKey(out).startsWith(deliverablesDir+path.sep)))refuse('--fill-gaps cannot write into deliverables/. Choose a path under qa/mv.');
 if(fs.existsSync(out)&&fs.statSync(out).isDirectory())refuse(`--out must name a file, not the existing directory ${path.relative(ROOT,out)||'.'}.`);
 fs.mkdirSync(path.dirname(out),{recursive:true});
+outputPath=out;
+outputPreexisted=fs.existsSync(out);
 const audioDuration=n/fps;
 
 // --- subtitles: validate before encoding, write after the video -----------
@@ -467,6 +488,9 @@ ff.stderr.on('data',b=>{log+=b;if(log.length>200000)log=log.slice(-200000)});
 ff.stdin.on('error',()=>{});
 ff.on('error',error=>{spawnError=error;aborted=true});
 ff.on('exit',code=>{if(code!==0)aborted=true});
+// Only a real spawn can have touched --out; a failed start must not trigger the
+// incomplete-output cleanup.
+ff.on('spawn',()=>{outputStarted=true});
 
 // Backpressure waits must not outlive the encoder: if ffmpeg dies between two
 // frames, 'drain' may never fire and an un-raced await would strand the process

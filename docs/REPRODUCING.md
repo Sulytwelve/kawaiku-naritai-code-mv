@@ -38,7 +38,7 @@ ffmpeg -version
 
 参考运行环境为 Windows、Node.js 24.19.0、`@napi-rs/canvas` 0.1.100，以及 FFmpeg n9.0.2（含 `libx264`、`libx265`、`av1_amf`、AAC、rawvideo 与 MP4 支持）。Canvas 的原生二进制由对应平台 npm 包提供；不要把别的平台 `node_modules/` 当作跨平台安装包。
 
-`npm test` 运行 `node --test "production/mv/tests/*.test.mjs"`，使用 `node:test`、不新增依赖，也不要求音乐、字体或字幕文件存在；当前 72 项通过。测试命令保留在 `package.json`，不要自行改成目录参数。
+`npm test` 运行 `node --test "production/mv/tests/*.test.mjs"`，使用 `node:test`、不新增依赖，也不要求音乐、字体或字幕文件存在；当前 75 项通过。测试命令保留在 `package.json`，不要自行改成目录参数。
 
 FFmpeg 默认从 PATH 查找。也可设置 `FFMPEG_PATH`，或给渲染命令添加 `--ffmpeg`；命令行参数优先于环境变量。参数应是可执行文件本身的路径，不包含额外 FFmpeg 参数。
 
@@ -202,7 +202,7 @@ npm run render -- --output-range 44 56 --width 1280 --fps 60 --encoder libx264 -
 
 ## 输出检查与常见问题
 
-成功结束会生成视频和 `<输出名>.render.json`。旁车记录尺寸、fps、帧数、渲染耗时、编码器、音轨来源与定位、FFmpeg 参数和登记状态，并新增 `encoding`、`fonts`、`subtitles`、`encoderProbe`。不要只以视频文件已出现或变大判定完成。
+成功结束会生成视频和 `<输出名>.render.json`。旁车记录尺寸、fps、帧数、渲染耗时、编码器、音轨来源与定位、FFmpeg 参数和登记状态，并新增 `encoding`、`fonts`、`subtitles`、`encoderProbe`。不要只以视频文件已出现或变大判定完成。渲染失败时会删除本次运行新建的不完整输出（stderr 会打印 `removed ... (incomplete output from this run)`）；运行前已存在的 `--out` 不会被主动删除，因此仍应以退出码和旁车判断成功。
 
 基础参数可检查为：
 
@@ -231,7 +231,7 @@ ffmpeg -v error -xerror -i renders/mv-720p60-h264.mp4 -map 0:v:0 -f null -
 | 字幕缺失、`--srt` 非法 | 只接受 `ja`、`bilingual`，并读取 `assets/subtitles/` 下的固定文件名；准备字幕源或去掉 `--srt`。片段内没有歌词不算错误，会写出空字幕并在旁车记 `stats.output: 0`。 |
 | 字体状态异常或出现 WARNING | 查看 plan 或旁车中的 `fonts`、`slots` 与 WARNING 里的变量名；`existsSync` 成功不代表注册成功，缺字体仍可运行 coverage 与 dry-run。 |
 | 音轨覆盖路径不存在或不是普通文件 | 检查 `MV_AUDIO_PATH`；改成有效文件、清空变量以回退 `ASSET_INDEX.audio`，或使用 `--no-audio`。 |
-| 图片解码报路径错误 | 对照素材清单与场景 JSON 找输入；公开克隆缺少的素材需要合法取得或自行替换。 |
+| 图片解码报路径错误 | 错误现在会写成 `Asset "assets/…" is missing` 或 `cannot be decoded`；按该路径对照素材清单与场景 JSON 找输入，公开克隆缺少的素材需要合法取得或自行替换。 |
 | 输出路径被保护或不是文件 | 不要覆盖 v1 交付物或向 `deliverables/` 写 `--fill-gaps` 结果（Windows 下大小写变体同样被拒绝），`--out` 应指向文件而不是已存在目录。 |
 | 输出被 `ready` 门槛拒绝 | 区分登记字段与渲染模式；检查参数是否包含适当的 `--qa` 或 `--preview-release`。 |
 | 字形不同、缺字或换行变化 | 核对字体文件、环境变量与图片中的文字；不同系统默认字体不保证相同像素。 |
@@ -245,7 +245,8 @@ ffmpeg -v error -xerror -i renders/mv-720p60-h264.mp4 -map 0:v:0 -f null -
 本轮在 Windows、Node.js 24.19.0、`@napi-rs/canvas` 0.1.100、FFmpeg n9.0.2（含 `libx264`、`libx265`、`av1_amf`、AAC）的工作副本中实际运行：
 
 - `npm run coverage`：零缺口、15135 帧、252.250 秒。
-- `npm test`：全部通过（当前 72 项，`node:test`，无新增依赖）。
+- `npm test`：全部通过（当前 75 项，`node:test`，无新增依赖）。
+- 缺图诊断与失败清理：临时移走 `curled-base.png` 后真实渲染，stderr 给出 `Asset "assets/third-party-derived/home-assets/curled-base.png" is missing`，本次新建的 `--out` 被删除；运行前已存在的同名文件保留。未准备本地字幕时 `npm test` 仍为 75 项全通过。
 - 新增边界校验由 `npm test` 与手工复现覆盖：`--width` 必须为 32 的倍数、`--range` 必须递增且在 source PTS 裁剪后非空、空字符串值按缺值拒绝、输出路径的大小写/尾部点/目录保护、目录型音轨覆盖拒绝。
 - 像素格式：`libx264`/`libx265` 的前置格式列表检查与 ffprobe 后置核对均已实际运行；`yuv420p` 与 `yuv420p10le` 两款输出分别是 h264/High/yuv420p 与 hevc/Main 10/yuv420p10le。把 `FFPROBE_PATH` 指向不存在文件时编码仍成功，但旁车 `actualOutput.verified` 为 `false` 并打印 WARNING。
 - 空歌词窗口：`--output-range 0 0.2 --srt ja` 实际导出 12 帧，`stats.output` 为 0、首尾为 `null`、写出 0 字节 `.ja.srt`，未以错误拒绝。
@@ -258,3 +259,5 @@ ffmpeg -v error -xerror -i renders/mv-720p60-h264.mp4 -map 0:v:0 -f null -
 - 字体：本工作副本三个槽位均为 `registered`；把 `MV_FONT_PATH` 指向不存在文件后，`npm run coverage` 仍零缺口，stderr 只有一条带槽位与变量名的 MV Gothic WARNING；dry-run 的 `fonts.slots` 如实给出 `missing-file`。
 
 已知限制：本机 FFmpeg 的 `libx264`/`libx265` 输出只有 `color_space=bt709`，`color_primaries` 与 `color_transfer` 为 `unknown`；入口虽仍传 BT.709 三项参数，本轮未加滤镜修正。10-bit 只是把 8-bit RGBA 输入编码为 10-bit，不恢复色阶，也不是端到端 10-bit 制作，播放器兼容性未验证。Linux、macOS 与其他 GPU 未验证；整片 4K 未重新渲染。短片编码通过不代表动态画面、字幕同步或整片观感已验收。未在上表列出的平台、硬件与组合没有实际验证记录；参数规划与单元测试不能替代短片编码和播放检查。
+
+Linux 上的公开克隆实机记录（Arch Linux + Intel Kaby Lake，commit `8a344e2`）见 [Arch Linux / Intel Kaby Lake 测试记录](linux/kaby_lake/README.md)：记录了可渲染区间、因缺失素材 blocked 的项、测试在无本地字幕时的历史失败项，以及 VAAPI/QSV 硬件编解码的独立 FFmpeg 结论。该记录的硬件结论不来自本项目入口——入口仍只接受 `libx264`、`libx265`、`av1_amf`。
