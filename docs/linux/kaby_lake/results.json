@@ -1,0 +1,915 @@
+{
+  "schemaVersion": 1,
+  "report": "Arch Linux / Intel Kaby Lake test results for kawaiku-naritai-code-mv",
+  "generatedAt": "2026-10-23T01:00:00+08:00",
+  "repository": {
+    "path": ".",
+    "cloneType": "public-clone",
+    "sourceChanges": false,
+    "committed": false,
+    "pushed": false,
+    "docsAdded": [
+      "docs/linux/kaby_lake/README.md",
+      "docs/linux/kaby_lake/environment.md",
+      "docs/linux/kaby_lake/results.json"
+    ],
+    "baseCommit": "8a344e286b764b3f01482e2d54eed36c36db8017",
+    "reportCommit": "docs commit created/amended after testing; see git log",
+    "committedAtTestTime": false
+  },
+  "testWindow": {
+    "start": "2026-10-22T23:44:00+08:00",
+    "end": "2026-10-23T00:58:00+08:00"
+  },
+  "environment": {
+    "detailsRef": "environment.md",
+    "os": "Arch Linux (rolling)",
+    "kernel": "7.2.11-arch1-1",
+    "arch": "x86_64",
+    "cpu": "Intel Core i5-7200U (Kaby Lake, 2C/4T)",
+    "gpu": "Intel HD Graphics 620 (8086:5916), i915",
+    "ramGiB": 7.5,
+    "node": "v26.12.0",
+    "npm": "12.2.1",
+    "canvas": "@napi-rs/canvas 0.1.100 + @napi-rs/canvas-linux-x64-gnu 0.1.100",
+    "ffmpeg": "n9.0.2 (Arch package 2:9.0.2-2)",
+    "ffprobe": "n9.0.2",
+    "vaapiDriver": "default: Intel iHD driver 26.3.5; also available: Intel i965 driver for Intel(R) Kaby Lake 2.4.5 (VA-API 1.24)",
+    "libva": "2.24.1",
+    "libvpl": "2.17.0",
+    "iHD": "26.3.5-1 (installed between test rounds by the user; iHD_drv_video.so present)",
+    "driNodes": "/dev/dri/renderD128 (226:128, 0666), /dev/dri/card1 (226:1, 0660 + ACL)",
+    "optionalGpuTools": "intel_gpu_top, vulkaninfo, clinfo, nvtop not installed",
+    "intelMediaSdk": "23.2.2-6 (installed between test rounds by the user; provides libmfxhw64.so.1.35)",
+    "qsvRuntime": "oneVPL implementation version 1.35 via libmfxhw64 (legacy MSDK runtime); h264_qsv reports \"hardware accelerated implementation\"",
+    "qsvRuntimeChange": "initial rounds: iHD/MSDK absent, QSV blocked; user installed intel-media-driver + intel-media-sdk before this re-test; test agent did not install or modify the system"
+  },
+  "inputState": {
+    "assetLicenseEntries": 3201,
+    "commitAllowedPresent": 78,
+    "localOnlyMissing": 3123,
+    "providedLocally": {
+      "audio": "Sana version MP3, 252.006168 s, 44.1 kHz stereo, via MV_AUDIO_PATH",
+      "fonts": "汉仪跳跳体简5.0.ttf for SourceDisplay; system Noto CJK for other two slots",
+      "subtitles": "ja and bilingual SRT, 43 cues each, song clock 1.170-232.173 s; zh-CN provided but unsupported by CLI"
+    },
+    "assetIndexModified": false,
+    "localMediaCopiedIntoRepo": false,
+    "subtitleFilesReference": "ignored symlinks at fixed assets/subtitles/ paths"
+  },
+  "statusDefinitions": {
+    "pass": "实际命令结果符合预期，并有退出码与输出证据",
+    "fail": "实际结果不符合预期",
+    "skip": "平台/工具不适用，或按任务范围明确未执行",
+    "blocked": "因缺少合法输入或环境运行时无法执行，不能记为通过"
+  },
+  "summary": {
+    "pass": 44,
+    "fail": 1,
+    "skip": 5,
+    "blocked": 10,
+    "total": 60
+  },
+  "results": [
+    {
+      "id": "install.npm-ci",
+      "area": "install",
+      "name": "npm ci 在最终环境安装成功",
+      "status": "pass",
+      "command": "npm ci",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/npm-ci-default-final.log"
+      ],
+      "observed": "added 2 packages; @napi-rs/canvas 0.1.100 + linux-x64-gnu 原生包",
+      "reason": null
+    },
+    {
+      "id": "install.npm-ci-sandboxed",
+      "area": "install",
+      "name": "受限沙箱内的 npm ci 与项目内缓存变通",
+      "status": "pass",
+      "command": "npm ci; npm ci --cache qa/linux/kaby_lake/npm-cache",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/npm-ci-default.log",
+        "qa/linux/kaby_lake/logs/npm-ci-local-cache.log"
+      ],
+      "observed": "沙箱默认缓存只读导致 exit 226 (EROFS)；项目内缓存重试 exit 0。最终环境默认 npm ci 直接成功",
+      "reason": null
+    },
+    {
+      "id": "install.canvas-import",
+      "area": "install",
+      "name": "@napi-rs/canvas 原生模块可加载",
+      "status": "pass",
+      "command": "node -e 'import(\"@napi-rs/canvas\")'",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/canvas-import.log",
+        "qa/linux/kaby_lake/logs/npm-ls.log"
+      ],
+      "observed": "导入成功，导出 26 个键；缺省可选依赖在 Linux x64 上按预期未安装",
+      "reason": null
+    },
+    {
+      "id": "test.npm-test-public-clone",
+      "area": "tests",
+      "name": "公开克隆原样 npm test",
+      "status": "fail",
+      "command": "npm test",
+      "exitCode": 1,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/npm-test.log"
+      ],
+      "observed": "72 tests / 67 pass / 1 fail / 4 skip; 失败项 cli-plan.test.mjs:168 断言 plan.subtitles.sourceExists === true",
+      "reason": "公开克隆没有 assets/subtitles/KAWAIKU NARITAI.ja.srt；该用例隐式依赖本地字幕输入，见报告 F1"
+    },
+    {
+      "id": "test.npm-test-with-local-subtitle",
+      "area": "tests",
+      "name": "准备本地 ja 字幕后的 npm test",
+      "status": "pass",
+      "command": "npm test",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/npm-test-final.log",
+        "qa/linux/kaby_lake/logs/npm-test-with-real-srt.log"
+      ],
+      "observed": "72 tests / 68 pass / 0 fail / 4 skip; 跳过项为 3 个 Windows 专用用例与 1 个系统字体默认注册用例",
+      "reason": null
+    },
+    {
+      "id": "test.coverage",
+      "area": "tests",
+      "name": "整片覆盖检查",
+      "status": "pass",
+      "command": "npm run coverage",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/npm-coverage-final.log",
+        "qa/mv/film-coverage.json"
+      ],
+      "observed": "6043 source frames, 15135 output frames @60fps, 252.250 s, gaps 0, draft 100%, 54 draft scenes, 0 ready",
+      "reason": null
+    },
+    {
+      "id": "dryrun.documented-cpu-libx264",
+      "area": "dry-run",
+      "name": "文档中的 CPU libx264 dry-run",
+      "status": "pass",
+      "command": "npm run render -- --output-range 44 56 --width 1280 --fps 60 --preview-release --dry-run --out qa/mv/plan-only.mp4",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/plan-dryrun-doc.json",
+        "qa/linux/kaby_lake/logs/dryrun-doc.log"
+      ],
+      "observed": "720 frames / 12 s; encoder libx264 8-bit yuv420p; audioSeekSeconds 44; probe null; formatProbe null",
+      "reason": null
+    },
+    {
+      "id": "dryrun.local-inputs",
+      "area": "dry-run",
+      "name": "本地音轨/字体/字幕的 dry-run 规划",
+      "status": "pass",
+      "command": "MV_AUDIO_PATH=<local-media>/audio/... 与三个 MV_* 字体变量已设置；npm run render -- --output-range 19 21 --width 640 --fps 60 --preview-release --dry-run --srt ja",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/plan-dryrun-local-inputs.json",
+        "qa/linux/kaby_lake/logs/dryrun-real-inputs.log"
+      ],
+      "observed": "三个字体槽位 registered；audio.source=environment, exists=true, seekSeconds=19；subtitles.sourceExists=true, stats=null",
+      "reason": null
+    },
+    {
+      "id": "fonts.default-plan",
+      "area": "fonts",
+      "name": "非 Windows 无字体配置时的 WARNING 与 plan 状态",
+      "status": "pass",
+      "command": "npm run coverage (clean font environment)",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/npm-coverage-final.log"
+      ],
+      "observed": "MV Gothic/TitleRound 为 not-configured，SourceDisplay 为 missing-file；各打印一次 WARNING，coverage 不阻断",
+      "reason": null
+    },
+    {
+      "id": "fonts.invalid-env-plan",
+      "area": "fonts",
+      "name": "MV_FONT_PATH 指向不存在文件",
+      "status": "pass",
+      "command": "MV_FONT_PATH=/nonexistent/font.ttf npm run render -- --output-range 44 44.5 --width 320 --preview-release --dry-run",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/dryrun-bad-font.log"
+      ],
+      "observed": "仅 1 条 MV Gothic WARNING；plan.fonts.slots 记录 missing-file；其余两个槽位不受影响",
+      "reason": null
+    },
+    {
+      "id": "audio.empty-override-fallback",
+      "area": "audio",
+      "name": "空 MV_AUDIO_PATH 回退 ASSET_INDEX.audio",
+      "status": "pass",
+      "command": "MV_AUDIO_PATH=\"\" npm run render -- --output-range 19 19.2 --width 320 --preview-release --dry-run",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/dryrun-empty-audio.log"
+      ],
+      "observed": "audio.source=asset-index, exists=false, reason='MV_AUDIO_PATH is empty; using ASSET_INDEX.audio'",
+      "reason": null
+    },
+    {
+      "id": "render.requested-range-49.5-50.5",
+      "area": "render",
+      "name": "请求的 49.5-50.5 s 默认 CPU MV 短片",
+      "status": "blocked",
+      "command": "npm run render -- --output-range 49.5 50.5 --width 640 --fps 60 --preset veryfast --crf 23 --preview-release --no-audio --out qa/linux/kaby_lake/mv-cpu-silent.mp4",
+      "exitCode": 1,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/render-mv-cpu-silent.log",
+        "qa/linux/kaby_lake/logs/render-mv-requested-real-inputs.log",
+        "qa/linux/kaby_lake/requested-range-missing-inputs.json"
+      ],
+      "observed": "ERROR: frame 0 at source PTS 49.436 failed: Invalid URL; 无输出文件",
+      "reason": "home-studio 场景缺 4 个本地素材：third-party-derived/home-assets/curled-base.png、sigh-source.png、runtime/home-assets/studio-backdrop.png、visuals/grok-hairstylist-exit.png"
+    },
+    {
+      "id": "render.probe-title-19.1",
+      "area": "render",
+      "name": "标题场景 19.1-19.3 s 探测渲染",
+      "status": "pass",
+      "command": "npm run render -- --output-range 19.1 19.3 --width 320 --fps 60 --preset ultrafast --crf 30 --preview-release --no-audio --out qa/linux/kaby_lake/probe/probe-19.1-19.3.mp4",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/probe/probe-19.1-19.3.mp4",
+        "qa/linux/kaby_lake/probe/probe-19.1-19.3.mp4.render.json",
+        "qa/linux/kaby_lake/probe/scene-probe.tsv"
+      ],
+      "observed": "320x180, 12 frames, 0.2 s, H.264, yuv420p, actualOutput.verified=true",
+      "reason": null
+    },
+    {
+      "id": "render.probe-title-21.0",
+      "area": "render",
+      "name": "标题场景 21.0-21.2 s 探测渲染",
+      "status": "pass",
+      "command": "npm run render -- --output-range 21.0 21.2 --width 320 --fps 60 --preset ultrafast --crf 30 --preview-release --no-audio --out qa/linux/kaby_lake/probe/probe-21.0-21.2.mp4",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/probe/probe-21.0-21.2.mp4",
+        "qa/linux/kaby_lake/probe/probe-21.0-21.2.mp4.render.json",
+        "qa/linux/kaby_lake/probe/scene-probe.tsv"
+      ],
+      "observed": "320x180, 12 frames, 0.2 s, H.264, yuv420p",
+      "reason": null
+    },
+    {
+      "id": "render.probe-colorgrid-34.1",
+      "area": "render",
+      "name": "色彩网格转场 34.1-34.3 s 探测渲染",
+      "status": "pass",
+      "command": "npm run render -- --output-range 34.1 34.3 --width 320 --fps 60 --preset ultrafast --crf 30 --preview-release --no-audio --out qa/linux/kaby_lake/probe/probe-34.1-34.3.mp4",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/probe/probe-34.1-34.3.mp4",
+        "qa/linux/kaby_lake/probe/probe-34.1-34.3.mp4.render.json",
+        "qa/linux/kaby_lake/probe/scene-probe.tsv"
+      ],
+      "observed": "320x180, 12 frames, 0.2 s, H.264, yuv420p",
+      "reason": null
+    },
+    {
+      "id": "render.probe-ending-247.2",
+      "area": "render",
+      "name": "片尾 247.2-247.4 s 探测渲染",
+      "status": "pass",
+      "command": "npm run render -- --output-range 247.2 247.4 --width 320 --fps 60 --preset ultrafast --crf 30 --preview-release --no-audio --out qa/linux/kaby_lake/probe/probe-247.2-247.4.mp4",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/probe/probe-247.2-247.4.mp4",
+        "qa/linux/kaby_lake/probe/probe-247.2-247.4.mp4.render.json",
+        "qa/linux/kaby_lake/probe/scene-probe.tsv"
+      ],
+      "observed": "320x180, 12 frames, 0.2 s, H.264, yuv420p",
+      "reason": null
+    },
+    {
+      "id": "render.probe-blocked-mirror",
+      "area": "render",
+      "name": "镜像开场探测区间 0.2/8.9/17.45/18.1 s",
+      "status": "blocked",
+      "command": "npm run render -- --output-range <A> <B> --width 320 --fps 60 --preset ultrafast --crf 30 --preview-release --no-audio",
+      "exitCode": 1,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/render-probe-0.2-0.4.log",
+        "qa/linux/kaby_lake/logs/render-probe-17.45-17.65.log",
+        "qa/linux/kaby_lake/probe/scene-probe.tsv"
+      ],
+      "observed": "frame 0 失败：ENOENT assets/visuals/props/mirror-princess-user.svg",
+      "reason": "公开克隆缺 mirror-princess-user.svg（commitAllowed=false）"
+    },
+    {
+      "id": "render.probe-blocked-home-reading",
+      "area": "render",
+      "name": "居家阅读 40.1-40.3 s 探测渲染",
+      "status": "blocked",
+      "command": "npm run render -- --output-range 40.1 40.3 --width 320 --fps 60 --preset ultrafast --crf 30 --preview-release --no-audio",
+      "exitCode": 1,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/render-probe-40.1-40.3.log",
+        "qa/linux/kaby_lake/probe/scene-probe.tsv"
+      ],
+      "observed": "frame 0 失败：Invalid URL（loadImage 未给出路径）",
+      "reason": "缺 assets/third-party-derived/plates/reading-clean-registered.png 等本地输入，见代码路径"
+    },
+    {
+      "id": "render.probe-blocked-home-studio",
+      "area": "render",
+      "name": "摄影棚 44.7-44.9 s 探测渲染",
+      "status": "blocked",
+      "command": "npm run render -- --output-range 44.7 44.9 --width 320 --fps 60 --preset ultrafast --crf 30 --preview-release --no-audio",
+      "exitCode": 1,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/render-probe-44.7-44.9.log",
+        "qa/linux/kaby_lake/probe/scene-probe.tsv"
+      ],
+      "observed": "frame 0 失败：Invalid URL",
+      "reason": "缺 home-assets 与 third-party-derived/home-assets 的本地输入（curled-base.png、studio-backdrop.png 等）"
+    },
+    {
+      "id": "render.probe-blocked-ad-prop",
+      "area": "render",
+      "name": "朋友至广告 114.1-114.3 s 探测渲染",
+      "status": "blocked",
+      "command": "npm run render -- --output-range 114.1 114.3 --width 320 --fps 60 --preset ultrafast --crf 30 --preview-release --no-audio",
+      "exitCode": 1,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/render-probe-114.1-114.3.log",
+        "qa/linux/kaby_lake/probe/scene-probe.tsv"
+      ],
+      "observed": "frame 0 失败：ENOENT assets/props/dafeiyu-rice-bowl/dafeiyu-rice-bowl.svg",
+      "reason": "公开克隆缺 dafeiyu-rice-bowl.svg（commitAllowed=false）"
+    },
+    {
+      "id": "render.probe-blocked-sns",
+      "area": "render",
+      "name": "SNS 116.2-116.4 s 探测渲染",
+      "status": "blocked",
+      "command": "npm run render -- --output-range 116.2 116.4 --width 320 --fps 60 --preset ultrafast --crf 30 --preview-release --no-audio",
+      "exitCode": 1,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/render-probe-116.2-116.4.log",
+        "qa/linux/kaby_lake/probe/scene-probe.tsv"
+      ],
+      "observed": "frame 0 失败：Invalid URL",
+      "reason": "runtime/social-web-export 的 811 个屏幕/手机烘焙位图缺失，仅 timeline JSON 存在"
+    },
+    {
+      "id": "render.probe-blocked-seated",
+      "area": "render",
+      "name": "坐姿 162.9-163.1 s 探测渲染",
+      "status": "blocked",
+      "command": "npm run render -- --output-range 162.9 163.1 --width 320 --fps 60 --preset ultrafast --crf 30 --preview-release --no-audio",
+      "exitCode": 1,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/render-probe-162.9-163.1.log",
+        "qa/linux/kaby_lake/probe/scene-probe.tsv"
+      ],
+      "observed": "frame 0 失败：Invalid URL",
+      "reason": "缺 assets/visuals/pair-calm.png 等工作副本图片"
+    },
+    {
+      "id": "render.probe-blocked-ad",
+      "area": "render",
+      "name": "广告站台 206.3-206.5 s 探测渲染",
+      "status": "blocked",
+      "command": "npm run render -- --output-range 206.3 206.5 --width 320 --fps 60 --preset ultrafast --crf 30 --preview-release --no-audio",
+      "exitCode": 1,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/render-probe-206.3-206.5.log",
+        "qa/linux/kaby_lake/probe/scene-probe.tsv"
+      ],
+      "observed": "frame 0 失败：Invalid URL",
+      "reason": "缺 third-party-derived/ad-code-assets/source-hand-alpha.png 与 runtime/ad-assets 本地输入"
+    },
+    {
+      "id": "render.probe-blocked-bookshop-r67",
+      "area": "render",
+      "name": "R67 转场 231.6-231.8 s 探测渲染",
+      "status": "blocked",
+      "command": "npm run render -- --output-range 231.6 231.8 --width 320 --fps 60 --preset ultrafast --crf 30 --preview-release --no-audio",
+      "exitCode": 1,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/render-probe-231.6-231.8.log",
+        "qa/linux/kaby_lake/probe/scene-probe.tsv"
+      ],
+      "observed": "frame 0 失败：Invalid URL",
+      "reason": "R67 前置于 bookshop 场景，缺 bookshop 的 background/body/cover/grip 4 个本地输入"
+    },
+    {
+      "id": "render.title-fragment-silent",
+      "area": "render",
+      "name": "标题 19-21 s 静默真实短片",
+      "status": "pass",
+      "command": "npm run render -- --output-range 19 21 --width 640 --fps 60 --preset veryfast --crf 23 --preview-release --no-audio --out qa/linux/kaby_lake/mv-title-fragment-silent.mp4",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/mv-title-fragment-silent.mp4",
+        "qa/linux/kaby_lake/mv-title-fragment-silent.mp4.render.json",
+        "qa/linux/kaby_lake/logs/render-title-fragment-silent.log",
+        "qa/linux/kaby_lake/stills/title-0500ms.png",
+        "qa/linux/kaby_lake/stills/title-1800ms.png"
+      ],
+      "observed": "H.264 High, yuv420p, 640x360, 60 fps, 120 frames, 2.000 s, color_space=bt709, color_range=tv; actualOutput.verified=true; 完整解码 exit 0; 静帧抽查文字与背景正常",
+      "reason": null
+    },
+    {
+      "id": "render.title-fragment-real-audio-ja",
+      "area": "render",
+      "name": "标题 19-21 s + 本地 Sana 音轨 + 真实 ja SRT",
+      "status": "pass",
+      "command": "MV_AUDIO_PATH=<local-media>/audio/KAWAIKU NARITAI (feat. Sana).mp3 npm run render -- --output-range 19 21 --width 640 --fps 60 --preset veryfast --crf 23 --preview-release --srt ja --out qa/linux/kaby_lake/mv-title-fragment-real-audio-ja.mp4",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/mv-title-fragment-real-audio-ja.mp4",
+        "qa/linux/kaby_lake/mv-title-fragment-real-audio-ja.mp4.render.json",
+        "qa/linux/kaby_lake/logs/render-real-audio-ja.log",
+        "qa/linux/kaby_lake/logs/decode-real-audio-ja.log",
+        "qa/linux/kaby_lake/logs/audio-alignment.json"
+      ],
+      "observed": "H.264 High/yuv420p 120 帧 2.000 s；AAC LC 44.1 kHz 立体声 2.000 s 268 kbps；完整解码 exit 0；输出音频与源曲 19 s 段 best lag 0 采样、相关系数 0.9969；该窗口无真实歌词 cue，SRT 0 字节且 stats.output=0",
+      "reason": null
+    },
+    {
+      "id": "render.title-fragment-synthetic-audio-ja",
+      "area": "render",
+      "name": "标题 19-21 s + 自产正弦音轨 + 自拟占位 ja SRT（机制测试）",
+      "status": "pass",
+      "command": "MV_AUDIO_PATH=qa/linux/kaby_lake/synthetic-tone-440hz.m4a npm run render -- --output-range 19 21 --width 640 --fps 60 --preset veryfast --crf 23 --preview-release --srt ja --out qa/linux/kaby_lake/mv-title-fragment-audio-ja.mp4",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/mv-title-fragment-audio-ja.mp4",
+        "qa/linux/kaby_lake/mv-title-fragment-audio-ja.mp4.render.json",
+        "qa/linux/kaby_lake/mv-title-fragment-audio-ja.ja.srt",
+        "qa/linux/kaby_lake/logs/render-title-fragment-audio-ja.log"
+      ],
+      "observed": "AAC LC 44.1 kHz 单声道 2.014 s；自拟占位 SRT 输入 6 条输出 2 条，跨终点裁剪 1 条，输出 00:00:00,500-1,500 与 00:00:01,800-2,000；完整解码 exit 0。音频为自产 440 Hz 正弦波，不是歌曲",
+      "reason": null
+    },
+    {
+      "id": "render.colorgrid-real-ja",
+      "area": "render",
+      "name": "色彩网格 35.9-36.3 s + 本地 Sana 音轨 + 真实 ja SRT",
+      "status": "pass",
+      "command": "MV_AUDIO_PATH=<local-media>/audio/... npm run render -- --output-range 35.9 36.3 --width 640 --fps 60 --preset veryfast --crf 23 --preview-release --srt ja --out qa/linux/kaby_lake/mv-colorgrid-fragment-real-audio-ja.mp4",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/mv-colorgrid-fragment-real-audio-ja.mp4",
+        "qa/linux/kaby_lake/mv-colorgrid-fragment-real-audio-ja.mp4.render.json",
+        "qa/linux/kaby_lake/mv-colorgrid-fragment-real-audio-ja.ja.srt",
+        "qa/linux/kaby_lake/logs/render-colorgrid-real-ja.log"
+      ],
+      "observed": "24 帧 / 0.4 s；真实 SRT 输入 43 条输出 1 条，clippedEnd=1，输出时间行 00:00:00,155-0,400；完整解码 exit 0",
+      "reason": null
+    },
+    {
+      "id": "render.colorgrid-real-bilingual",
+      "area": "render",
+      "name": "色彩网格 35.9-36.3 s + 真实 bilingual SRT（无声）",
+      "status": "pass",
+      "command": "npm run render -- --output-range 35.9 36.3 --width 640 --fps 60 --preset veryfast --crf 23 --preview-release --no-audio --srt bilingual --out qa/linux/kaby_lake/mv-colorgrid-fragment-bilingual.mp4",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/mv-colorgrid-fragment-bilingual.mp4",
+        "qa/linux/kaby_lake/mv-colorgrid-fragment-bilingual.mp4.render.json",
+        "qa/linux/kaby_lake/mv-colorgrid-fragment-bilingual.bilingual.srt",
+        "qa/linux/kaby_lake/logs/render-colorgrid-bilingual.log"
+      ],
+      "observed": "24 帧 / 0.4 s；输入 43 条输出 1 条；多行文本保留（仅统计行数，未在报告转写内容）；完整解码 exit 0",
+      "reason": null
+    },
+    {
+      "id": "subtitle.empty-window",
+      "area": "subtitles",
+      "name": "无歌词窗口导出空 SRT",
+      "status": "pass",
+      "command": "npm run render -- --output-range 21.5 21.7 --width 320 --fps 60 --preset ultrafast --crf 30 --preview-release --no-audio --srt ja --out qa/linux/kaby_lake/mv-title-empty-srt.mp4",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/mv-title-empty-srt.ja.srt",
+        "qa/linux/kaby_lake/mv-title-empty-srt.mp4.render.json",
+        "qa/linux/kaby_lake/logs/render-empty-srt.log"
+      ],
+      "observed": "0 字节 SRT；stats.output=0, firstStartMs=null, lastEndMs=null；reason='no cues inside the output window'；视频 12 帧解码通过",
+      "reason": null
+    },
+    {
+      "id": "subtitle.zh-cn-refused",
+      "area": "subtitles",
+      "name": "不支持的 zh-CN 字幕值被拒绝",
+      "status": "pass",
+      "command": "npm run render -- --output-range 19 19.2 --width 320 --fps 60 --preview-release --dry-run --srt zh-CN",
+      "exitCode": 2,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/refused-srt-zhcn.log"
+      ],
+      "observed": "REFUSED: unsupported --srt value \"zh-CN\"; expected one of ja, bilingual；未写 plan、未启动编码",
+      "reason": null
+    },
+    {
+      "id": "audio.missing-path-refused",
+      "area": "audio",
+      "name": "MV_AUDIO_PATH 指向不存在文件",
+      "status": "pass",
+      "command": "MV_AUDIO_PATH=qa/linux/kaby_lake/no-such-audio.mp3 npm run render -- --output-range 19 19.2 --width 320 --fps 60 --preview-release --out qa/linux/kaby_lake/refused-missing-audio.mp4",
+      "exitCode": 2,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/refused-missing-audio.log"
+      ],
+      "observed": "REFUSED: Audio input from MV_AUDIO_PATH does not exist or is not a regular file；无视频输出",
+      "reason": null
+    },
+    {
+      "id": "audio.directory-refused",
+      "area": "audio",
+      "name": "MV_AUDIO_PATH 指向目录",
+      "status": "pass",
+      "command": "MV_AUDIO_PATH=qa/linux/kaby_lake npm run render -- --output-range 19 19.2 --width 320 --fps 60 --preview-release --out qa/linux/kaby_lake/refused-dir-audio.mp4",
+      "exitCode": 2,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/refused-dir-audio.log"
+      ],
+      "observed": "REFUSED；无视频输出；未静默回退默认音乐",
+      "reason": null
+    },
+    {
+      "id": "fonts.missing-font-render",
+      "area": "fonts",
+      "name": "缺字体时真实渲染仍完成",
+      "status": "pass",
+      "command": "MV_FONT_PATH=/nonexistent/font.ttf npm run render -- --output-range 19 19.2 --width 320 --fps 60 --preset ultrafast --crf 30 --preview-release --no-audio --out qa/linux/kaby_lake/mv-title-missing-font.mp4",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/mv-title-missing-font.mp4.render.json",
+        "qa/linux/kaby_lake/logs/render-missing-font.log"
+      ],
+      "observed": "1 条 MV Gothic WARNING；sidecar fonts.unavailable=['MV Gothic']，status=missing-file；actualOutput.verified=true",
+      "reason": null
+    },
+    {
+      "id": "encoder.unsupported-names-refused",
+      "area": "encoder",
+      "name": "项目入口拒绝 h264_qsv/h264_vaapi 编码器名",
+      "status": "pass",
+      "command": "npm run render -- --encoder h264_qsv|h264_vaapi ... --dry-run",
+      "exitCode": 2,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/refused-encoder-h264_qsv.log",
+        "qa/linux/kaby_lake/logs/refused-encoder-h264_vaapi.log"
+      ],
+      "observed": "REFUSED: Unsupported encoder；列出 libx264, libx265, av1_amf；这是入口设计约束，不作为硬件能力证据",
+      "reason": null
+    },
+    {
+      "id": "media.color-metadata",
+      "area": "media",
+      "name": "CPU 输出色彩标记核对",
+      "status": "pass",
+      "command": "ffprobe -select_streams v:0 -show_entries stream=color_space,color_primaries,color_transfer,color_range ...",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/logs/render-real-audio-ja.log"
+      ],
+      "observed": "color_range=tv, color_space=bt709, color_primaries=unknown, color_transfer=unknown；与文档已知限制一致，未加滤镜修正",
+      "reason": null
+    },
+    {
+      "id": "hw.device-and-driver",
+      "area": "hardware",
+      "name": "渲染节点与 VA-API 驱动可用性",
+      "status": "pass",
+      "command": "ls -l /dev/dri; vainfo; LIBVA_DRIVER_NAME=iHD vainfo",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/01-device-probe.log",
+        "qa/linux/kaby_lake/hw/10-vainfo-default.log",
+        "qa/linux/kaby_lake/hw/11-vainfo-i965.log",
+        "qa/linux/kaby_lake/hw/12-vainfo-iHD.log"
+      ],
+      "observed": "renderD128 可访问；VA-API 1.24 + i965 Kaby Lake 2.4.5；iHD 缺失导致 LIBVA_DRIVER_NAME=iHD vainfo exit 3",
+      "reason": null
+    },
+    {
+      "id": "hw.vaapi-h264-encode",
+      "area": "hardware",
+      "name": "VAAPI H.264 实际硬件编码",
+      "status": "pass",
+      "command": "ffmpeg -vaapi_device /dev/dri/renderD128 -f lavfi -i testsrc2=size=640x360:rate=30:duration=2 -vf format=nv12,hwupload -c:v h264_vaapi -profile:v high -qp 23 qa/linux/kaby_lake/hw/vaapi-h264-encode.mp4",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/vaapi-h264-encode.mp4",
+        "qa/linux/kaby_lake/hw/20-vaapi-h264-encode.log",
+        "qa/linux/kaby_lake/hw/23-vaapi-h264-psnr.log"
+      ],
+      "observed": "VAProfileH264High/VAEntrypointEncSlice；60 帧 640x360 2 s H.264 yuv420p；PSNR 平均 45.91（y 46.47）；短样本 23x",
+      "reason": null
+    },
+    {
+      "id": "hw.vaapi-h264-decode",
+      "area": "hardware",
+      "name": "VAAPI H.264 实际硬件解码",
+      "status": "pass",
+      "command": "ffmpeg -hwaccel vaapi -hwaccel_device /dev/dri/renderD128 -hwaccel_output_format vaapi -i qa/linux/kaby_lake/hw/vaapi-h264-encode.mp4 -f null -",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/21-vaapi-h264-decode.log"
+      ],
+      "observed": "Selecting decoder 'h264' because of requested hwaccel method vaapi；60 帧 decoded，0 errors，pix_fmt=vaapi",
+      "reason": null
+    },
+    {
+      "id": "hw.vaapi-no-fallback-control",
+      "area": "hardware",
+      "name": "无效设备对照：确认没有静默软件回退",
+      "status": "pass",
+      "command": "ffmpeg -hwaccel vaapi -hwaccel_device /dev/dri/renderD999 ...；ffmpeg -vaapi_device /dev/dri/renderD999 ...",
+      "exitCode": 234,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/22-vaapi-h264-decode-bad-device.log",
+        "qa/linux/kaby_lake/hw/24-vaapi-encode-bad-device.log"
+      ],
+      "observed": "解码与编码均在设备打开阶段失败，无输出文件；证明前面成功项不是软件回退",
+      "reason": null
+    },
+    {
+      "id": "hw.vaapi-hevc-encode",
+      "area": "hardware",
+      "name": "VAAPI HEVC 硬件编码",
+      "status": "pass",
+      "command": "ffmpeg -vaapi_device /dev/dri/renderD128 -f lavfi -i testsrc2=size=640x360:rate=30:duration=2 -vf format=nv12,hwupload -c:v hevc_vaapi -profile:v main -qp 25 ...",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/vaapi-hevc-encode.mp4",
+        "qa/linux/kaby_lake/hw/40-vaapi-hevc-encode.log"
+      ],
+      "observed": "VAProfileHEVCMain/VAEntrypointEncSlice；60 帧 640x360 2 s，HEVC Main yuv420p；短样本 8.35x",
+      "reason": null
+    },
+    {
+      "id": "hw.vaapi-hevc-decode",
+      "area": "hardware",
+      "name": "VAAPI HEVC 硬件解码",
+      "status": "pass",
+      "command": "ffmpeg -hwaccel vaapi -hwaccel_device /dev/dri/renderD128 -hwaccel_output_format vaapi -i hw/hevc-sw-source.mp4 -f null -",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/hevc-sw-source.mp4",
+        "qa/linux/kaby_lake/hw/41-vaapi-hevc-decode.log"
+      ],
+      "observed": "Selecting decoder 'hevc' because of requested hwaccel method vaapi；60 帧，pix_fmt=vaapi",
+      "reason": null
+    },
+    {
+      "id": "hw.vaapi-vp9-decode",
+      "area": "hardware",
+      "name": "VAAPI VP9 硬件解码",
+      "status": "pass",
+      "command": "ffmpeg -hwaccel vaapi -hwaccel_device /dev/dri/renderD128 -hwaccel_output_format vaapi -i hw/vp9-sw-source.webm -f null -",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/vp9-sw-source.webm",
+        "qa/linux/kaby_lake/hw/42-vaapi-vp9-decode.log"
+      ],
+      "observed": "Selecting decoder 'vp9' because of requested hwaccel method vaapi；30 帧，pix_fmt=vaapi",
+      "reason": null
+    },
+    {
+      "id": "hw.vaapi-720p60-encode",
+      "area": "hardware",
+      "name": "VAAPI H.264 1280x720@60 硬件编码",
+      "status": "pass",
+      "command": "ffmpeg -vaapi_device /dev/dri/renderD128 -f lavfi -i testsrc2=size=1280x720:rate=60:duration=2 -vf format=nv12,hwupload -c:v h264_vaapi -profile:v high -qp 23 ...；硬解该文件",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/vaapi-h264-720p60-encode.mp4",
+        "qa/linux/kaby_lake/hw/50-vaapi-h264-720p60.log"
+      ],
+      "observed": "120 帧 1280x720 60fps 2 s；短样本 4.38x；硬件解码 exit 0",
+      "reason": null
+    },
+    {
+      "id": "hw.vaapi-real-mv-fragment-reencode",
+      "area": "hardware",
+      "name": "真实 MV 片段 H.264 硬件重编码与硬解",
+      "status": "pass",
+      "command": "ffmpeg -vaapi_device /dev/dri/renderD128 -i qa/linux/kaby_lake/mv-title-fragment-real-audio-ja.mp4 -vf format=nv12,hwupload -c:v h264_vaapi -qp 23 hw/vaapi-h264-from-mv-fragment.mp4；再 -hwaccel vaapi 解码",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/vaapi-h264-from-mv-fragment.mp4",
+        "qa/linux/kaby_lake/hw/25-vaapi-h264-mv-fragment.log"
+      ],
+      "observed": "120 帧 640x360 60fps 2 s，H.264 High；硬件解码 exit 0",
+      "reason": null
+    },
+    {
+      "id": "hw.project-output-hw-decode",
+      "area": "hardware",
+      "name": "项目 CPU 输出的硬件解码",
+      "status": "pass",
+      "command": "ffmpeg -hwaccel vaapi -hwaccel_device /dev/dri/renderD128 -hwaccel_output_format vaapi -i qa/linux/kaby_lake/mv-title-fragment-real-audio-ja.mp4 -f null -",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/26-vaapi-decode-project-output.log"
+      ],
+      "observed": "120 视频帧 + 88 音频包/87 帧/88200 采样，0 decode errors",
+      "reason": null
+    },
+    {
+      "id": "environment.qsv-runtime-installed",
+      "area": "environment",
+      "name": "QSV 运行时补齐（使用者安装）",
+      "status": "pass",
+      "command": "pacman -Q intel-media-driver intel-media-sdk libvpl libmfx",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/84-qsv-runtime-packages.log",
+        "qa/linux/kaby_lake/hw/60-vainfo-after-install.log",
+        "qa/linux/kaby_lake/hw/61-vainfo-iHD-after-install.log"
+      ],
+      "observed": "intel-media-driver 26.3.5-1、intel-media-sdk 23.2.2-6；iHD_drv_video.so 与 libmfxhw64.so.1.35 存在；vainfo 默认改为 iHD 26.3.5。安装由使用者完成，测试 Agent 未执行系统修改",
+      "reason": null
+    },
+    {
+      "id": "hw.qsv-hevc-encode",
+      "area": "hardware",
+      "name": "QSV HEVC 硬件编码",
+      "status": "pass",
+      "command": "ffmpeg -init_hw_device qsv=hw -filter_hw_device hw -f lavfi -i testsrc2=size=640x360:rate=30:duration=2 -vf hwupload=extra_hw_frames=64,format=qsv -c:v hevc_qsv -preset veryfast -global_quality 25 hw/qsv-hevc-encode.mp4",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/qsv-hevc-encode.mp4",
+        "qa/linux/kaby_lake/hw/75-qsv-hevc-encode.log"
+      ],
+      "observed": "60 帧 640x360 2 s，HEVC Main yuv420p；oneVPL implementation 1.35；短样本 17x",
+      "reason": null
+    },
+    {
+      "id": "hw.qsv-hevc-decode",
+      "area": "hardware",
+      "name": "QSV HEVC 硬件解码",
+      "status": "pass",
+      "command": "ffmpeg -hwaccel qsv -qsv_device /dev/dri/renderD128 -hwaccel_output_format qsv -i hw/hevc-sw-source.mp4 -f null -",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/76-qsv-hevc-decode.log",
+        "qa/linux/kaby_lake/hw/hevc-sw-source.mp4"
+      ],
+      "observed": "Selecting decoder hevc_qsv；60 帧 decoded，0 errors，video memory surface",
+      "reason": null
+    },
+    {
+      "id": "hw.qsv-vp9-decode",
+      "area": "hardware",
+      "name": "QSV VP9 硬件解码",
+      "status": "pass",
+      "command": "ffmpeg -hwaccel qsv -qsv_device /dev/dri/renderD128 -hwaccel_output_format qsv -i hw/vp9-sw-source.webm -f null -",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/83-qsv-vp9-decode.log",
+        "qa/linux/kaby_lake/hw/vp9-sw-source.webm"
+      ],
+      "observed": "Selecting decoder vp9_qsv；30 帧 decoded，0 errors",
+      "reason": null
+    },
+    {
+      "id": "hw.qsv-720p60-encode",
+      "area": "hardware",
+      "name": "QSV H.264 1280x720@60 硬件编码",
+      "status": "pass",
+      "command": "ffmpeg -init_hw_device qsv=hw -filter_hw_device hw -f lavfi -i testsrc2=size=1280x720:rate=60:duration=2 -vf hwupload=extra_hw_frames=64,format=qsv -c:v h264_qsv ...；随后 QSV 硬解该文件",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/qsv-h264-720p60-encode.mp4",
+        "qa/linux/kaby_lake/hw/82-qsv-h264-720p60.log"
+      ],
+      "observed": "120 帧 1280x720 60fps 2 s，H.264 High yuv420p；短样本 4.23x；QSV 硬解 exit 0",
+      "reason": null
+    },
+    {
+      "id": "hw.qsv-real-mv-fragment",
+      "area": "hardware",
+      "name": "真实 MV 片段 QSV 硬件重编码与硬解",
+      "status": "pass",
+      "command": "ffmpeg -init_hw_device qsv=hw -filter_hw_device hw -i qa/linux/kaby_lake/mv-title-fragment-real-audio-ja.mp4 -vf hwupload=extra_hw_frames=64,format=qsv -c:v h264_qsv ... hw/qsv-h264-from-mv-fragment.mp4；再 QSV 解码",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/qsv-h264-from-mv-fragment.mp4",
+        "qa/linux/kaby_lake/hw/80-qsv-h264-mv-fragment.log"
+      ],
+      "observed": "120 帧 640x360 60fps 2 s，H.264 High；QSV 硬解 exit 0",
+      "reason": null
+    },
+    {
+      "id": "hw.qsv-project-output-decode",
+      "area": "hardware",
+      "name": "项目 CPU 输出的 QSV 硬件解码",
+      "status": "pass",
+      "command": "ffmpeg -hwaccel qsv -qsv_device /dev/dri/renderD128 -hwaccel_output_format qsv -i qa/linux/kaby_lake/mv-title-fragment-real-audio-ja.mp4 -f null -",
+      "exitCode": 0,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/81-qsv-decode-project-output.log"
+      ],
+      "observed": "120 视频帧 + 88 音频包 / 87 帧 / 88200 采样，0 decode errors；Selecting decoder h264_qsv",
+      "reason": null
+    },
+    {
+      "id": "hw.qsv-bad-device-control",
+      "area": "hardware",
+      "name": "QSV 无效设备对照（确认无软件回退）",
+      "status": "pass",
+      "command": "ffmpeg -qsv_device /dev/dri/renderD999 ...；ffmpeg -init_hw_device qsv=hw -qsv_device /dev/dri/renderD999 ...",
+      "exitCode": 234,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/77-qsv-bad-device-a.log",
+        "qa/linux/kaby_lake/hw/78-qsv-bad-device-b.log"
+      ],
+      "observed": "两种写法均在设备创建阶段失败（exit 234），无输出文件，说明成功项不是静默软件回退",
+      "reason": null
+    },
+    {
+      "id": "hw.gpu-utilization-tool",
+      "area": "hardware",
+      "name": "GPU 占用率独立观测",
+      "status": "skip",
+      "command": "command -v intel_gpu_top vulkaninfo clinfo nvtop",
+      "exitCode": null,
+      "evidence": [
+        "qa/linux/kaby_lake/hw/01-device-probe.log"
+      ],
+      "observed": "上述工具均未安装；硬件路径依据 FFmpeg 日志、entrypoint、坏设备对照与输出分析",
+      "reason": "工具缺失，未安装系统包；跳过外部 GPU 占用率复核"
+    },
+    {
+      "id": "render.full-film",
+      "area": "render",
+      "name": "整片 MV 渲染",
+      "status": "blocked",
+      "command": null,
+      "exitCode": null,
+      "evidence": [
+        "qa/linux/kaby_lake/missing-inputs-code-scan.json",
+        "qa/linux/kaby_lake/probe/scene-probe.tsv"
+      ],
+      "observed": "整片未实际执行；frame 0（约 0.129 s）所在 mirror-empty-open 已由探测确认缺 mirror-princess-user.svg，且静态扫描 2236 个代码/JSON 引用中 2186 个缺失；据此判定 blocked，而不是用合成色块跑完整片",
+      "reason": "公开克隆缺 3123 个 commitAllowed=false 的本地素材；未用合成色块替代真实 MV"
+    },
+    {
+      "id": "review.dynamic-playback",
+      "area": "review",
+      "name": "动态播放、声画同步与整片观感验收",
+      "status": "skip",
+      "command": null,
+      "exitCode": null,
+      "evidence": [
+        "qa/linux/kaby_lake/stills/"
+      ],
+      "observed": "仅对标题/片尾/色彩网格抽取静帧用图像工具查看，未做连续播放、听音或字幕同步验收",
+      "reason": "任务以测试记录为主；且无完整 MV 输入，不能用片段静帧代替完整动态验收"
+    },
+    {
+      "id": "project.libx265-10bit",
+      "area": "project",
+      "name": "libx265 10-bit 编码路径",
+      "status": "skip",
+      "command": null,
+      "exitCode": null,
+      "evidence": [],
+      "observed": "本轮未执行",
+      "reason": "任务明确不扩展 10-bit 制作流程；现有实现与 Windows 基线记录见 docs/REPRODUCING.md"
+    },
+    {
+      "id": "project.av1-amf",
+      "area": "project",
+      "name": "av1_amf 编码路径",
+      "status": "skip",
+      "command": null,
+      "exitCode": null,
+      "evidence": [],
+      "observed": "本轮未执行",
+      "reason": "本机无 AMD 硬件；`ffmpeg -encoders` 虽列出 av1_amf，但按任务要求不把列出等同于可用"
+    },
+    {
+      "id": "project.4k",
+      "area": "project",
+      "name": "4K60 渲染",
+      "status": "skip",
+      "command": null,
+      "exitCode": null,
+      "evidence": [],
+      "observed": "本轮未执行",
+      "reason": "范围外；以短片结果外推 4K 耗时或画质不符合任务要求"
+    }
+  ]
+}
