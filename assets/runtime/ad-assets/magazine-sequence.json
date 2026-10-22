@@ -1,0 +1,446 @@
+[
+  {
+    "t": 221.313,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.313.webp",
+    "x": 7,
+    "y": -3
+  },
+  {
+    "t": 221.355,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.355.webp",
+    "x": 7,
+    "y": -3
+  },
+  {
+    "t": 221.396,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.396.webp",
+    "x": 6,
+    "y": -3
+  },
+  {
+    "t": 221.438,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.438.webp",
+    "x": 6,
+    "y": -3
+  },
+  {
+    "t": 221.48,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.480.webp",
+    "x": 6,
+    "y": -3
+  },
+  {
+    "t": 221.522,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.522.webp",
+    "x": 5,
+    "y": -2
+  },
+  {
+    "t": 221.563,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.563.webp",
+    "x": 4,
+    "y": -2
+  },
+  {
+    "t": 221.605,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.605.webp",
+    "x": 4,
+    "y": -2
+  },
+  {
+    "t": 221.647,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.647.webp",
+    "x": 4,
+    "y": -2
+  },
+  {
+    "t": 221.688,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.688.webp",
+    "x": 3,
+    "y": -1
+  },
+  {
+    "t": 221.73,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.730.webp",
+    "x": 3,
+    "y": -1
+  },
+  {
+    "t": 221.772,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.772.webp",
+    "x": 2,
+    "y": -1
+  },
+  {
+    "t": 221.814,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.814.webp",
+    "x": 2,
+    "y": -1
+  },
+  {
+    "t": 221.855,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.855.webp",
+    "x": 2,
+    "y": -1
+  },
+  {
+    "t": 221.897,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.897.webp",
+    "x": 1,
+    "y": -1
+  },
+  {
+    "t": 221.939,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.939.webp",
+    "x": 1,
+    "y": 0
+  },
+  {
+    "t": 221.98,
+    "asset": "assets/runtime/ad-assets/magazine-bg-221.980.webp",
+    "x": 0,
+    "y": 0
+  },
+  {
+    "t": 222.022,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.022.webp",
+    "x": 0,
+    "y": 0
+  },
+  {
+    "t": 222.064,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.064.webp",
+    "x": 0,
+    "y": 0
+  },
+  {
+    "t": 222.105,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.105.webp",
+    "x": -1,
+    "y": 0
+  },
+  {
+    "t": 222.147,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.147.webp",
+    "x": -1,
+    "y": 1
+  },
+  {
+    "t": 222.189,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.189.webp",
+    "x": -2,
+    "y": 1
+  },
+  {
+    "t": 222.231,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.231.webp",
+    "x": -2,
+    "y": 1
+  },
+  {
+    "t": 222.272,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.272.webp",
+    "x": -2,
+    "y": 1
+  },
+  {
+    "t": 222.314,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.314.webp",
+    "x": -3,
+    "y": 1
+  },
+  {
+    "t": 222.356,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.356.webp",
+    "x": -4,
+    "y": 2
+  },
+  {
+    "t": 222.397,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.397.webp",
+    "x": -4,
+    "y": 2
+  },
+  {
+    "t": 222.439,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.439.webp",
+    "x": -4,
+    "y": 2
+  },
+  {
+    "t": 222.481,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.481.webp",
+    "x": -4,
+    "y": 2
+  },
+  {
+    "t": 222.522,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.522.webp",
+    "x": -5,
+    "y": 2
+  },
+  {
+    "t": 222.564,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.564.webp",
+    "x": -6,
+    "y": 3
+  },
+  {
+    "t": 222.606,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.606.webp",
+    "x": -6,
+    "y": 3
+  },
+  {
+    "t": 222.648,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.648.webp",
+    "x": -6,
+    "y": 3
+  },
+  {
+    "t": 222.689,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.689.webp",
+    "x": -6,
+    "y": 3
+  },
+  {
+    "t": 222.731,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.731.webp",
+    "x": -7,
+    "y": 3
+  },
+  {
+    "t": 222.773,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.773.webp",
+    "x": -8,
+    "y": 3
+  },
+  {
+    "t": 222.814,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.814.webp",
+    "x": -8,
+    "y": 4
+  },
+  {
+    "t": 222.856,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.856.webp",
+    "x": -8,
+    "y": 4
+  },
+  {
+    "t": 222.898,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.898.webp",
+    "x": -9,
+    "y": 4
+  },
+  {
+    "t": 222.939,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.939.webp",
+    "x": -9,
+    "y": 4
+  },
+  {
+    "t": 222.981,
+    "asset": "assets/runtime/ad-assets/magazine-bg-222.981.webp",
+    "x": -10,
+    "y": 4
+  },
+  {
+    "t": 223.023,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.023.webp",
+    "x": -10,
+    "y": 5
+  },
+  {
+    "t": 223.065,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.065.webp",
+    "x": -10,
+    "y": 5
+  },
+  {
+    "t": 223.106,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.106.webp",
+    "x": -11,
+    "y": 5
+  },
+  {
+    "t": 223.148,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.148.webp",
+    "x": -11,
+    "y": 5
+  },
+  {
+    "t": 223.19,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.190.webp",
+    "x": -12,
+    "y": 5
+  },
+  {
+    "t": 223.231,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.231.webp",
+    "x": -12,
+    "y": 5
+  },
+  {
+    "t": 223.273,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.273.webp",
+    "x": -12,
+    "y": 6
+  },
+  {
+    "t": 223.315,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.315.webp",
+    "x": -13,
+    "y": 6
+  },
+  {
+    "t": 223.356,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.356.webp",
+    "x": -13,
+    "y": 6
+  },
+  {
+    "t": 223.398,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.398.webp",
+    "x": -14,
+    "y": 6
+  },
+  {
+    "t": 223.44,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.440.webp",
+    "x": -14,
+    "y": 6
+  },
+  {
+    "t": 223.482,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.482.webp",
+    "x": -14,
+    "y": 7
+  },
+  {
+    "t": 223.523,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.523.webp",
+    "x": -15,
+    "y": 7
+  },
+  {
+    "t": 223.565,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.565.webp",
+    "x": -15,
+    "y": 7
+  },
+  {
+    "t": 223.607,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.607.webp",
+    "x": -16,
+    "y": 7
+  },
+  {
+    "t": 223.648,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.648.webp",
+    "x": -16,
+    "y": 7
+  },
+  {
+    "t": 223.69,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.690.webp",
+    "x": -16,
+    "y": 7
+  },
+  {
+    "t": 223.732,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.732.webp",
+    "x": -17,
+    "y": 8
+  },
+  {
+    "t": 223.773,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.773.webp",
+    "x": -18,
+    "y": 8
+  },
+  {
+    "t": 223.815,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.815.webp",
+    "x": -18,
+    "y": 8
+  },
+  {
+    "t": 223.857,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.857.webp",
+    "x": -18,
+    "y": 8
+  },
+  {
+    "t": 223.899,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.899.webp",
+    "x": -18,
+    "y": 8
+  },
+  {
+    "t": 223.94,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.940.webp",
+    "x": -19,
+    "y": 9
+  },
+  {
+    "t": 223.982,
+    "asset": "assets/runtime/ad-assets/magazine-bg-223.982.webp",
+    "x": -20,
+    "y": 9
+  },
+  {
+    "t": 224.024,
+    "asset": "assets/runtime/ad-assets/magazine-bg-224.024.webp",
+    "x": -20,
+    "y": 9
+  },
+  {
+    "t": 224.065,
+    "asset": "assets/runtime/ad-assets/magazine-bg-224.065.webp",
+    "x": -20,
+    "y": 9
+  },
+  {
+    "t": 224.107,
+    "asset": "assets/runtime/ad-assets/magazine-bg-224.107.webp",
+    "x": -20,
+    "y": 9
+  },
+  {
+    "t": 224.149,
+    "asset": "assets/runtime/ad-assets/magazine-bg-224.149.webp",
+    "x": -21,
+    "y": 10
+  },
+  {
+    "t": 224.19,
+    "asset": "assets/runtime/ad-assets/magazine-bg-224.190.webp",
+    "x": -22,
+    "y": 10
+  },
+  {
+    "t": 224.232,
+    "asset": "assets/runtime/ad-assets/magazine-bg-224.232.webp",
+    "x": -22,
+    "y": 10
+  },
+  {
+    "t": 224.274,
+    "asset": "assets/runtime/ad-assets/magazine-bg-224.274.webp",
+    "x": -45,
+    "y": -43
+  },
+  {
+    "t": 224.316,
+    "asset": "assets/runtime/ad-assets/magazine-bg-224.316.webp",
+    "x": -45,
+    "y": -42
+  },
+  {
+    "t": 224.357,
+    "asset": "assets/runtime/ad-assets/magazine-bg-224.357.webp",
+    "x": -37,
+    "y": -46
+  }
+]

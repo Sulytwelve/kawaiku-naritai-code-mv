@@ -1,0 +1,83 @@
+{
+  "coordinate": "source PTS; incoming seated origin offset in logical pixels",
+  "incomingRows": [
+    {
+      "t": 162.347,
+      "offset": 135.27944004093175,
+      "inliers": 9
+    },
+    {
+      "t": 162.389,
+      "offset": 85.0082019432011,
+      "inliers": 19
+    },
+    {
+      "t": 162.431,
+      "offset": 49.44672692654264,
+      "inliers": 44
+    },
+    {
+      "t": 162.472,
+      "offset": 26.03861227156977,
+      "inliers": 83
+    },
+    {
+      "t": 162.514,
+      "offset": 11.097121676913472,
+      "inliers": 149
+    },
+    {
+      "t": 162.556,
+      "offset": 2.397866753384008,
+      "inliers": 357
+    },
+    {
+      "t": 162.597,
+      "offset": 0.0,
+      "inliers": 543
+    },
+    {
+      "t": 162.639,
+      "offset": 0.0,
+      "inliers": 631
+    },
+    {
+      "t": 162.681,
+      "offset": 0.0,
+      "inliers": 790
+    },
+    {
+      "t": 162.723,
+      "offset": 0.04502492805621016,
+      "inliers": 638
+    },
+    {
+      "t": 162.764,
+      "offset": 0.10330729427128123,
+      "inliers": 558
+    }
+  ],
+  "outgoingLeadRows": [
+    {
+      "t": 161.889,
+      "offset": 537.9132874011993,
+      "source": "red border camera"
+    },
+    {
+      "t": 161.93,
+      "offset": 531.5241432189941,
+      "source": "red border camera"
+    },
+    {
+      "t": 161.972,
+      "offset": 519.7839813232422,
+      "source": "red border camera"
+    },
+    {
+      "t": 162.014,
+      "offset": 501.2006378173828,
+      "source": "red border camera"
+    }
+  ],
+  "status": "Measured evidence only, not consumed. Incoming 162.014–162.347 lacks reliable matches; do not interpolate it from the outgoing card."
+}

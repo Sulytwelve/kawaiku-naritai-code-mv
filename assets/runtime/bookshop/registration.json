@@ -1,0 +1,549 @@
+{
+  "coordinate": "source PTS; 960x540 common scene camera; cover/grip native1672x941",
+  "background": "assets/third-party-derived/plates/bookshop-clean-registered.png",
+  "body": "assets/visuals/claude-bookshop.png",
+  "bodyRect": [
+    24,
+    21,
+    960,
+    540
+  ],
+  "cover": "assets/runtime/bookshop/cover06-projected-6x.png",
+  "grip": "assets/runtime/bookshop/holding-thumb-native.png",
+  "coverNativeQuad": [
+    [
+      509.0,
+      327.0
+    ],
+    [
+      556.0,
+      324.0
+    ],
+    [
+      654.0,
+      586.0
+    ],
+    [
+      620.0,
+      616.0
+    ]
+  ],
+  "wideReferencePTS": 230.529,
+  "closeReferencePTS": 229.028,
+  "closeMatrix": [
+    [
+      2.3604144403201963,
+      -0.0010994076988291267,
+      -642.033050036391
+    ],
+    [
+      0.0010994076988291267,
+      2.3604144403201963,
+      -383.2540408505767
+    ]
+  ],
+  "cameraMatches": 36,
+  "cameraInliers": 29,
+  "wideMatrix": [
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ]
+  ],
+  "alphas": [
+    {
+      "t": 227.735,
+      "entryAlpha": 0.0,
+      "wideAlpha": 0
+    },
+    {
+      "t": 227.777,
+      "entryAlpha": 0.0,
+      "wideAlpha": 0
+    },
+    {
+      "t": 227.819,
+      "entryAlpha": 0.018891403777341585,
+      "wideAlpha": 0
+    },
+    {
+      "t": 227.86,
+      "entryAlpha": 0.0748706473940635,
+      "wideAlpha": 0
+    },
+    {
+      "t": 227.902,
+      "entryAlpha": 0.16457286432160803,
+      "wideAlpha": 0
+    },
+    {
+      "t": 227.944,
+      "entryAlpha": 0.28872513747123985,
+      "wideAlpha": 0
+    },
+    {
+      "t": 227.985,
+      "entryAlpha": 0.3913470993117011,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.027,
+      "entryAlpha": 0.5510550951034283,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.069,
+      "entryAlpha": 0.64109791413924,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.11,
+      "entryAlpha": 0.7473509662868657,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.152,
+      "entryAlpha": 0.8996748722712494,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.194,
+      "entryAlpha": 0.9434556884675649,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.236,
+      "entryAlpha": 0.9573263194544659,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.277,
+      "entryAlpha": 0.9763772248913212,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.319,
+      "entryAlpha": 0.9832860652667326,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.361,
+      "entryAlpha": 1.0,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.402,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.444,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.486,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.527,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.569,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.611,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.653,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.694,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.736,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.778,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.819,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.861,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.903,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.944,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 228.986,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 229.028,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 229.07,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 229.111,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 229.153,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 229.195,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 229.236,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 229.278,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 229.32,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 229.361,
+      "entryAlpha": 1,
+      "wideAlpha": 0
+    },
+    {
+      "t": 229.403,
+      "entryAlpha": 1,
+      "wideAlpha": 0.0
+    },
+    {
+      "t": 229.445,
+      "entryAlpha": 1,
+      "wideAlpha": 0.0017618315506757489
+    },
+    {
+      "t": 229.487,
+      "entryAlpha": 1,
+      "wideAlpha": 0.022596646310259705
+    },
+    {
+      "t": 229.528,
+      "entryAlpha": 1,
+      "wideAlpha": 0.0
+    },
+    {
+      "t": 229.57,
+      "entryAlpha": 1,
+      "wideAlpha": 0.0
+    },
+    {
+      "t": 229.612,
+      "entryAlpha": 1,
+      "wideAlpha": 0.0
+    },
+    {
+      "t": 229.653,
+      "entryAlpha": 1,
+      "wideAlpha": 0.05500055949276958
+    },
+    {
+      "t": 229.695,
+      "entryAlpha": 1,
+      "wideAlpha": 0.12700450167853702
+    },
+    {
+      "t": 229.737,
+      "entryAlpha": 1,
+      "wideAlpha": 0.23223166692837316
+    },
+    {
+      "t": 229.778,
+      "entryAlpha": 1,
+      "wideAlpha": 0.3229675529754893
+    },
+    {
+      "t": 229.82,
+      "entryAlpha": 1,
+      "wideAlpha": 0.4690764441883467
+    },
+    {
+      "t": 229.862,
+      "entryAlpha": 1,
+      "wideAlpha": 0.5960067867205782
+    },
+    {
+      "t": 229.904,
+      "entryAlpha": 1,
+      "wideAlpha": 0.7290578819683101
+    },
+    {
+      "t": 229.945,
+      "entryAlpha": 1,
+      "wideAlpha": 0.847286799309101
+    },
+    {
+      "t": 229.987,
+      "entryAlpha": 1,
+      "wideAlpha": 0.9061343021003236
+    },
+    {
+      "t": 230.029,
+      "entryAlpha": 1,
+      "wideAlpha": 0.9559988921717221
+    },
+    {
+      "t": 230.07,
+      "entryAlpha": 1,
+      "wideAlpha": 0.9679589261411172
+    },
+    {
+      "t": 230.112,
+      "entryAlpha": 1,
+      "wideAlpha": 0.9752349516241308
+    },
+    {
+      "t": 230.154,
+      "entryAlpha": 1,
+      "wideAlpha": 0.9717487372427394
+    },
+    {
+      "t": 230.195,
+      "entryAlpha": 1,
+      "wideAlpha": 0.9638067145238004
+    },
+    {
+      "t": 230.237,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.279,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.321,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.362,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.404,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.446,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.487,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.529,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.571,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.613,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.654,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.696,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.738,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.779,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.821,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.863,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.904,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.946,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 230.988,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 231.03,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 231.071,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 231.113,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 231.155,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 231.196,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 231.238,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 231.28,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 231.321,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 231.363,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 231.405,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 231.447,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 231.488,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    },
+    {
+      "t": 231.53,
+      "entryAlpha": 1,
+      "wideAlpha": 1
+    }
+  ],
+  "sources": {
+    "cover": "assets/runtime/ad-assets/magazine-cover.png",
+    "bodySHA256": "bf63dc3364286aa6b5767552a535ec02b724a932c29be3879f847e0d9e07c24f"
+  },
+  "translationCurves": {
+    "close": {
+      "t0": 229.028,
+      "vx": -4.406547697145915,
+      "x0": 0.008305304950735636
+    },
+    "wide": {
+      "t0": 230.529,
+      "vx": -3.423854838326561,
+      "x0": -0.00891121924757235
+    }
+  },
+  "cameraEvidence": "assets/runtime/bookshop/camera-evidence.json",
+  "coverDestination": [
+    470,
+    295,
+    230,
+    355
+  ],
+  "coverProjectionResolution": [
+    1380,
+    2130
+  ],
+  "method": "original source poses reused as two common framings; no old actor/cover artwork is drawn"
+}

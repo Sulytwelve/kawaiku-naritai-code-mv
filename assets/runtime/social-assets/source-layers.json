@@ -1,0 +1,1919 @@
+{
+  "sns": [
+    {
+      "t": 116.017,
+      "asset": "assets/runtime/social-assets/sns-bg-00005.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00005.png"
+    },
+    {
+      "t": 116.059,
+      "asset": "assets/runtime/social-assets/sns-bg-00006.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00006.png"
+    },
+    {
+      "t": 116.1,
+      "asset": "assets/runtime/social-assets/sns-bg-00007.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00007.png"
+    },
+    {
+      "t": 116.142,
+      "asset": "assets/runtime/social-assets/sns-bg-00008.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00008.png"
+    },
+    {
+      "t": 116.184,
+      "asset": "assets/runtime/social-assets/sns-bg-00009.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00009.png"
+    },
+    {
+      "t": 116.225,
+      "asset": "assets/runtime/social-assets/sns-bg-00010.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00010.png"
+    },
+    {
+      "t": 116.267,
+      "asset": "assets/runtime/social-assets/sns-bg-00011.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00011.png"
+    },
+    {
+      "t": 116.309,
+      "asset": "assets/runtime/social-assets/sns-bg-00012.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00012.png"
+    },
+    {
+      "t": 116.351,
+      "asset": "assets/runtime/social-assets/sns-bg-00013.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00013.png"
+    },
+    {
+      "t": 116.392,
+      "asset": "assets/runtime/social-assets/sns-bg-00014.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00014.png"
+    },
+    {
+      "t": 116.434,
+      "asset": "assets/runtime/social-assets/sns-bg-00015.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00015.png"
+    },
+    {
+      "t": 116.476,
+      "asset": "assets/runtime/social-assets/sns-bg-00016.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00016.png"
+    },
+    {
+      "t": 116.517,
+      "asset": "assets/runtime/social-assets/sns-bg-00017.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00017.png"
+    },
+    {
+      "t": 116.559,
+      "asset": "assets/runtime/social-assets/sns-bg-00018.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00018.png"
+    },
+    {
+      "t": 116.601,
+      "asset": "assets/runtime/social-assets/sns-bg-00019.webp"
+    },
+    {
+      "t": 116.643,
+      "asset": "assets/runtime/social-assets/sns-bg-00020.webp"
+    },
+    {
+      "t": 116.684,
+      "asset": "assets/runtime/social-assets/sns-bg-00021.webp"
+    },
+    {
+      "t": 116.726,
+      "asset": "assets/runtime/social-assets/sns-bg-00022.webp"
+    },
+    {
+      "t": 116.768,
+      "asset": "assets/runtime/social-assets/sns-bg-00023.webp"
+    },
+    {
+      "t": 116.809,
+      "asset": "assets/runtime/social-assets/sns-bg-00024.webp"
+    },
+    {
+      "t": 116.851,
+      "asset": "assets/runtime/social-assets/sns-bg-00025.webp"
+    },
+    {
+      "t": 116.893,
+      "asset": "assets/runtime/social-assets/sns-bg-00026.webp"
+    },
+    {
+      "t": 116.934,
+      "asset": "assets/runtime/social-assets/sns-bg-00027.webp"
+    },
+    {
+      "t": 116.976,
+      "asset": "assets/runtime/social-assets/sns-bg-00028.webp"
+    },
+    {
+      "t": 117.018,
+      "asset": "assets/runtime/social-assets/sns-bg-00029.webp"
+    },
+    {
+      "t": 117.06,
+      "asset": "assets/runtime/social-assets/sns-bg-00030.webp"
+    },
+    {
+      "t": 117.101,
+      "asset": "assets/runtime/social-assets/sns-bg-00031.webp"
+    },
+    {
+      "t": 117.143,
+      "asset": "assets/runtime/social-assets/sns-bg-00032.webp"
+    },
+    {
+      "t": 117.185,
+      "asset": "assets/runtime/social-assets/sns-bg-00033.webp"
+    },
+    {
+      "t": 117.226,
+      "asset": "assets/runtime/social-assets/sns-bg-00034.webp"
+    },
+    {
+      "t": 117.268,
+      "asset": "assets/runtime/social-assets/sns-bg-00035.webp"
+    },
+    {
+      "t": 117.31,
+      "asset": "assets/runtime/social-assets/sns-bg-00036.webp"
+    },
+    {
+      "t": 117.351,
+      "asset": "assets/runtime/social-assets/sns-bg-00037.webp"
+    },
+    {
+      "t": 117.393,
+      "asset": "assets/runtime/social-assets/sns-bg-00038.webp"
+    },
+    {
+      "t": 117.435,
+      "asset": "assets/runtime/social-assets/sns-bg-00039.webp"
+    },
+    {
+      "t": 117.477,
+      "asset": "assets/runtime/social-assets/sns-bg-00040.webp"
+    },
+    {
+      "t": 117.518,
+      "asset": "assets/runtime/social-assets/sns-bg-00041.webp"
+    },
+    {
+      "t": 117.56,
+      "asset": "assets/runtime/social-assets/sns-bg-00042.webp"
+    },
+    {
+      "t": 117.602,
+      "asset": "assets/runtime/social-assets/sns-bg-00043.webp"
+    },
+    {
+      "t": 117.643,
+      "asset": "assets/runtime/social-assets/sns-bg-00044.webp"
+    },
+    {
+      "t": 117.685,
+      "asset": "assets/runtime/social-assets/sns-bg-00045.webp"
+    },
+    {
+      "t": 117.727,
+      "asset": "assets/runtime/social-assets/sns-bg-00046.webp"
+    },
+    {
+      "t": 117.768,
+      "asset": "assets/runtime/social-assets/sns-bg-00047.webp"
+    },
+    {
+      "t": 117.81,
+      "asset": "assets/runtime/social-assets/sns-bg-00048.webp"
+    },
+    {
+      "t": 117.852,
+      "asset": "assets/runtime/social-assets/sns-bg-00049.webp"
+    },
+    {
+      "t": 117.894,
+      "asset": "assets/runtime/social-assets/sns-bg-00050.webp"
+    },
+    {
+      "t": 117.935,
+      "asset": "assets/runtime/social-assets/sns-bg-00051.webp"
+    },
+    {
+      "t": 117.977,
+      "asset": "assets/runtime/social-assets/sns-bg-00052.webp"
+    },
+    {
+      "t": 118.019,
+      "asset": "assets/runtime/social-assets/sns-bg-00053.webp"
+    },
+    {
+      "t": 118.06,
+      "asset": "assets/runtime/social-assets/sns-bg-00054.webp"
+    },
+    {
+      "t": 118.102,
+      "asset": "assets/runtime/social-assets/sns-bg-00055.webp"
+    },
+    {
+      "t": 118.144,
+      "asset": "assets/runtime/social-assets/sns-bg-00056.webp"
+    },
+    {
+      "t": 118.185,
+      "asset": "assets/runtime/social-assets/sns-bg-00057.webp"
+    },
+    {
+      "t": 118.227,
+      "asset": "assets/runtime/social-assets/sns-bg-00058.webp"
+    },
+    {
+      "t": 118.269,
+      "asset": "assets/runtime/social-assets/sns-bg-00059.webp"
+    },
+    {
+      "t": 118.311,
+      "asset": "assets/runtime/social-assets/sns-bg-00060.webp"
+    },
+    {
+      "t": 118.352,
+      "asset": "assets/runtime/social-assets/sns-bg-00061.webp"
+    },
+    {
+      "t": 118.394,
+      "asset": "assets/runtime/social-assets/sns-bg-00062.webp"
+    },
+    {
+      "t": 118.436,
+      "asset": "assets/runtime/social-assets/sns-bg-00063.webp"
+    },
+    {
+      "t": 118.477,
+      "asset": "assets/runtime/social-assets/sns-bg-00064.webp"
+    },
+    {
+      "t": 118.519,
+      "asset": "assets/runtime/social-assets/sns-bg-00065.webp"
+    },
+    {
+      "t": 118.561,
+      "asset": "assets/runtime/social-assets/sns-bg-00066.webp"
+    },
+    {
+      "t": 118.602,
+      "asset": "assets/runtime/social-assets/sns-bg-00067.webp"
+    },
+    {
+      "t": 118.644,
+      "asset": "assets/runtime/social-assets/sns-bg-00068.webp"
+    },
+    {
+      "t": 118.686,
+      "asset": "assets/runtime/social-assets/sns-bg-00069.webp"
+    },
+    {
+      "t": 118.728,
+      "asset": "assets/runtime/social-assets/sns-bg-00070.webp"
+    },
+    {
+      "t": 118.769,
+      "asset": "assets/runtime/social-assets/sns-bg-00071.webp"
+    },
+    {
+      "t": 118.811,
+      "asset": "assets/runtime/social-assets/sns-bg-00072.webp"
+    },
+    {
+      "t": 118.853,
+      "asset": "assets/runtime/social-assets/sns-bg-00073.webp"
+    },
+    {
+      "t": 118.894,
+      "asset": "assets/runtime/social-assets/sns-bg-00074.webp"
+    },
+    {
+      "t": 118.936,
+      "asset": "assets/runtime/social-assets/sns-bg-00075.webp"
+    },
+    {
+      "t": 118.978,
+      "asset": "assets/runtime/social-assets/sns-bg-00076.webp"
+    },
+    {
+      "t": 119.019,
+      "asset": "assets/runtime/social-assets/sns-bg-00077.webp"
+    },
+    {
+      "t": 119.061,
+      "asset": "assets/runtime/social-assets/sns-bg-00078.webp"
+    },
+    {
+      "t": 119.103,
+      "asset": "assets/runtime/social-assets/sns-bg-00079.webp"
+    },
+    {
+      "t": 119.145,
+      "asset": "assets/runtime/social-assets/sns-bg-00080.webp"
+    },
+    {
+      "t": 119.186,
+      "asset": "assets/runtime/social-assets/sns-bg-00081.webp"
+    },
+    {
+      "t": 119.228,
+      "asset": "assets/runtime/social-assets/sns-bg-00082.webp"
+    },
+    {
+      "t": 119.27,
+      "asset": "assets/runtime/social-assets/sns-bg-00083.webp"
+    },
+    {
+      "t": 119.311,
+      "asset": "assets/runtime/social-assets/sns-bg-00084.webp"
+    },
+    {
+      "t": 119.353,
+      "asset": "assets/runtime/social-assets/sns-bg-00085.webp"
+    },
+    {
+      "t": 119.395,
+      "asset": "assets/runtime/social-assets/sns-bg-00086.webp"
+    },
+    {
+      "t": 119.436,
+      "asset": "assets/runtime/social-assets/sns-bg-00087.webp"
+    },
+    {
+      "t": 119.478,
+      "asset": "assets/runtime/social-assets/sns-bg-00088.webp"
+    },
+    {
+      "t": 119.52,
+      "asset": "assets/runtime/social-assets/sns-bg-00089.webp"
+    },
+    {
+      "t": 119.562,
+      "asset": "assets/runtime/social-assets/sns-bg-00090.webp"
+    },
+    {
+      "t": 119.603,
+      "asset": "assets/runtime/social-assets/sns-bg-00091.webp"
+    },
+    {
+      "t": 119.645,
+      "asset": "assets/runtime/social-assets/sns-bg-00092.webp"
+    },
+    {
+      "t": 119.687,
+      "asset": "assets/runtime/social-assets/sns-bg-00093.webp"
+    },
+    {
+      "t": 119.728,
+      "asset": "assets/runtime/social-assets/sns-bg-00094.webp"
+    },
+    {
+      "t": 119.77,
+      "asset": "assets/runtime/social-assets/sns-bg-00095.webp"
+    },
+    {
+      "t": 119.812,
+      "asset": "assets/runtime/social-assets/sns-bg-00096.webp"
+    },
+    {
+      "t": 119.854,
+      "asset": "assets/runtime/social-assets/sns-bg-00097.webp"
+    },
+    {
+      "t": 119.895,
+      "asset": "assets/runtime/social-assets/sns-bg-00098.webp"
+    },
+    {
+      "t": 119.937,
+      "asset": "assets/runtime/social-assets/sns-bg-00099.webp"
+    },
+    {
+      "t": 119.979,
+      "asset": "assets/runtime/social-assets/sns-bg-00100.webp"
+    },
+    {
+      "t": 120.02,
+      "asset": "assets/runtime/social-assets/sns-bg-00101.webp"
+    },
+    {
+      "t": 120.062,
+      "asset": "assets/runtime/social-assets/sns-bg-00102.webp"
+    },
+    {
+      "t": 120.104,
+      "asset": "assets/runtime/social-assets/sns-bg-00103.webp"
+    },
+    {
+      "t": 120.145,
+      "asset": "assets/runtime/social-assets/sns-bg-00104.webp"
+    },
+    {
+      "t": 120.187,
+      "asset": "assets/runtime/social-assets/sns-bg-00105.webp"
+    },
+    {
+      "t": 120.229,
+      "asset": "assets/runtime/social-assets/sns-bg-00106.webp"
+    },
+    {
+      "t": 120.271,
+      "asset": "assets/runtime/social-assets/sns-bg-00107.webp"
+    },
+    {
+      "t": 120.312,
+      "asset": "assets/runtime/social-assets/sns-bg-00108.webp"
+    },
+    {
+      "t": 120.354,
+      "asset": "assets/runtime/social-assets/sns-bg-00109.webp"
+    },
+    {
+      "t": 120.396,
+      "asset": "assets/runtime/social-assets/sns-bg-00110.webp"
+    },
+    {
+      "t": 120.437,
+      "asset": "assets/runtime/social-assets/sns-bg-00111.webp"
+    },
+    {
+      "t": 120.479,
+      "asset": "assets/runtime/social-assets/sns-bg-00112.webp"
+    },
+    {
+      "t": 120.521,
+      "asset": "assets/runtime/social-assets/sns-bg-00113.webp"
+    },
+    {
+      "t": 120.562,
+      "asset": "assets/runtime/social-assets/sns-bg-00114.webp"
+    },
+    {
+      "t": 120.604,
+      "asset": "assets/runtime/social-assets/sns-bg-00115.webp"
+    },
+    {
+      "t": 120.646,
+      "asset": "assets/runtime/social-assets/sns-bg-00116.webp"
+    },
+    {
+      "t": 120.688,
+      "asset": "assets/runtime/social-assets/sns-bg-00117.webp"
+    },
+    {
+      "t": 120.729,
+      "asset": "assets/runtime/social-assets/sns-bg-00118.webp"
+    },
+    {
+      "t": 120.771,
+      "asset": "assets/runtime/social-assets/sns-bg-00119.webp"
+    },
+    {
+      "t": 120.813,
+      "asset": "assets/runtime/social-assets/sns-bg-00120.webp"
+    },
+    {
+      "t": 120.854,
+      "asset": "assets/runtime/social-assets/sns-bg-00121.webp"
+    },
+    {
+      "t": 120.896,
+      "asset": "assets/runtime/social-assets/sns-bg-00122.webp"
+    },
+    {
+      "t": 120.938,
+      "asset": "assets/runtime/social-assets/sns-bg-00123.webp"
+    },
+    {
+      "t": 120.979,
+      "asset": "assets/runtime/social-assets/sns-bg-00124.webp"
+    },
+    {
+      "t": 121.021,
+      "asset": "assets/runtime/social-assets/sns-bg-00125.webp"
+    },
+    {
+      "t": 121.063,
+      "asset": "assets/runtime/social-assets/sns-bg-00126.webp"
+    },
+    {
+      "t": 121.105,
+      "asset": "assets/runtime/social-assets/sns-bg-00127.webp"
+    },
+    {
+      "t": 121.146,
+      "asset": "assets/runtime/social-assets/sns-bg-00128.webp"
+    },
+    {
+      "t": 121.188,
+      "asset": "assets/runtime/social-assets/sns-bg-00129.webp"
+    },
+    {
+      "t": 121.23,
+      "asset": "assets/runtime/social-assets/sns-bg-00130.webp"
+    },
+    {
+      "t": 121.271,
+      "asset": "assets/runtime/social-assets/sns-bg-00131.webp"
+    },
+    {
+      "t": 121.313,
+      "asset": "assets/runtime/social-assets/sns-bg-00132.webp"
+    },
+    {
+      "t": 121.355,
+      "asset": "assets/runtime/social-assets/sns-bg-00133.webp"
+    },
+    {
+      "t": 121.396,
+      "asset": "assets/runtime/social-assets/sns-bg-00134.webp"
+    },
+    {
+      "t": 121.438,
+      "asset": "assets/runtime/social-assets/sns-bg-00135.webp"
+    },
+    {
+      "t": 121.48,
+      "asset": "assets/runtime/social-assets/sns-bg-00136.webp"
+    },
+    {
+      "t": 121.522,
+      "asset": "assets/runtime/social-assets/sns-bg-00137.webp"
+    },
+    {
+      "t": 121.563,
+      "asset": "assets/runtime/social-assets/sns-bg-00138.webp"
+    },
+    {
+      "t": 121.605,
+      "asset": "assets/runtime/social-assets/sns-bg-00139.webp"
+    },
+    {
+      "t": 121.647,
+      "asset": "assets/runtime/social-assets/sns-bg-00140.webp"
+    },
+    {
+      "t": 121.688,
+      "asset": "assets/runtime/social-assets/sns-bg-00141.webp"
+    },
+    {
+      "t": 121.73,
+      "asset": "assets/runtime/social-assets/sns-bg-00142.webp"
+    },
+    {
+      "t": 121.772,
+      "asset": "assets/runtime/social-assets/sns-bg-00143.webp"
+    },
+    {
+      "t": 121.813,
+      "asset": "assets/runtime/social-assets/sns-bg-00144.webp"
+    },
+    {
+      "t": 121.855,
+      "asset": "assets/runtime/social-assets/sns-bg-00145.webp"
+    },
+    {
+      "t": 121.897,
+      "asset": "assets/runtime/social-assets/sns-bg-00146.webp"
+    },
+    {
+      "t": 121.939,
+      "asset": "assets/runtime/social-assets/sns-bg-00147.webp"
+    },
+    {
+      "t": 121.98,
+      "asset": "assets/runtime/social-assets/sns-bg-00148.webp"
+    },
+    {
+      "t": 122.022,
+      "asset": "assets/runtime/social-assets/sns-bg-00149.webp"
+    },
+    {
+      "t": 122.064,
+      "asset": "assets/runtime/social-assets/sns-bg-00150.webp"
+    },
+    {
+      "t": 122.105,
+      "asset": "assets/runtime/social-assets/sns-bg-00151.webp"
+    },
+    {
+      "t": 122.147,
+      "asset": "assets/runtime/social-assets/sns-bg-00152.webp"
+    },
+    {
+      "t": 122.189,
+      "asset": "assets/runtime/social-assets/sns-bg-00153.webp"
+    },
+    {
+      "t": 122.23,
+      "asset": "assets/runtime/social-assets/sns-bg-00154.webp"
+    },
+    {
+      "t": 122.272,
+      "asset": "assets/runtime/social-assets/sns-bg-00155.webp"
+    },
+    {
+      "t": 122.314,
+      "asset": "assets/runtime/social-assets/sns-bg-00156.webp"
+    },
+    {
+      "t": 122.356,
+      "asset": "assets/runtime/social-assets/sns-bg-00157.webp"
+    },
+    {
+      "t": 122.397,
+      "asset": "assets/runtime/social-assets/sns-bg-00158.webp"
+    },
+    {
+      "t": 122.439,
+      "asset": "assets/runtime/social-assets/sns-bg-00159.webp"
+    },
+    {
+      "t": 122.481,
+      "asset": "assets/runtime/social-assets/sns-bg-00160.webp"
+    },
+    {
+      "t": 122.522,
+      "asset": "assets/runtime/social-assets/sns-bg-00161.webp"
+    },
+    {
+      "t": 122.564,
+      "asset": "assets/runtime/social-assets/sns-bg-00162.webp"
+    },
+    {
+      "t": 122.606,
+      "asset": "assets/runtime/social-assets/sns-bg-00163.webp"
+    },
+    {
+      "t": 122.648,
+      "asset": "assets/runtime/social-assets/sns-bg-00164.webp"
+    },
+    {
+      "t": 122.689,
+      "asset": "assets/runtime/social-assets/sns-bg-00165.webp"
+    },
+    {
+      "t": 122.731,
+      "asset": "assets/runtime/social-assets/sns-bg-00166.webp"
+    },
+    {
+      "t": 122.773,
+      "asset": "assets/runtime/social-assets/sns-bg-00167.webp"
+    },
+    {
+      "t": 122.814,
+      "asset": "assets/runtime/social-assets/sns-bg-00168.webp"
+    },
+    {
+      "t": 122.856,
+      "asset": "assets/runtime/social-assets/sns-bg-00169.webp"
+    },
+    {
+      "t": 122.898,
+      "asset": "assets/runtime/social-assets/sns-bg-00170.webp"
+    },
+    {
+      "t": 122.939,
+      "asset": "assets/runtime/social-assets/sns-bg-00171.webp"
+    },
+    {
+      "t": 122.981,
+      "asset": "assets/runtime/social-assets/sns-bg-00172.webp"
+    },
+    {
+      "t": 123.023,
+      "asset": "assets/runtime/social-assets/sns-bg-00173.webp"
+    },
+    {
+      "t": 123.065,
+      "asset": "assets/runtime/social-assets/sns-bg-00174.webp"
+    },
+    {
+      "t": 123.106,
+      "asset": "assets/runtime/social-assets/sns-bg-00175.webp"
+    },
+    {
+      "t": 123.148,
+      "asset": "assets/runtime/social-assets/sns-bg-00176.webp"
+    },
+    {
+      "t": 123.19,
+      "asset": "assets/runtime/social-assets/sns-bg-00177.webp"
+    },
+    {
+      "t": 123.231,
+      "asset": "assets/runtime/social-assets/sns-bg-00178.webp"
+    },
+    {
+      "t": 123.273,
+      "asset": "assets/runtime/social-assets/sns-bg-00179.webp"
+    },
+    {
+      "t": 123.315,
+      "asset": "assets/runtime/social-assets/sns-bg-00180.webp"
+    },
+    {
+      "t": 123.356,
+      "asset": "assets/runtime/social-assets/sns-bg-00181.webp"
+    },
+    {
+      "t": 123.398,
+      "asset": "assets/runtime/social-assets/sns-bg-00182.webp"
+    },
+    {
+      "t": 123.44,
+      "asset": "assets/runtime/social-assets/sns-bg-00183.webp"
+    },
+    {
+      "t": 123.482,
+      "asset": "assets/runtime/social-assets/sns-bg-00184.webp"
+    },
+    {
+      "t": 123.523,
+      "asset": "assets/runtime/social-assets/sns-bg-00185.webp"
+    },
+    {
+      "t": 123.565,
+      "asset": "assets/runtime/social-assets/sns-bg-00186.webp"
+    },
+    {
+      "t": 123.607,
+      "asset": "assets/runtime/social-assets/sns-bg-00187.webp"
+    },
+    {
+      "t": 123.648,
+      "asset": "assets/runtime/social-assets/sns-bg-00188.webp"
+    },
+    {
+      "t": 123.69,
+      "asset": "assets/runtime/social-assets/sns-bg-00189.webp"
+    },
+    {
+      "t": 123.732,
+      "asset": "assets/runtime/social-assets/sns-bg-00190.webp"
+    },
+    {
+      "t": 123.773,
+      "asset": "assets/runtime/social-assets/sns-bg-00191.webp"
+    },
+    {
+      "t": 123.815,
+      "asset": "assets/runtime/social-assets/sns-bg-00192.webp"
+    },
+    {
+      "t": 123.857,
+      "asset": "assets/runtime/social-assets/sns-bg-00193.webp"
+    },
+    {
+      "t": 123.899,
+      "asset": "assets/runtime/social-assets/sns-bg-00194.webp"
+    },
+    {
+      "t": 123.94,
+      "asset": "assets/runtime/social-assets/sns-bg-00195.webp"
+    },
+    {
+      "t": 123.982,
+      "asset": "assets/runtime/social-assets/sns-bg-00196.webp"
+    },
+    {
+      "t": 124.024,
+      "asset": "assets/runtime/social-assets/sns-bg-00197.webp"
+    },
+    {
+      "t": 124.065,
+      "asset": "assets/runtime/social-assets/sns-bg-00198.webp"
+    },
+    {
+      "t": 124.107,
+      "asset": "assets/runtime/social-assets/sns-bg-00199.webp"
+    },
+    {
+      "t": 124.149,
+      "asset": "assets/runtime/social-assets/sns-bg-00200.webp"
+    },
+    {
+      "t": 124.19,
+      "asset": "assets/runtime/social-assets/sns-bg-00201.webp"
+    },
+    {
+      "t": 124.232,
+      "asset": "assets/runtime/social-assets/sns-bg-00202.webp"
+    },
+    {
+      "t": 124.274,
+      "asset": "assets/runtime/social-assets/sns-bg-00203.webp"
+    },
+    {
+      "t": 124.316,
+      "asset": "assets/runtime/social-assets/sns-bg-00204.webp"
+    },
+    {
+      "t": 124.357,
+      "asset": "assets/runtime/social-assets/sns-bg-00205.webp"
+    },
+    {
+      "t": 124.399,
+      "asset": "assets/runtime/social-assets/sns-bg-00206.webp"
+    },
+    {
+      "t": 124.441,
+      "asset": "assets/runtime/social-assets/sns-bg-00207.webp"
+    },
+    {
+      "t": 124.482,
+      "asset": "assets/runtime/social-assets/sns-bg-00208.webp"
+    },
+    {
+      "t": 124.524,
+      "asset": "assets/runtime/social-assets/sns-bg-00209.webp"
+    },
+    {
+      "t": 124.566,
+      "asset": "assets/runtime/social-assets/sns-bg-00210.webp"
+    },
+    {
+      "t": 124.607,
+      "asset": "assets/runtime/social-assets/sns-bg-00211.webp"
+    },
+    {
+      "t": 124.649,
+      "asset": "assets/runtime/social-assets/sns-bg-00212.webp"
+    },
+    {
+      "t": 124.691,
+      "asset": "assets/runtime/social-assets/sns-bg-00213.webp"
+    },
+    {
+      "t": 124.733,
+      "asset": "assets/runtime/social-assets/sns-bg-00214.webp"
+    },
+    {
+      "t": 124.774,
+      "asset": "assets/runtime/social-assets/sns-bg-00215.webp"
+    },
+    {
+      "t": 124.816,
+      "asset": "assets/runtime/social-assets/sns-bg-00216.webp"
+    },
+    {
+      "t": 124.858,
+      "asset": "assets/runtime/social-assets/sns-bg-00217.webp"
+    },
+    {
+      "t": 124.899,
+      "asset": "assets/runtime/social-assets/sns-bg-00218.webp"
+    },
+    {
+      "t": 124.941,
+      "asset": "assets/runtime/social-assets/sns-bg-00219.webp"
+    },
+    {
+      "t": 124.983,
+      "asset": "assets/runtime/social-assets/sns-bg-00220.webp"
+    },
+    {
+      "t": 125.024,
+      "asset": "assets/runtime/social-assets/sns-bg-00221.webp"
+    },
+    {
+      "t": 125.066,
+      "asset": "assets/runtime/social-assets/sns-bg-00222.webp"
+    },
+    {
+      "t": 125.108,
+      "asset": "assets/runtime/social-assets/sns-bg-00223.webp"
+    },
+    {
+      "t": 125.15,
+      "asset": "assets/runtime/social-assets/sns-bg-00224.webp"
+    },
+    {
+      "t": 125.191,
+      "asset": "assets/runtime/social-assets/sns-bg-00225.webp"
+    },
+    {
+      "t": 125.233,
+      "asset": "assets/runtime/social-assets/sns-bg-00226.webp"
+    },
+    {
+      "t": 125.275,
+      "asset": "assets/runtime/social-assets/sns-bg-00227.webp"
+    },
+    {
+      "t": 125.316,
+      "asset": "assets/runtime/social-assets/sns-bg-00228.webp"
+    },
+    {
+      "t": 125.358,
+      "asset": "assets/runtime/social-assets/sns-bg-00229.webp"
+    },
+    {
+      "t": 125.4,
+      "asset": "assets/runtime/social-assets/sns-bg-00230.webp"
+    },
+    {
+      "t": 125.442,
+      "asset": "assets/runtime/social-assets/sns-bg-00231.webp"
+    },
+    {
+      "t": 125.483,
+      "asset": "assets/runtime/social-assets/sns-bg-00232.webp"
+    },
+    {
+      "t": 125.525,
+      "asset": "assets/runtime/social-assets/sns-bg-00233.webp"
+    },
+    {
+      "t": 125.567,
+      "asset": "assets/runtime/social-assets/sns-bg-00234.webp"
+    },
+    {
+      "t": 125.608,
+      "asset": "assets/runtime/social-assets/sns-bg-00235.webp"
+    },
+    {
+      "t": 125.65,
+      "asset": "assets/runtime/social-assets/sns-bg-00236.webp"
+    },
+    {
+      "t": 125.692,
+      "asset": "assets/runtime/social-assets/sns-bg-00237.webp"
+    },
+    {
+      "t": 125.733,
+      "asset": "assets/runtime/social-assets/sns-bg-00238.webp"
+    },
+    {
+      "t": 125.775,
+      "asset": "assets/runtime/social-assets/sns-bg-00239.webp"
+    },
+    {
+      "t": 125.817,
+      "asset": "assets/runtime/social-assets/sns-bg-00240.webp"
+    },
+    {
+      "t": 125.859,
+      "asset": "assets/runtime/social-assets/sns-bg-00241.webp"
+    },
+    {
+      "t": 125.9,
+      "asset": "assets/runtime/social-assets/sns-bg-00242.webp"
+    },
+    {
+      "t": 125.942,
+      "asset": "assets/runtime/social-assets/sns-bg-00243.webp"
+    },
+    {
+      "t": 125.984,
+      "asset": "assets/runtime/social-assets/sns-bg-00244.webp"
+    },
+    {
+      "t": 126.025,
+      "asset": "assets/runtime/social-assets/sns-bg-00245.webp"
+    },
+    {
+      "t": 126.067,
+      "asset": "assets/runtime/social-assets/sns-bg-00246.webp"
+    },
+    {
+      "t": 126.109,
+      "asset": "assets/runtime/social-assets/sns-bg-00247.webp"
+    },
+    {
+      "t": 126.15,
+      "asset": "assets/runtime/social-assets/sns-bg-00248.webp"
+    },
+    {
+      "t": 126.192,
+      "asset": "assets/runtime/social-assets/sns-bg-00249.webp"
+    },
+    {
+      "t": 126.234,
+      "asset": "assets/runtime/social-assets/sns-bg-00250.webp"
+    },
+    {
+      "t": 126.276,
+      "asset": "assets/runtime/social-assets/sns-bg-00251.webp"
+    },
+    {
+      "t": 126.317,
+      "asset": "assets/runtime/social-assets/sns-bg-00252.webp"
+    },
+    {
+      "t": 126.359,
+      "asset": "assets/runtime/social-assets/sns-bg-00253.webp"
+    },
+    {
+      "t": 126.401,
+      "asset": "assets/runtime/social-assets/sns-bg-00254.webp"
+    },
+    {
+      "t": 126.442,
+      "asset": "assets/runtime/social-assets/sns-bg-00255.webp"
+    },
+    {
+      "t": 126.484,
+      "asset": "assets/runtime/social-assets/sns-bg-00256.webp"
+    },
+    {
+      "t": 126.526,
+      "asset": "assets/runtime/social-assets/sns-bg-00257.webp"
+    },
+    {
+      "t": 126.567,
+      "asset": "assets/runtime/social-assets/sns-bg-00258.webp"
+    },
+    {
+      "t": 126.609,
+      "asset": "assets/runtime/social-assets/sns-bg-00259.webp"
+    },
+    {
+      "t": 126.651,
+      "asset": "assets/runtime/social-assets/sns-bg-00260.webp"
+    },
+    {
+      "t": 126.693,
+      "asset": "assets/runtime/social-assets/sns-bg-00261.webp"
+    },
+    {
+      "t": 126.734,
+      "asset": "assets/runtime/social-assets/sns-bg-00262.webp"
+    },
+    {
+      "t": 126.776,
+      "asset": "assets/runtime/social-assets/sns-bg-00263.webp"
+    },
+    {
+      "t": 126.818,
+      "asset": "assets/runtime/social-assets/sns-bg-00264.webp"
+    },
+    {
+      "t": 126.859,
+      "asset": "assets/runtime/social-assets/sns-bg-00265.webp"
+    },
+    {
+      "t": 126.901,
+      "asset": "assets/runtime/social-assets/sns-bg-00266.webp"
+    },
+    {
+      "t": 126.943,
+      "asset": "assets/runtime/social-assets/sns-bg-00267.webp"
+    },
+    {
+      "t": 126.984,
+      "asset": "assets/runtime/social-assets/sns-bg-00268.webp"
+    },
+    {
+      "t": 127.026,
+      "asset": "assets/runtime/social-assets/sns-bg-00269.webp"
+    },
+    {
+      "t": 127.068,
+      "asset": "assets/runtime/social-assets/sns-bg-00270.webp"
+    },
+    {
+      "t": 127.11,
+      "asset": "assets/runtime/social-assets/sns-bg-00271.webp"
+    },
+    {
+      "t": 127.151,
+      "asset": "assets/runtime/social-assets/sns-bg-00272.webp"
+    },
+    {
+      "t": 127.193,
+      "asset": "assets/runtime/social-assets/sns-bg-00273.webp"
+    },
+    {
+      "t": 127.235,
+      "asset": "assets/runtime/social-assets/sns-bg-00274.webp"
+    },
+    {
+      "t": 127.276,
+      "asset": "assets/runtime/social-assets/sns-bg-00275.webp"
+    },
+    {
+      "t": 127.318,
+      "asset": "assets/runtime/social-assets/sns-bg-00276.webp"
+    },
+    {
+      "t": 127.36,
+      "asset": "assets/runtime/social-assets/sns-bg-00277.webp"
+    },
+    {
+      "t": 127.401,
+      "asset": "assets/runtime/social-assets/sns-bg-00278.webp"
+    },
+    {
+      "t": 127.443,
+      "asset": "assets/runtime/social-assets/sns-bg-00279.webp"
+    },
+    {
+      "t": 127.485,
+      "asset": "assets/runtime/social-assets/sns-bg-00280.webp"
+    },
+    {
+      "t": 127.527,
+      "asset": "assets/runtime/social-assets/sns-bg-00281.webp"
+    },
+    {
+      "t": 127.568,
+      "asset": "assets/runtime/social-assets/sns-bg-00282.webp"
+    },
+    {
+      "t": 127.61,
+      "asset": "assets/runtime/social-assets/sns-bg-00283.webp"
+    },
+    {
+      "t": 127.652,
+      "asset": "assets/runtime/social-assets/sns-bg-00284.webp"
+    },
+    {
+      "t": 127.693,
+      "asset": "assets/runtime/social-assets/sns-bg-00285.webp"
+    },
+    {
+      "t": 127.735,
+      "asset": "assets/runtime/social-assets/sns-bg-00286.webp"
+    },
+    {
+      "t": 127.777,
+      "asset": "assets/runtime/social-assets/sns-bg-00287.webp"
+    },
+    {
+      "t": 127.818,
+      "asset": "assets/runtime/social-assets/sns-bg-00288.webp"
+    },
+    {
+      "t": 127.86,
+      "asset": "assets/runtime/social-assets/sns-bg-00289.webp"
+    },
+    {
+      "t": 127.902,
+      "asset": "assets/runtime/social-assets/sns-bg-00290.webp"
+    },
+    {
+      "t": 127.944,
+      "asset": "assets/runtime/social-assets/sns-bg-00291.webp"
+    },
+    {
+      "t": 127.985,
+      "asset": "assets/runtime/social-assets/sns-bg-00292.webp"
+    },
+    {
+      "t": 128.027,
+      "asset": "assets/runtime/social-assets/sns-bg-00293.webp"
+    },
+    {
+      "t": 128.069,
+      "asset": "assets/runtime/social-assets/sns-bg-00294.webp"
+    },
+    {
+      "t": 128.11,
+      "asset": "assets/runtime/social-assets/sns-bg-00295.webp"
+    },
+    {
+      "t": 128.152,
+      "asset": "assets/runtime/social-assets/sns-bg-00296.webp"
+    },
+    {
+      "t": 128.194,
+      "asset": "assets/runtime/social-assets/sns-bg-00297.webp"
+    },
+    {
+      "t": 128.235,
+      "asset": "assets/runtime/social-assets/sns-bg-00298.webp"
+    },
+    {
+      "t": 128.277,
+      "asset": "assets/runtime/social-assets/sns-bg-00299.webp"
+    },
+    {
+      "t": 128.319,
+      "asset": "assets/runtime/social-assets/sns-bg-00300.webp"
+    },
+    {
+      "t": 128.361,
+      "asset": "assets/runtime/social-assets/sns-bg-00301.webp"
+    },
+    {
+      "t": 128.402,
+      "asset": "assets/runtime/social-assets/sns-bg-00302.webp"
+    },
+    {
+      "t": 128.444,
+      "asset": "assets/runtime/social-assets/sns-bg-00303.webp"
+    },
+    {
+      "t": 128.486,
+      "asset": "assets/runtime/social-assets/sns-bg-00304.webp"
+    },
+    {
+      "t": 128.527,
+      "asset": "assets/runtime/social-assets/sns-bg-00305.webp"
+    },
+    {
+      "t": 128.569,
+      "asset": "assets/runtime/social-assets/sns-bg-00306.webp"
+    },
+    {
+      "t": 128.611,
+      "asset": "assets/runtime/social-assets/sns-bg-00307.webp"
+    },
+    {
+      "t": 128.653,
+      "asset": "assets/runtime/social-assets/sns-bg-00308.webp"
+    },
+    {
+      "t": 128.694,
+      "asset": "assets/runtime/social-assets/sns-bg-00309.webp"
+    },
+    {
+      "t": 128.736,
+      "asset": "assets/runtime/social-assets/sns-bg-00310.webp"
+    },
+    {
+      "t": 128.778,
+      "asset": "assets/runtime/social-assets/sns-bg-00311.webp"
+    },
+    {
+      "t": 128.819,
+      "asset": "assets/runtime/social-assets/sns-bg-00312.webp"
+    },
+    {
+      "t": 128.861,
+      "asset": "assets/runtime/social-assets/sns-bg-00313.webp"
+    },
+    {
+      "t": 128.903,
+      "asset": "assets/runtime/social-assets/sns-bg-00314.webp"
+    },
+    {
+      "t": 128.944,
+      "asset": "assets/runtime/social-assets/sns-bg-00315.webp"
+    },
+    {
+      "t": 128.986,
+      "asset": "assets/runtime/social-assets/sns-bg-00316.webp"
+    },
+    {
+      "t": 129.028,
+      "asset": "assets/runtime/social-assets/sns-bg-00317.webp"
+    },
+    {
+      "t": 129.07,
+      "asset": "assets/runtime/social-assets/sns-bg-00318.webp"
+    },
+    {
+      "t": 129.111,
+      "asset": "assets/runtime/social-assets/sns-bg-00319.webp"
+    },
+    {
+      "t": 129.153,
+      "asset": "assets/runtime/social-assets/sns-bg-00320.webp"
+    },
+    {
+      "t": 129.195,
+      "asset": "assets/runtime/social-assets/sns-bg-00321.webp"
+    },
+    {
+      "t": 129.236,
+      "asset": "assets/runtime/social-assets/sns-bg-00322.webp"
+    },
+    {
+      "t": 129.278,
+      "asset": "assets/runtime/social-assets/sns-bg-00323.webp"
+    },
+    {
+      "t": 129.32,
+      "asset": "assets/runtime/social-assets/sns-bg-00324.webp"
+    },
+    {
+      "t": 129.361,
+      "asset": "assets/runtime/social-assets/sns-bg-00325.webp"
+    },
+    {
+      "t": 129.403,
+      "asset": "assets/runtime/social-assets/sns-bg-00326.webp"
+    },
+    {
+      "t": 129.445,
+      "asset": "assets/runtime/social-assets/sns-bg-00327.webp"
+    },
+    {
+      "t": 129.487,
+      "asset": "assets/runtime/social-assets/sns-bg-00328.webp"
+    },
+    {
+      "t": 129.528,
+      "asset": "assets/runtime/social-assets/sns-bg-00329.webp"
+    },
+    {
+      "t": 129.57,
+      "asset": "assets/runtime/social-assets/sns-bg-00330.webp"
+    },
+    {
+      "t": 129.612,
+      "asset": "assets/runtime/social-assets/sns-bg-00331.webp"
+    },
+    {
+      "t": 129.653,
+      "asset": "assets/runtime/social-assets/sns-bg-00332.webp"
+    },
+    {
+      "t": 129.695,
+      "asset": "assets/runtime/social-assets/sns-bg-00333.webp"
+    },
+    {
+      "t": 129.737,
+      "asset": "assets/runtime/social-assets/sns-bg-00334.webp"
+    },
+    {
+      "t": 129.778,
+      "asset": "assets/runtime/social-assets/sns-bg-00335.webp"
+    },
+    {
+      "t": 129.82,
+      "asset": "assets/runtime/social-assets/sns-bg-00336.webp"
+    },
+    {
+      "t": 129.862,
+      "asset": "assets/runtime/social-assets/sns-bg-00337.webp"
+    },
+    {
+      "t": 129.904,
+      "asset": "assets/runtime/social-assets/sns-bg-00338.webp"
+    },
+    {
+      "t": 129.945,
+      "asset": "assets/runtime/social-assets/sns-bg-00339.webp"
+    },
+    {
+      "t": 129.987,
+      "asset": "assets/runtime/social-assets/sns-bg-00340.webp"
+    },
+    {
+      "t": 130.029,
+      "asset": "assets/runtime/social-assets/sns-bg-00341.webp"
+    },
+    {
+      "t": 130.07,
+      "asset": "assets/runtime/social-assets/sns-bg-00342.webp"
+    },
+    {
+      "t": 130.112,
+      "asset": "assets/runtime/social-assets/sns-bg-00343.webp"
+    },
+    {
+      "t": 130.154,
+      "asset": "assets/runtime/social-assets/sns-bg-00344.webp"
+    },
+    {
+      "t": 130.195,
+      "asset": "assets/runtime/social-assets/sns-bg-00345.webp"
+    },
+    {
+      "t": 130.237,
+      "asset": "assets/runtime/social-assets/sns-bg-00346.webp"
+    },
+    {
+      "t": 130.279,
+      "asset": "assets/runtime/social-assets/sns-bg-00347.webp"
+    },
+    {
+      "t": 130.321,
+      "asset": "assets/runtime/social-assets/sns-bg-00348.webp"
+    },
+    {
+      "t": 130.362,
+      "asset": "assets/runtime/social-assets/sns-bg-00349.webp"
+    },
+    {
+      "t": 130.404,
+      "asset": "assets/runtime/social-assets/sns-bg-00350.webp"
+    },
+    {
+      "t": 130.446,
+      "asset": "assets/runtime/social-assets/sns-bg-00351.webp"
+    },
+    {
+      "t": 130.487,
+      "asset": "assets/runtime/social-assets/sns-bg-00352.webp"
+    },
+    {
+      "t": 130.529,
+      "asset": "assets/runtime/social-assets/sns-bg-00353.webp"
+    },
+    {
+      "t": 130.571,
+      "asset": "assets/runtime/social-assets/sns-bg-00354.webp"
+    },
+    {
+      "t": 130.612,
+      "asset": "assets/runtime/social-assets/sns-bg-00355.webp"
+    },
+    {
+      "t": 130.654,
+      "asset": "assets/runtime/social-assets/sns-bg-00356.webp"
+    },
+    {
+      "t": 130.696,
+      "asset": "assets/runtime/social-assets/sns-bg-00357.webp"
+    },
+    {
+      "t": 130.738,
+      "asset": "assets/runtime/social-assets/sns-bg-00358.webp"
+    },
+    {
+      "t": 130.779,
+      "asset": "assets/runtime/social-assets/sns-bg-00359.webp"
+    },
+    {
+      "t": 130.821,
+      "asset": "assets/runtime/social-assets/sns-bg-00360.webp"
+    },
+    {
+      "t": 130.863,
+      "asset": "assets/runtime/social-assets/sns-bg-00361.webp"
+    },
+    {
+      "t": 130.904,
+      "asset": "assets/runtime/social-assets/sns-bg-00362.webp"
+    },
+    {
+      "t": 130.946,
+      "asset": "assets/runtime/social-assets/sns-bg-00363.webp"
+    },
+    {
+      "t": 130.988,
+      "asset": "assets/runtime/social-assets/sns-bg-00364.webp"
+    },
+    {
+      "t": 131.029,
+      "asset": "assets/runtime/social-assets/sns-bg-00365.webp"
+    },
+    {
+      "t": 131.071,
+      "asset": "assets/runtime/social-assets/sns-bg-00366.webp"
+    },
+    {
+      "t": 131.113,
+      "asset": "assets/runtime/social-assets/sns-bg-00367.webp"
+    },
+    {
+      "t": 131.155,
+      "asset": "assets/runtime/social-assets/sns-bg-00368.webp"
+    },
+    {
+      "t": 131.196,
+      "asset": "assets/runtime/social-assets/sns-bg-00369.webp"
+    },
+    {
+      "t": 131.238,
+      "asset": "assets/runtime/social-assets/sns-bg-00370.webp"
+    },
+    {
+      "t": 131.28,
+      "asset": "assets/runtime/social-assets/sns-bg-00371.webp"
+    },
+    {
+      "t": 131.321,
+      "asset": "assets/runtime/social-assets/sns-bg-00372.webp"
+    },
+    {
+      "t": 131.363,
+      "asset": "assets/runtime/social-assets/sns-bg-00373.webp"
+    },
+    {
+      "t": 131.405,
+      "asset": "assets/runtime/social-assets/sns-bg-00374.webp"
+    },
+    {
+      "t": 131.447,
+      "asset": "assets/runtime/social-assets/sns-bg-00375.webp"
+    },
+    {
+      "t": 131.488,
+      "asset": "assets/runtime/social-assets/sns-bg-00376.webp"
+    },
+    {
+      "t": 131.53,
+      "asset": "assets/runtime/social-assets/sns-bg-00377.webp"
+    },
+    {
+      "t": 131.572,
+      "asset": "assets/runtime/social-assets/sns-bg-00378.webp"
+    },
+    {
+      "t": 131.613,
+      "asset": "assets/runtime/social-assets/sns-bg-00379.webp"
+    },
+    {
+      "t": 131.655,
+      "asset": "assets/runtime/social-assets/sns-bg-00380.webp"
+    },
+    {
+      "t": 131.697,
+      "asset": "assets/runtime/social-assets/sns-bg-00381.webp"
+    },
+    {
+      "t": 131.738,
+      "asset": "assets/runtime/social-assets/sns-bg-00382.webp"
+    },
+    {
+      "t": 131.78,
+      "asset": "assets/runtime/social-assets/sns-bg-00383.webp"
+    },
+    {
+      "t": 131.822,
+      "asset": "assets/runtime/social-assets/sns-bg-00384.webp"
+    },
+    {
+      "t": 131.864,
+      "asset": "assets/runtime/social-assets/sns-bg-00385.webp"
+    },
+    {
+      "t": 131.905,
+      "asset": "assets/runtime/social-assets/sns-bg-00386.webp"
+    },
+    {
+      "t": 131.947,
+      "asset": "assets/runtime/social-assets/sns-bg-00387.webp"
+    },
+    {
+      "t": 131.989,
+      "asset": "assets/runtime/social-assets/sns-bg-00388.webp"
+    },
+    {
+      "t": 132.03,
+      "asset": "assets/runtime/social-assets/sns-bg-00389.webp"
+    },
+    {
+      "t": 132.072,
+      "asset": "assets/runtime/social-assets/sns-bg-00390.webp"
+    },
+    {
+      "t": 132.114,
+      "asset": "assets/runtime/social-assets/sns-bg-00391.webp"
+    },
+    {
+      "t": 132.155,
+      "asset": "assets/runtime/social-assets/sns-bg-00392.webp"
+    },
+    {
+      "t": 132.197,
+      "asset": "assets/runtime/social-assets/sns-bg-00393.webp"
+    },
+    {
+      "t": 132.239,
+      "asset": "assets/runtime/social-assets/sns-bg-00394.webp"
+    },
+    {
+      "t": 132.281,
+      "asset": "assets/runtime/social-assets/sns-bg-00395.webp"
+    },
+    {
+      "t": 132.322,
+      "asset": "assets/runtime/social-assets/sns-bg-00396.webp"
+    },
+    {
+      "t": 132.364,
+      "asset": "assets/runtime/social-assets/sns-bg-00397.webp"
+    },
+    {
+      "t": 132.406,
+      "asset": "assets/runtime/social-assets/sns-bg-00398.webp"
+    },
+    {
+      "t": 132.447,
+      "asset": "assets/runtime/social-assets/sns-bg-00399.webp"
+    },
+    {
+      "t": 132.489,
+      "asset": "assets/runtime/social-assets/sns-bg-00400.webp"
+    },
+    {
+      "t": 132.531,
+      "asset": "assets/runtime/social-assets/sns-bg-00401.webp"
+    },
+    {
+      "t": 132.572,
+      "asset": "assets/runtime/social-assets/sns-bg-00402.webp"
+    },
+    {
+      "t": 132.614,
+      "asset": "assets/runtime/social-assets/sns-bg-00403.webp"
+    },
+    {
+      "t": 132.656,
+      "asset": "assets/runtime/social-assets/sns-bg-00404.webp"
+    },
+    {
+      "t": 132.698,
+      "asset": "assets/runtime/social-assets/sns-bg-00405.webp"
+    },
+    {
+      "t": 132.739,
+      "asset": "assets/runtime/social-assets/sns-bg-00406.webp"
+    },
+    {
+      "t": 132.781,
+      "asset": "assets/runtime/social-assets/sns-bg-00407.webp"
+    },
+    {
+      "t": 132.823,
+      "asset": "assets/runtime/social-assets/sns-bg-00408.webp"
+    },
+    {
+      "t": 132.864,
+      "asset": "assets/runtime/social-assets/sns-bg-00409.webp"
+    },
+    {
+      "t": 132.906,
+      "asset": "assets/runtime/social-assets/sns-bg-00410.webp"
+    },
+    {
+      "t": 132.948,
+      "asset": "assets/runtime/social-assets/sns-bg-00411.webp"
+    },
+    {
+      "t": 132.989,
+      "asset": "assets/runtime/social-assets/sns-bg-00412.webp"
+    },
+    {
+      "t": 133.031,
+      "asset": "assets/runtime/social-assets/sns-bg-00413.webp"
+    },
+    {
+      "t": 133.073,
+      "asset": "assets/runtime/social-assets/sns-bg-00414.webp"
+    },
+    {
+      "t": 133.115,
+      "asset": "assets/runtime/social-assets/sns-bg-00415.webp"
+    },
+    {
+      "t": 133.156,
+      "asset": "assets/runtime/social-assets/sns-bg-00416.webp"
+    },
+    {
+      "t": 133.198,
+      "asset": "assets/runtime/social-assets/sns-bg-00417.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00417.png"
+    },
+    {
+      "t": 133.24,
+      "asset": "assets/runtime/social-assets/sns-bg-00418.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00418.png"
+    },
+    {
+      "t": 133.281,
+      "asset": "assets/runtime/social-assets/sns-bg-00419.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00419.png"
+    },
+    {
+      "t": 133.323,
+      "asset": "assets/runtime/social-assets/sns-bg-00420.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00420.png"
+    },
+    {
+      "t": 133.365,
+      "asset": "assets/runtime/social-assets/sns-bg-00421.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00421.png"
+    },
+    {
+      "t": 133.406,
+      "asset": "assets/runtime/social-assets/sns-bg-00422.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00422.png"
+    },
+    {
+      "t": 133.448,
+      "asset": "assets/runtime/social-assets/sns-bg-00423.webp",
+      "foreground": "assets/runtime/social-assets/sns-fg-00423.png"
+    }
+  ],
+  "bridge": [
+    {
+      "t": 133.49,
+      "asset": "assets/runtime/social-assets/bridge-00424.webp"
+    },
+    {
+      "t": 133.532,
+      "asset": "assets/runtime/social-assets/bridge-00425.webp"
+    },
+    {
+      "t": 133.573,
+      "asset": "assets/runtime/social-assets/bridge-00426.webp"
+    },
+    {
+      "t": 133.615,
+      "asset": "assets/runtime/social-assets/bridge-00427.webp"
+    },
+    {
+      "t": 133.657,
+      "asset": "assets/runtime/social-assets/bridge-00428.webp"
+    },
+    {
+      "t": 133.698,
+      "asset": "assets/runtime/social-assets/bridge-00429.webp"
+    },
+    {
+      "t": 133.74,
+      "asset": "assets/runtime/social-assets/bridge-00430.webp"
+    },
+    {
+      "t": 133.782,
+      "asset": "assets/runtime/social-assets/bridge-00431.webp"
+    },
+    {
+      "t": 133.823,
+      "asset": "assets/runtime/social-assets/bridge-00432.webp"
+    },
+    {
+      "t": 133.865,
+      "asset": "assets/runtime/social-assets/bridge-00433.webp"
+    },
+    {
+      "t": 133.907,
+      "asset": "assets/runtime/social-assets/bridge-00434.webp"
+    },
+    {
+      "t": 133.949,
+      "asset": "assets/runtime/social-assets/bridge-00435.webp"
+    },
+    {
+      "t": 133.99,
+      "asset": "assets/runtime/social-assets/bridge-00436.webp"
+    },
+    {
+      "t": 134.032,
+      "asset": "assets/runtime/social-assets/bridge-00437.webp"
+    },
+    {
+      "t": 134.074,
+      "asset": "assets/runtime/social-assets/bridge-00438.webp"
+    },
+    {
+      "t": 134.115,
+      "asset": "assets/runtime/social-assets/bridge-00439.webp"
+    },
+    {
+      "t": 134.157,
+      "asset": "assets/runtime/social-assets/bridge-00440.webp"
+    }
+  ],
+  "reveal": [
+    {
+      "t": 134.199,
+      "asset": "assets/runtime/social-assets/reveal-00441.png"
+    },
+    {
+      "t": 134.241,
+      "asset": "assets/runtime/social-assets/reveal-00442.png"
+    },
+    {
+      "t": 134.282,
+      "asset": "assets/runtime/social-assets/reveal-00443.png"
+    },
+    {
+      "t": 134.324,
+      "asset": "assets/runtime/social-assets/reveal-00444.png"
+    },
+    {
+      "t": 134.366,
+      "asset": "assets/runtime/social-assets/reveal-00445.png"
+    },
+    {
+      "t": 134.407,
+      "asset": "assets/runtime/social-assets/reveal-00446.png"
+    },
+    {
+      "t": 134.449,
+      "asset": "assets/runtime/social-assets/reveal-00447.png"
+    },
+    {
+      "t": 134.491,
+      "asset": "assets/runtime/social-assets/reveal-00448.png"
+    },
+    {
+      "t": 134.532,
+      "asset": "assets/runtime/social-assets/reveal-00449.png"
+    },
+    {
+      "t": 134.574,
+      "asset": "assets/runtime/social-assets/reveal-00450.png"
+    },
+    {
+      "t": 134.616,
+      "asset": "assets/runtime/social-assets/reveal-00451.png"
+    },
+    {
+      "t": 134.658,
+      "asset": "assets/runtime/social-assets/reveal-00452.png"
+    },
+    {
+      "t": 134.699,
+      "asset": "assets/runtime/social-assets/reveal-00453.png"
+    },
+    {
+      "t": 134.741,
+      "asset": "assets/runtime/social-assets/reveal-00454.png"
+    },
+    {
+      "t": 134.783,
+      "asset": "assets/runtime/social-assets/reveal-00455.png"
+    }
+  ],
+  "aperture": [
+    [
+      116.017,
+      480,
+      270,
+      1,
+      1
+    ],
+    [
+      116.184,
+      480,
+      270,
+      1,
+      1
+    ],
+    [
+      116.225,
+      473,
+      279,
+      14,
+      79
+    ],
+    [
+      116.267,
+      457,
+      239,
+      46,
+      143
+    ],
+    [
+      116.309,
+      390,
+      154,
+      180,
+      328
+    ],
+    [
+      116.351,
+      362,
+      117,
+      236,
+      405
+    ],
+    [
+      116.392,
+      344,
+      90,
+      272,
+      450
+    ],
+    [
+      116.434,
+      336,
+      75,
+      287,
+      465
+    ],
+    [
+      116.476,
+      328,
+      58,
+      304,
+      482
+    ],
+    [
+      116.517,
+      322,
+      47,
+      316,
+      493
+    ],
+    [
+      116.559,
+      317,
+      40,
+      326,
+      500
+    ],
+    [
+      116.601,
+      315,
+      38,
+      330,
+      502
+    ]
+  ]
+}

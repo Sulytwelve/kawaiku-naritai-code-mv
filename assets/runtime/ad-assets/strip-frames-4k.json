@@ -1,0 +1,127 @@
+[
+  {
+    "t": 210.179,
+    "transition": "station-to-hall",
+    "asset": "assets/runtime/ad-assets/strips-210.179-4k.webp"
+  },
+  {
+    "t": 210.221,
+    "transition": "station-to-hall",
+    "asset": "assets/runtime/ad-assets/strips-210.221-4k.webp"
+  },
+  {
+    "t": 210.262,
+    "transition": "station-to-hall",
+    "asset": "assets/runtime/ad-assets/strips-210.262-4k.webp"
+  },
+  {
+    "t": 210.304,
+    "transition": "station-to-hall",
+    "asset": "assets/runtime/ad-assets/strips-210.304-4k.webp"
+  },
+  {
+    "t": 210.346,
+    "transition": "station-to-hall",
+    "asset": "assets/runtime/ad-assets/strips-210.346-4k.webp"
+  },
+  {
+    "t": 210.387,
+    "transition": "station-to-hall",
+    "asset": "assets/runtime/ad-assets/strips-210.387-4k.webp"
+  },
+  {
+    "t": 210.429,
+    "transition": "station-to-hall",
+    "asset": "assets/runtime/ad-assets/strips-210.429-4k.webp"
+  },
+  {
+    "t": 210.471,
+    "transition": "station-to-hall",
+    "asset": "assets/runtime/ad-assets/strips-210.471-4k.webp"
+  },
+  {
+    "t": 214.766,
+    "transition": "hall-to-city",
+    "asset": "assets/runtime/ad-assets/strips-214.766-4k.webp"
+  },
+  {
+    "t": 214.808,
+    "transition": "hall-to-city",
+    "asset": "assets/runtime/ad-assets/strips-214.808-4k.webp"
+  },
+  {
+    "t": 214.849,
+    "transition": "hall-to-city",
+    "asset": "assets/runtime/ad-assets/strips-214.849-4k.webp"
+  },
+  {
+    "t": 214.891,
+    "transition": "hall-to-city",
+    "asset": "assets/runtime/ad-assets/strips-214.891-4k.webp"
+  },
+  {
+    "t": 214.933,
+    "transition": "hall-to-city",
+    "asset": "assets/runtime/ad-assets/strips-214.933-4k.webp"
+  },
+  {
+    "t": 214.974,
+    "transition": "hall-to-city",
+    "asset": "assets/runtime/ad-assets/strips-214.974-4k.webp"
+  },
+  {
+    "t": 215.016,
+    "transition": "hall-to-city",
+    "asset": "assets/runtime/ad-assets/strips-215.016-4k.webp"
+  },
+  {
+    "t": 215.058,
+    "transition": "hall-to-city",
+    "asset": "assets/runtime/ad-assets/strips-215.058-4k.webp"
+  },
+  {
+    "t": 215.1,
+    "transition": "hall-to-city",
+    "asset": "assets/runtime/ad-assets/strips-215.100-4k.webp"
+  },
+  {
+    "t": 220.979,
+    "transition": "city-to-mag",
+    "asset": "assets/runtime/ad-assets/strips-220.979-4k.webp"
+  },
+  {
+    "t": 221.021,
+    "transition": "city-to-mag",
+    "asset": "assets/runtime/ad-assets/strips-221.021-4k.webp"
+  },
+  {
+    "t": 221.063,
+    "transition": "city-to-mag",
+    "asset": "assets/runtime/ad-assets/strips-221.063-4k.webp"
+  },
+  {
+    "t": 221.105,
+    "transition": "city-to-mag",
+    "asset": "assets/runtime/ad-assets/strips-221.105-4k.webp"
+  },
+  {
+    "t": 221.146,
+    "transition": "city-to-mag",
+    "asset": "assets/runtime/ad-assets/strips-221.146-4k.webp"
+  },
+  {
+    "t": 221.188,
+    "transition": "city-to-mag",
+    "asset": "assets/runtime/ad-assets/strips-221.188-4k.webp"
+  },
+  {
+    "t": 221.23,
+    "transition": "city-to-mag",
+    "asset": "assets/runtime/ad-assets/strips-221.230-4k.webp"
+  },
+  {
+    "t": 221.271,
+    "transition": "city-to-mag",
+    "asset": "assets/runtime/ad-assets/strips-221.271-4k.webp"
+  }
+]

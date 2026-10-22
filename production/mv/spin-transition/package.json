@@ -1,0 +1,12 @@
+{
+  "name": "spin-transition",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "紫蓝旋转转场 · Canvas / WebGL 矢量复刻",
+  "scripts": {
+    "serve": "node qa/serve.mjs 8099",
+    "scene": "node qa/dump-scene.mjs",
+    "shoot": "node qa/shoot.mjs 8099 webgl"
+  }
+}

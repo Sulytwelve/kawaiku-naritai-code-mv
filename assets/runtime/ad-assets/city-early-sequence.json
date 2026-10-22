@@ -1,0 +1,905 @@
+[
+  {
+    "t": 94.04,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.040.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.040.png",
+    "x": 0,
+    "y": 0
+  },
+  {
+    "t": 94.082,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.082.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.082.png",
+    "x": 0,
+    "y": 0
+  },
+  {
+    "t": 94.124,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.124.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.124.png",
+    "x": 0,
+    "y": 1
+  },
+  {
+    "t": 94.165,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.165.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.165.png",
+    "x": 0,
+    "y": 1
+  },
+  {
+    "t": 94.207,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.207.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.207.png",
+    "x": 0,
+    "y": 2
+  },
+  {
+    "t": 94.249,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.249.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.249.png",
+    "x": 0,
+    "y": 2
+  },
+  {
+    "t": 94.291,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.291.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.291.png",
+    "x": 0,
+    "y": 2
+  },
+  {
+    "t": 94.332,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.332.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.332.png",
+    "x": 0,
+    "y": 3
+  },
+  {
+    "t": 94.374,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.374.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.374.png",
+    "x": 0,
+    "y": 3
+  },
+  {
+    "t": 94.416,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.416.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.416.png",
+    "x": 0,
+    "y": 3
+  },
+  {
+    "t": 94.457,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.457.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.457.png",
+    "x": 0,
+    "y": 4
+  },
+  {
+    "t": 94.499,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.499.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.499.png",
+    "x": 0,
+    "y": 4
+  },
+  {
+    "t": 94.541,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.541.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.541.png",
+    "x": 0,
+    "y": 5
+  },
+  {
+    "t": 94.582,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.582.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.582.png",
+    "x": 0,
+    "y": 5
+  },
+  {
+    "t": 94.624,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.624.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.624.png",
+    "x": 0,
+    "y": 5
+  },
+  {
+    "t": 94.666,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.666.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.666.png",
+    "x": 0,
+    "y": 6
+  },
+  {
+    "t": 94.708,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.708.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.708.png",
+    "x": 0,
+    "y": 6
+  },
+  {
+    "t": 94.749,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.749.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.749.png",
+    "x": 0,
+    "y": 7
+  },
+  {
+    "t": 94.791,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.791.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.791.png",
+    "x": 0,
+    "y": 7
+  },
+  {
+    "t": 94.833,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.833.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.833.png",
+    "x": 0,
+    "y": 7
+  },
+  {
+    "t": 94.874,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.874.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.874.png",
+    "x": 0,
+    "y": 8
+  },
+  {
+    "t": 94.916,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.916.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.916.png",
+    "x": 0,
+    "y": 8
+  },
+  {
+    "t": 94.958,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.958.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.958.png",
+    "x": 0,
+    "y": 8
+  },
+  {
+    "t": 94.999,
+    "asset": "assets/runtime/ad-assets/city-early-bg-94.999.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-94.999.png",
+    "x": 0,
+    "y": 9
+  },
+  {
+    "t": 95.041,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.041.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.041.png",
+    "x": 0,
+    "y": 9
+  },
+  {
+    "t": 95.083,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.083.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.083.png",
+    "x": 0,
+    "y": 10
+  },
+  {
+    "t": 95.125,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.125.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.125.png",
+    "x": 0,
+    "y": 10
+  },
+  {
+    "t": 95.166,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.166.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.166.png",
+    "x": 0,
+    "y": 10
+  },
+  {
+    "t": 95.208,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.208.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.208.png",
+    "x": 0,
+    "y": 11
+  },
+  {
+    "t": 95.25,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.250.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.250.png",
+    "x": 0,
+    "y": 11
+  },
+  {
+    "t": 95.291,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.291.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.291.png",
+    "x": 0,
+    "y": 12
+  },
+  {
+    "t": 95.333,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.333.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.333.png",
+    "x": 0,
+    "y": 12
+  },
+  {
+    "t": 95.375,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.375.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.375.png",
+    "x": 0,
+    "y": 12
+  },
+  {
+    "t": 95.416,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.416.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.416.png",
+    "x": 0,
+    "y": 13
+  },
+  {
+    "t": 95.458,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.458.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.458.png",
+    "x": 0,
+    "y": 13
+  },
+  {
+    "t": 95.5,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.500.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.500.png",
+    "x": 0,
+    "y": 13
+  },
+  {
+    "t": 95.542,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.542.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.542.png",
+    "x": 0,
+    "y": 14
+  },
+  {
+    "t": 95.583,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.583.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.583.png",
+    "x": 0,
+    "y": 14
+  },
+  {
+    "t": 95.625,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.625.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.625.png",
+    "x": 0,
+    "y": 15
+  },
+  {
+    "t": 95.667,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.667.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.667.png",
+    "x": 0,
+    "y": 15
+  },
+  {
+    "t": 95.708,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.708.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.708.png",
+    "x": 0,
+    "y": 15
+  },
+  {
+    "t": 95.75,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.750.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.750.png",
+    "x": 0,
+    "y": 16
+  },
+  {
+    "t": 95.792,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.792.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.792.png",
+    "x": 0,
+    "y": 16
+  },
+  {
+    "t": 95.833,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.833.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.833.png",
+    "x": 0,
+    "y": 17
+  },
+  {
+    "t": 95.875,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.875.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.875.png",
+    "x": 0,
+    "y": 17
+  },
+  {
+    "t": 95.917,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.917.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.917.png",
+    "x": 0,
+    "y": 17
+  },
+  {
+    "t": 95.959,
+    "asset": "assets/runtime/ad-assets/city-early-bg-95.959.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-95.959.png",
+    "x": 0,
+    "y": 18
+  },
+  {
+    "t": 96.0,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.000.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.000.png",
+    "x": 0,
+    "y": 18
+  },
+  {
+    "t": 96.042,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.042.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.042.png",
+    "x": 0,
+    "y": 18
+  },
+  {
+    "t": 96.084,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.084.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.084.png",
+    "x": 0,
+    "y": 19
+  },
+  {
+    "t": 96.125,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.125.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.125.png",
+    "x": 0,
+    "y": 19
+  },
+  {
+    "t": 96.167,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.167.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.167.png",
+    "x": 0,
+    "y": 20
+  },
+  {
+    "t": 96.209,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.209.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.209.png",
+    "x": 0,
+    "y": 20
+  },
+  {
+    "t": 96.251,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.251.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.251.png",
+    "x": 0,
+    "y": 20
+  },
+  {
+    "t": 96.292,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.292.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.292.png",
+    "x": 0,
+    "y": 21
+  },
+  {
+    "t": 96.334,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.334.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.334.png",
+    "x": 0,
+    "y": 21
+  },
+  {
+    "t": 96.376,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.376.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.376.png",
+    "x": 0,
+    "y": 22
+  },
+  {
+    "t": 96.417,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.417.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.417.png",
+    "x": 0,
+    "y": 22
+  },
+  {
+    "t": 96.459,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.459.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.459.png",
+    "x": 0,
+    "y": 22
+  },
+  {
+    "t": 96.501,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.501.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.501.png",
+    "x": 0,
+    "y": 23
+  },
+  {
+    "t": 96.542,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.542.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.542.png",
+    "x": 0,
+    "y": 23
+  },
+  {
+    "t": 96.584,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.584.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.584.png",
+    "x": 0,
+    "y": 23
+  },
+  {
+    "t": 96.626,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.626.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.626.png",
+    "x": 0,
+    "y": 24
+  },
+  {
+    "t": 96.668,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.668.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.668.png",
+    "x": 0,
+    "y": 24
+  },
+  {
+    "t": 96.709,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.709.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.709.png",
+    "x": 0,
+    "y": 25
+  },
+  {
+    "t": 96.751,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.751.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.751.png",
+    "x": 0,
+    "y": 25
+  },
+  {
+    "t": 96.793,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.793.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.793.png",
+    "x": 0,
+    "y": 25
+  },
+  {
+    "t": 96.834,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.834.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.834.png",
+    "x": 0,
+    "y": 26
+  },
+  {
+    "t": 96.876,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.876.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.876.png",
+    "x": 0,
+    "y": 26
+  },
+  {
+    "t": 96.918,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.918.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.918.png",
+    "x": 0,
+    "y": 27
+  },
+  {
+    "t": 96.959,
+    "asset": "assets/runtime/ad-assets/city-early-bg-96.959.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-96.959.png",
+    "x": 0,
+    "y": 27
+  },
+  {
+    "t": 97.001,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.001.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.001.png",
+    "x": 0,
+    "y": 27
+  },
+  {
+    "t": 97.043,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.043.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.043.png",
+    "x": 0,
+    "y": 28
+  },
+  {
+    "t": 97.085,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.085.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.085.png",
+    "x": 0,
+    "y": 28
+  },
+  {
+    "t": 97.126,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.126.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.126.png",
+    "x": 0,
+    "y": 28
+  },
+  {
+    "t": 97.168,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.168.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.168.png",
+    "x": 0,
+    "y": 29
+  },
+  {
+    "t": 97.21,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.210.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.210.png",
+    "x": 0,
+    "y": 29
+  },
+  {
+    "t": 97.293,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.293.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.293.png",
+    "x": 0,
+    "y": 30
+  },
+  {
+    "t": 97.335,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.335.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.335.png",
+    "x": 0,
+    "y": 30
+  },
+  {
+    "t": 97.376,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.376.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.376.png",
+    "x": 0,
+    "y": 30
+  },
+  {
+    "t": 97.418,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.418.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.418.png",
+    "x": 0,
+    "y": 31
+  },
+  {
+    "t": 97.46,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.460.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.460.png",
+    "x": 0,
+    "y": 31
+  },
+  {
+    "t": 97.502,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.502.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.502.png",
+    "x": 0,
+    "y": 32
+  },
+  {
+    "t": 97.543,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.543.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.543.png",
+    "x": 0,
+    "y": 32
+  },
+  {
+    "t": 97.585,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.585.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.585.png",
+    "x": 0,
+    "y": 32
+  },
+  {
+    "t": 97.627,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.627.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.627.png",
+    "x": 0,
+    "y": 33
+  },
+  {
+    "t": 97.668,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.668.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.668.png",
+    "x": 0,
+    "y": 33
+  },
+  {
+    "t": 97.71,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.710.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.710.png",
+    "x": 0,
+    "y": 33
+  },
+  {
+    "t": 97.752,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.752.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.752.png",
+    "x": 0,
+    "y": 34
+  },
+  {
+    "t": 97.793,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.793.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.793.png",
+    "x": 0,
+    "y": 34
+  },
+  {
+    "t": 97.835,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.835.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.835.png",
+    "x": 0,
+    "y": 35
+  },
+  {
+    "t": 97.877,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.877.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.877.png",
+    "x": 0,
+    "y": 35
+  },
+  {
+    "t": 97.919,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.919.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.919.png",
+    "x": 0,
+    "y": 35
+  },
+  {
+    "t": 97.96,
+    "asset": "assets/runtime/ad-assets/city-early-bg-97.960.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-97.960.png",
+    "x": 0,
+    "y": 36
+  },
+  {
+    "t": 98.002,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.002.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.002.png",
+    "x": 0,
+    "y": 36
+  },
+  {
+    "t": 98.044,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.044.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.044.png",
+    "x": 0,
+    "y": 37
+  },
+  {
+    "t": 98.085,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.085.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.085.png",
+    "x": 0,
+    "y": 37
+  },
+  {
+    "t": 98.127,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.127.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.127.png",
+    "x": 0,
+    "y": 37
+  },
+  {
+    "t": 98.169,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.169.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.169.png",
+    "x": 0,
+    "y": 38
+  },
+  {
+    "t": 98.21,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.210.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.210.png",
+    "x": 0,
+    "y": 38
+  },
+  {
+    "t": 98.252,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.252.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.252.png",
+    "x": 0,
+    "y": 39
+  },
+  {
+    "t": 98.294,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.294.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.294.png",
+    "x": 0,
+    "y": 39
+  },
+  {
+    "t": 98.336,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.336.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.336.png",
+    "x": 0,
+    "y": 40
+  },
+  {
+    "t": 98.377,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.377.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.377.png",
+    "x": 0,
+    "y": 40
+  },
+  {
+    "t": 98.419,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.419.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.419.png",
+    "x": 0,
+    "y": 41
+  },
+  {
+    "t": 98.461,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.461.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.461.png",
+    "x": 0,
+    "y": 41
+  },
+  {
+    "t": 98.502,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.502.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.502.png",
+    "x": 0,
+    "y": 41
+  },
+  {
+    "t": 98.544,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.544.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.544.png",
+    "x": 0,
+    "y": 42
+  },
+  {
+    "t": 98.586,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.586.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.586.png",
+    "x": 0,
+    "y": 42
+  },
+  {
+    "t": 98.627,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.627.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.627.png",
+    "x": 0,
+    "y": 42
+  },
+  {
+    "t": 98.669,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.669.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.669.png",
+    "x": 0,
+    "y": 43
+  },
+  {
+    "t": 98.711,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.711.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.711.png",
+    "x": 0,
+    "y": 43
+  },
+  {
+    "t": 98.753,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.753.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.753.png",
+    "x": 0,
+    "y": 44
+  },
+  {
+    "t": 98.794,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.794.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.794.png",
+    "x": 0,
+    "y": 44
+  },
+  {
+    "t": 98.836,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.836.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.836.png",
+    "x": 0,
+    "y": 44
+  },
+  {
+    "t": 98.878,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.878.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.878.png",
+    "x": 0,
+    "y": 45
+  },
+  {
+    "t": 98.919,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.919.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.919.png",
+    "x": 0,
+    "y": 45
+  },
+  {
+    "t": 98.961,
+    "asset": "assets/runtime/ad-assets/city-early-bg-98.961.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-98.961.png",
+    "x": 0,
+    "y": 46
+  },
+  {
+    "t": 99.003,
+    "asset": "assets/runtime/ad-assets/city-early-bg-99.003.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-99.003.png",
+    "x": 0,
+    "y": 46
+  },
+  {
+    "t": 99.044,
+    "asset": "assets/runtime/ad-assets/city-early-bg-99.044.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-99.044.png",
+    "x": 0,
+    "y": 46
+  },
+  {
+    "t": 99.086,
+    "asset": "assets/runtime/ad-assets/city-early-bg-99.086.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-99.086.png",
+    "x": 0,
+    "y": 47
+  },
+  {
+    "t": 99.128,
+    "asset": "assets/runtime/ad-assets/city-early-bg-99.128.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-99.128.png",
+    "x": 0,
+    "y": 47
+  },
+  {
+    "t": 99.17,
+    "asset": "assets/runtime/ad-assets/city-early-bg-99.170.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-99.170.png",
+    "x": 0,
+    "y": 47
+  },
+  {
+    "t": 99.211,
+    "asset": "assets/runtime/ad-assets/city-early-bg-99.211.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-99.211.png",
+    "x": 0,
+    "y": 48
+  },
+  {
+    "t": 99.253,
+    "asset": "assets/runtime/ad-assets/city-early-bg-99.253.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-99.253.png",
+    "x": 0,
+    "y": 48
+  },
+  {
+    "t": 99.295,
+    "asset": "assets/runtime/ad-assets/city-early-bg-99.295.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-99.295.png",
+    "x": 0,
+    "y": 49
+  },
+  {
+    "t": 99.336,
+    "asset": "assets/runtime/ad-assets/city-early-bg-99.336.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-99.336.png",
+    "x": 0,
+    "y": 49
+  },
+  {
+    "t": 99.378,
+    "asset": "assets/runtime/ad-assets/city-early-bg-99.378.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-99.378.png",
+    "x": 0,
+    "y": 49
+  },
+  {
+    "t": 99.42,
+    "asset": "assets/runtime/ad-assets/city-early-bg-99.420.webp",
+    "front": "assets/runtime/ad-assets/city-early-front-99.420.png",
+    "x": 0,
+    "y": 50
+  }
+]

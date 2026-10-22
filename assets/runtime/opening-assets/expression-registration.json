@@ -1,0 +1,47 @@
+{
+  "coordinate": "Body-native pixels. Every local eye patch follows the fixed body's full transform.",
+  "cheeksRightDown": {
+    "asset": "assets/runtime/opening-assets/cheeks-right-down-eye-patch.png",
+    "source": [
+      0,
+      0,
+      300,
+      105
+    ],
+    "destination": [
+      685,
+      350,
+      300,
+      105
+    ],
+    "variantSource": "assets/visuals/a-cheeks-look-right-down.png"
+  },
+  "ending": {
+    "background": "assets/visuals/ending-floral-clean.png",
+    "body": {
+      "asset": "assets/visuals/a-studio-photo.png",
+      "rect": [
+        -245,
+        8,
+        1504.8,
+        846.9
+      ]
+    },
+    "winkPatch": {
+      "asset": "assets/runtime/opening-assets/studio-ending-wink-eye-patch.png",
+      "source": [
+        0,
+        0,
+        81,
+        77
+      ],
+      "destination": [
+        810,
+        209,
+        81,
+        77
+      ],
+      "variantSource": "assets/visuals/a-studio-ending-wink.png"
+    }
+  }
+}

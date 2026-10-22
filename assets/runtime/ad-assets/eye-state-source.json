@@ -1,0 +1,1150 @@
+[
+  {
+    "stage": "station",
+    "source_roi": [
+      340,
+      170,
+      452,
+      228
+    ],
+    "score": "count of original iris-blue pixels; threshold candidate checked against contact chain",
+    "score_range": [
+      485,
+      1315
+    ],
+    "threshold": 775.5,
+    "groups": [
+      {
+        "state": "open",
+        "first": 206.926,
+        "last": 208.552
+      },
+      {
+        "state": "closed",
+        "first": 208.594,
+        "last": 210.137
+      }
+    ],
+    "frames": [
+      {
+        "t": 206.926,
+        "score": 1304,
+        "state": "open"
+      },
+      {
+        "t": 206.968,
+        "score": 1315,
+        "state": "open"
+      },
+      {
+        "t": 207.01,
+        "score": 1315,
+        "state": "open"
+      },
+      {
+        "t": 207.051,
+        "score": 1304,
+        "state": "open"
+      },
+      {
+        "t": 207.093,
+        "score": 1304,
+        "state": "open"
+      },
+      {
+        "t": 207.135,
+        "score": 1304,
+        "state": "open"
+      },
+      {
+        "t": 207.176,
+        "score": 1304,
+        "state": "open"
+      },
+      {
+        "t": 207.218,
+        "score": 1304,
+        "state": "open"
+      },
+      {
+        "t": 207.26,
+        "score": 1306,
+        "state": "open"
+      },
+      {
+        "t": 207.301,
+        "score": 1306,
+        "state": "open"
+      },
+      {
+        "t": 207.343,
+        "score": 1303,
+        "state": "open"
+      },
+      {
+        "t": 207.385,
+        "score": 1304,
+        "state": "open"
+      },
+      {
+        "t": 207.427,
+        "score": 1302,
+        "state": "open"
+      },
+      {
+        "t": 207.468,
+        "score": 1299,
+        "state": "open"
+      },
+      {
+        "t": 207.51,
+        "score": 1299,
+        "state": "open"
+      },
+      {
+        "t": 207.552,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 207.593,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 207.635,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 207.677,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 207.718,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 207.76,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 207.802,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 207.844,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 207.885,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 207.927,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 207.969,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 208.01,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 208.052,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 208.094,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 208.135,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 208.177,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 208.219,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 208.261,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 208.302,
+        "score": 1298,
+        "state": "open"
+      },
+      {
+        "t": 208.344,
+        "score": 1307,
+        "state": "open"
+      },
+      {
+        "t": 208.386,
+        "score": 1307,
+        "state": "open"
+      },
+      {
+        "t": 208.427,
+        "score": 1307,
+        "state": "open"
+      },
+      {
+        "t": 208.469,
+        "score": 1307,
+        "state": "open"
+      },
+      {
+        "t": 208.511,
+        "score": 1310,
+        "state": "open"
+      },
+      {
+        "t": 208.552,
+        "score": 914,
+        "state": "open"
+      },
+      {
+        "t": 208.594,
+        "score": 487,
+        "state": "closed"
+      },
+      {
+        "t": 208.636,
+        "score": 487,
+        "state": "closed"
+      },
+      {
+        "t": 208.678,
+        "score": 488,
+        "state": "closed"
+      },
+      {
+        "t": 208.719,
+        "score": 488,
+        "state": "closed"
+      },
+      {
+        "t": 208.761,
+        "score": 488,
+        "state": "closed"
+      },
+      {
+        "t": 208.803,
+        "score": 488,
+        "state": "closed"
+      },
+      {
+        "t": 208.844,
+        "score": 488,
+        "state": "closed"
+      },
+      {
+        "t": 208.886,
+        "score": 486,
+        "state": "closed"
+      },
+      {
+        "t": 208.928,
+        "score": 486,
+        "state": "closed"
+      },
+      {
+        "t": 208.969,
+        "score": 485,
+        "state": "closed"
+      },
+      {
+        "t": 209.011,
+        "score": 485,
+        "state": "closed"
+      },
+      {
+        "t": 209.053,
+        "score": 485,
+        "state": "closed"
+      },
+      {
+        "t": 209.095,
+        "score": 487,
+        "state": "closed"
+      },
+      {
+        "t": 209.136,
+        "score": 487,
+        "state": "closed"
+      },
+      {
+        "t": 209.178,
+        "score": 489,
+        "state": "closed"
+      },
+      {
+        "t": 209.22,
+        "score": 489,
+        "state": "closed"
+      },
+      {
+        "t": 209.261,
+        "score": 489,
+        "state": "closed"
+      },
+      {
+        "t": 209.303,
+        "score": 491,
+        "state": "closed"
+      },
+      {
+        "t": 209.345,
+        "score": 492,
+        "state": "closed"
+      },
+      {
+        "t": 209.386,
+        "score": 490,
+        "state": "closed"
+      },
+      {
+        "t": 209.428,
+        "score": 490,
+        "state": "closed"
+      },
+      {
+        "t": 209.47,
+        "score": 490,
+        "state": "closed"
+      },
+      {
+        "t": 209.512,
+        "score": 490,
+        "state": "closed"
+      },
+      {
+        "t": 209.553,
+        "score": 490,
+        "state": "closed"
+      },
+      {
+        "t": 209.595,
+        "score": 494,
+        "state": "closed"
+      },
+      {
+        "t": 209.637,
+        "score": 494,
+        "state": "closed"
+      },
+      {
+        "t": 209.678,
+        "score": 490,
+        "state": "closed"
+      },
+      {
+        "t": 209.72,
+        "score": 493,
+        "state": "closed"
+      },
+      {
+        "t": 209.762,
+        "score": 495,
+        "state": "closed"
+      },
+      {
+        "t": 209.803,
+        "score": 495,
+        "state": "closed"
+      },
+      {
+        "t": 209.845,
+        "score": 495,
+        "state": "closed"
+      },
+      {
+        "t": 209.887,
+        "score": 495,
+        "state": "closed"
+      },
+      {
+        "t": 209.929,
+        "score": 495,
+        "state": "closed"
+      },
+      {
+        "t": 209.97,
+        "score": 495,
+        "state": "closed"
+      },
+      {
+        "t": 210.012,
+        "score": 495,
+        "state": "closed"
+      },
+      {
+        "t": 210.054,
+        "score": 495,
+        "state": "closed"
+      },
+      {
+        "t": 210.095,
+        "score": 495,
+        "state": "closed"
+      },
+      {
+        "t": 210.137,
+        "score": 495,
+        "state": "closed"
+      }
+    ]
+  },
+  {
+    "stage": "city",
+    "source_roi": [
+      530,
+      146,
+      642,
+      230
+    ],
+    "score": "count of original iris-blue pixels; threshold candidate checked against contact chain",
+    "score_range": [
+      1262,
+      1983
+    ],
+    "threshold": 1514.35,
+    "groups": [
+      {
+        "state": "open",
+        "first": 215.183,
+        "last": 217.477
+      },
+      {
+        "state": "closed",
+        "first": 217.518,
+        "last": 217.643
+      },
+      {
+        "state": "open",
+        "first": 217.685,
+        "last": 220.938
+      }
+    ],
+    "frames": [
+      {
+        "t": 215.183,
+        "score": 1959,
+        "state": "open"
+      },
+      {
+        "t": 215.225,
+        "score": 1959,
+        "state": "open"
+      },
+      {
+        "t": 215.266,
+        "score": 1961,
+        "state": "open"
+      },
+      {
+        "t": 215.308,
+        "score": 1959,
+        "state": "open"
+      },
+      {
+        "t": 215.35,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 215.391,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 215.433,
+        "score": 1969,
+        "state": "open"
+      },
+      {
+        "t": 215.475,
+        "score": 1969,
+        "state": "open"
+      },
+      {
+        "t": 215.517,
+        "score": 1968,
+        "state": "open"
+      },
+      {
+        "t": 215.558,
+        "score": 1968,
+        "state": "open"
+      },
+      {
+        "t": 215.6,
+        "score": 1968,
+        "state": "open"
+      },
+      {
+        "t": 215.642,
+        "score": 1968,
+        "state": "open"
+      },
+      {
+        "t": 215.683,
+        "score": 1968,
+        "state": "open"
+      },
+      {
+        "t": 215.725,
+        "score": 1968,
+        "state": "open"
+      },
+      {
+        "t": 215.767,
+        "score": 1968,
+        "state": "open"
+      },
+      {
+        "t": 215.809,
+        "score": 1972,
+        "state": "open"
+      },
+      {
+        "t": 215.85,
+        "score": 1972,
+        "state": "open"
+      },
+      {
+        "t": 215.892,
+        "score": 1970,
+        "state": "open"
+      },
+      {
+        "t": 215.934,
+        "score": 1972,
+        "state": "open"
+      },
+      {
+        "t": 215.975,
+        "score": 1972,
+        "state": "open"
+      },
+      {
+        "t": 216.017,
+        "score": 1972,
+        "state": "open"
+      },
+      {
+        "t": 216.059,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 216.1,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 216.142,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 216.184,
+        "score": 1974,
+        "state": "open"
+      },
+      {
+        "t": 216.226,
+        "score": 1969,
+        "state": "open"
+      },
+      {
+        "t": 216.267,
+        "score": 1969,
+        "state": "open"
+      },
+      {
+        "t": 216.309,
+        "score": 1969,
+        "state": "open"
+      },
+      {
+        "t": 216.351,
+        "score": 1967,
+        "state": "open"
+      },
+      {
+        "t": 216.392,
+        "score": 1967,
+        "state": "open"
+      },
+      {
+        "t": 216.434,
+        "score": 1967,
+        "state": "open"
+      },
+      {
+        "t": 216.476,
+        "score": 1969,
+        "state": "open"
+      },
+      {
+        "t": 216.517,
+        "score": 1969,
+        "state": "open"
+      },
+      {
+        "t": 216.559,
+        "score": 1969,
+        "state": "open"
+      },
+      {
+        "t": 216.601,
+        "score": 1967,
+        "state": "open"
+      },
+      {
+        "t": 216.643,
+        "score": 1967,
+        "state": "open"
+      },
+      {
+        "t": 216.684,
+        "score": 1967,
+        "state": "open"
+      },
+      {
+        "t": 216.726,
+        "score": 1967,
+        "state": "open"
+      },
+      {
+        "t": 216.768,
+        "score": 1967,
+        "state": "open"
+      },
+      {
+        "t": 216.809,
+        "score": 1963,
+        "state": "open"
+      },
+      {
+        "t": 216.851,
+        "score": 1963,
+        "state": "open"
+      },
+      {
+        "t": 216.893,
+        "score": 1963,
+        "state": "open"
+      },
+      {
+        "t": 216.934,
+        "score": 1963,
+        "state": "open"
+      },
+      {
+        "t": 216.976,
+        "score": 1963,
+        "state": "open"
+      },
+      {
+        "t": 217.018,
+        "score": 1963,
+        "state": "open"
+      },
+      {
+        "t": 217.06,
+        "score": 1963,
+        "state": "open"
+      },
+      {
+        "t": 217.101,
+        "score": 1963,
+        "state": "open"
+      },
+      {
+        "t": 217.143,
+        "score": 1963,
+        "state": "open"
+      },
+      {
+        "t": 217.185,
+        "score": 1963,
+        "state": "open"
+      },
+      {
+        "t": 217.226,
+        "score": 1963,
+        "state": "open"
+      },
+      {
+        "t": 217.268,
+        "score": 1963,
+        "state": "open"
+      },
+      {
+        "t": 217.31,
+        "score": 1963,
+        "state": "open"
+      },
+      {
+        "t": 217.351,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 217.393,
+        "score": 1975,
+        "state": "open"
+      },
+      {
+        "t": 217.435,
+        "score": 1826,
+        "state": "open"
+      },
+      {
+        "t": 217.477,
+        "score": 1814,
+        "state": "open"
+      },
+      {
+        "t": 217.518,
+        "score": 1416,
+        "state": "closed"
+      },
+      {
+        "t": 217.56,
+        "score": 1262,
+        "state": "closed"
+      },
+      {
+        "t": 217.602,
+        "score": 1262,
+        "state": "closed"
+      },
+      {
+        "t": 217.643,
+        "score": 1418,
+        "state": "closed"
+      },
+      {
+        "t": 217.685,
+        "score": 1818,
+        "state": "open"
+      },
+      {
+        "t": 217.727,
+        "score": 1815,
+        "state": "open"
+      },
+      {
+        "t": 217.768,
+        "score": 1970,
+        "state": "open"
+      },
+      {
+        "t": 217.81,
+        "score": 1973,
+        "state": "open"
+      },
+      {
+        "t": 217.852,
+        "score": 1974,
+        "state": "open"
+      },
+      {
+        "t": 217.894,
+        "score": 1974,
+        "state": "open"
+      },
+      {
+        "t": 217.935,
+        "score": 1973,
+        "state": "open"
+      },
+      {
+        "t": 217.977,
+        "score": 1972,
+        "state": "open"
+      },
+      {
+        "t": 218.019,
+        "score": 1970,
+        "state": "open"
+      },
+      {
+        "t": 218.06,
+        "score": 1970,
+        "state": "open"
+      },
+      {
+        "t": 218.102,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 218.144,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 218.185,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 218.227,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 218.269,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 218.311,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 218.352,
+        "score": 1982,
+        "state": "open"
+      },
+      {
+        "t": 218.394,
+        "score": 1982,
+        "state": "open"
+      },
+      {
+        "t": 218.436,
+        "score": 1982,
+        "state": "open"
+      },
+      {
+        "t": 218.477,
+        "score": 1982,
+        "state": "open"
+      },
+      {
+        "t": 218.519,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 218.561,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 218.603,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 218.644,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 218.686,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 218.728,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 218.769,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 218.811,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 218.853,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 218.894,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 218.936,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 218.978,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 219.02,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 219.061,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 219.103,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 219.145,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 219.186,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 219.228,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 219.27,
+        "score": 1983,
+        "state": "open"
+      },
+      {
+        "t": 219.311,
+        "score": 1982,
+        "state": "open"
+      },
+      {
+        "t": 219.353,
+        "score": 1978,
+        "state": "open"
+      },
+      {
+        "t": 219.395,
+        "score": 1977,
+        "state": "open"
+      },
+      {
+        "t": 219.437,
+        "score": 1977,
+        "state": "open"
+      },
+      {
+        "t": 219.478,
+        "score": 1976,
+        "state": "open"
+      },
+      {
+        "t": 219.52,
+        "score": 1976,
+        "state": "open"
+      },
+      {
+        "t": 219.562,
+        "score": 1976,
+        "state": "open"
+      },
+      {
+        "t": 219.603,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 219.645,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 219.687,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 219.728,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 219.77,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 219.812,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 219.854,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 219.895,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 219.937,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 219.979,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 220.02,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 220.062,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 220.104,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 220.145,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 220.187,
+        "score": 1971,
+        "state": "open"
+      },
+      {
+        "t": 220.229,
+        "score": 1975,
+        "state": "open"
+      },
+      {
+        "t": 220.271,
+        "score": 1977,
+        "state": "open"
+      },
+      {
+        "t": 220.312,
+        "score": 1975,
+        "state": "open"
+      },
+      {
+        "t": 220.354,
+        "score": 1969,
+        "state": "open"
+      },
+      {
+        "t": 220.396,
+        "score": 1965,
+        "state": "open"
+      },
+      {
+        "t": 220.437,
+        "score": 1965,
+        "state": "open"
+      },
+      {
+        "t": 220.479,
+        "score": 1965,
+        "state": "open"
+      },
+      {
+        "t": 220.521,
+        "score": 1965,
+        "state": "open"
+      },
+      {
+        "t": 220.562,
+        "score": 1965,
+        "state": "open"
+      },
+      {
+        "t": 220.604,
+        "score": 1965,
+        "state": "open"
+      },
+      {
+        "t": 220.646,
+        "score": 1965,
+        "state": "open"
+      },
+      {
+        "t": 220.688,
+        "score": 1965,
+        "state": "open"
+      },
+      {
+        "t": 220.729,
+        "score": 1965,
+        "state": "open"
+      },
+      {
+        "t": 220.771,
+        "score": 1965,
+        "state": "open"
+      },
+      {
+        "t": 220.813,
+        "score": 1965,
+        "state": "open"
+      },
+      {
+        "t": 220.854,
+        "score": 1965,
+        "state": "open"
+      },
+      {
+        "t": 220.896,
+        "score": 1965,
+        "state": "open"
+      },
+      {
+        "t": 220.938,
+        "score": 1965,
+        "state": "open"
+      }
+    ]
+  }
+]

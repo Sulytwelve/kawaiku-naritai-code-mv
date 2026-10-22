@@ -1,0 +1,793 @@
+{
+  "coordinate": "Original source video PTS; drawing coordinates 960x540; output canvas 3840x2160",
+  "renderReady": false,
+  "scenes": [
+    {
+      "id": "mirror-empty-open",
+      "range": [
+        0.129,
+        0.44
+      ],
+      "ready": false,
+      "opening": {}
+    },
+    {
+      "id": "mirror-cheeks",
+      "range": [
+        0.44,
+        5.9
+      ],
+      "ready": false,
+      "opening": {
+        "asset": "assets/visuals/a-cheeks.png",
+        "x": 106.6,
+        "y": 90.6,
+        "w": 738.3,
+        "h": 415.5
+      }
+    },
+    {
+      "id": "mirror-cheeks-lidded",
+      "range": [
+        5.9,
+        8.81
+      ],
+      "ready": false,
+      "opening": {
+        "asset": "assets/visuals/a-cheeks.png",
+        "x": 106.6,
+        "y": 90.6,
+        "w": 738.3,
+        "h": 415.5,
+        "expression": "lidded"
+      }
+    },
+    {
+      "id": "mirror-empty-mid",
+      "range": [
+        8.81,
+        9.44
+      ],
+      "ready": false,
+      "opening": {}
+    },
+    {
+      "id": "mirror-makeup",
+      "range": [
+        9.44,
+        16.18
+      ],
+      "ready": false,
+      "opening": {
+        "asset": "assets/visuals/a-mirror-makeup.png",
+        "x": 130.9,
+        "y": 101.8,
+        "w": 682.9,
+        "h": 384.3
+      }
+    },
+    {
+      "id": "mirror-wink",
+      "range": [
+        16.18,
+        17.435
+      ],
+      "ready": false,
+      "opening": {
+        "asset": "assets/visuals/a-mirror-peace-wink.png",
+        "x": 125.0,
+        "y": 107.4,
+        "w": 663.3,
+        "h": 373.3,
+        "sparkles": true
+      }
+    },
+    {
+      "id": "transition-color-stripes",
+      "range": [
+        17.435,
+        19.0
+      ],
+      "ready": false,
+      "underlay": [
+        {
+          "from": 17.435,
+          "to": 18.25,
+          "scene": "mirror-wink"
+        },
+        {
+          "from": 18.25,
+          "to": 19.0,
+          "scene": "title-original-layout"
+        }
+      ],
+      "colorStripes": true
+    },
+    {
+      "id": "title-original-layout",
+      "range": [
+        19.0,
+        27.3
+      ],
+      "ready": false,
+      "title": true
+    },
+    {
+      "id": "fashion-first",
+      "range": [
+        27.3,
+        34.0
+      ],
+      "ready": false,
+      "fashion": {
+        "stage": "fashion-first"
+      }
+    },
+    {
+      "id": "transition-color-grid",
+      "range": [
+        34.0,
+        36.367
+      ],
+      "ready": false,
+      "colorGrid": true
+    },
+    {
+      "id": "tv-room",
+      "range": [
+        36.367,
+        39.537
+      ],
+      "ready": false,
+      "background": "assets/third-party-derived/plates/tv-no-lyrics.png",
+      "layers": [
+        {
+          "asset": "assets/visuals/a-tv.png",
+          "clip": [
+            [
+              58,
+              38
+            ],
+            [
+              900,
+              38
+            ],
+            [
+              900,
+              502
+            ],
+            [
+              58,
+              502
+            ]
+          ],
+          "keys": [
+            {
+              "t": 36.367,
+              "x": 31,
+              "y": 26,
+              "w": 844.8,
+              "h": 475.2
+            }
+          ]
+        }
+      ],
+      "entry": {
+        "panel": [
+          58.5,
+          38.2,
+          898.6,
+          500.8
+        ]
+      }
+    },
+    {
+      "id": "transition-tvroom-out",
+      "range": [
+        39.537,
+        40.7
+      ],
+      "ready": false,
+      "r10": {
+        "under": "tv-room",
+        "over": "reading",
+        "paper": "#ffffff"
+      }
+    },
+    {
+      "id": "reading",
+      "range": [
+        40.7,
+        43.412
+      ],
+      "ready": false,
+      "home": {
+        "stage": "reading"
+      }
+    },
+    {
+      "id": "home-comic-to-curled",
+      "range": [
+        43.412,
+        44.166
+      ],
+      "ready": false,
+      "home": {
+        "stage": "comic-to-curled"
+      }
+    },
+    {
+      "id": "home-curled-reading",
+      "range": [
+        44.166,
+        44.582
+      ],
+      "ready": false,
+      "home": {
+        "stage": "curled"
+      }
+    },
+    {
+      "id": "home-studio",
+      "range": [
+        44.582,
+        52.45
+      ],
+      "ready": false,
+      "home": {
+        "stage": "studio"
+      }
+    },
+    {
+      "id": "home-studio-photo-bridge",
+      "range": [
+        52.45,
+        53.896
+      ],
+      "ready": false,
+      "home": {
+        "stage": "studio-photo-bridge"
+      }
+    },
+    {
+      "id": "photo-chain-five",
+      "range": [
+        53.9,
+        67.018
+      ],
+      "ready": false,
+      "photo": {
+        "type": "mv-photos",
+        "stage": "chain"
+      }
+    },
+    {
+      "id": "photo-chain-to-held-claude",
+      "range": [
+        67.018,
+        67.65
+      ],
+      "ready": false,
+      "photo": {
+        "type": "mv-photos",
+        "stage": "dissolve"
+      }
+    },
+    {
+      "id": "photo-held-claude",
+      "range": [
+        67.65,
+        70.604
+      ],
+      "ready": false,
+      "photo": {
+        "type": "mv-photos",
+        "stage": "portrait"
+      }
+    },
+    {
+      "id": "prayer-first",
+      "range": [
+        70.604,
+        73.05
+      ],
+      "ready": false,
+      "performance": {
+        "stage": "first-prayer"
+      }
+    },
+    {
+      "id": "magazine-gallery-reading",
+      "range": [
+        73.05,
+        92.85
+      ],
+      "ready": false,
+      "magazine": {
+        "stage": "gallery"
+      }
+    },
+    {
+      "id": "magazine-fight",
+      "range": [
+        92.85,
+        94.0
+      ],
+      "ready": false,
+      "magazine": {
+        "stage": "fight"
+      }
+    },
+    {
+      "id": "ad-city-establishing",
+      "range": [
+        94,
+        99.462
+      ],
+      "adCode": {
+        "stage": "city-early"
+      },
+      "ready": false
+    },
+    {
+      "id": "fashion-second",
+      "range": [
+        99.462,
+        114.0
+      ],
+      "ready": false,
+      "fashion": {
+        "stage": "fashion-second"
+      }
+    },
+    {
+      "id": "r36-serrated-wipe",
+      "range": [
+        114.0,
+        116.017
+      ],
+      "ready": false,
+      "coreTransition": {
+        "stage": "r36"
+      }
+    },
+    {
+      "id": "sns-source-posts",
+      "range": [
+        116.017,
+        133.49
+      ],
+      "ready": false,
+      "social": {
+        "type": "sns-mvp",
+        "stage": "posts",
+        "portraitAsset": "assets/visuals/a-phone-iphone17.png"
+      }
+    },
+    {
+      "id": "sns-circle-bridge",
+      "range": [
+        133.49,
+        134.199
+      ],
+      "ready": false,
+      "social": {
+        "type": "sns-mvp",
+        "stage": "bridge",
+        "portraitAsset": "assets/visuals/a-phone-iphone17.png"
+      }
+    },
+    {
+      "id": "sns-angle-reveal",
+      "range": [
+        134.199,
+        134.824
+      ],
+      "ready": false,
+      "social": {
+        "type": "sns-mvp",
+        "stage": "reveal",
+        "portraitAsset": "assets/visuals/a-phone-iphone17.png"
+      }
+    },
+    {
+      "id": "sns-angle-phone",
+      "range": [
+        134.824,
+        138.411
+      ],
+      "ready": false,
+      "social": {
+        "type": "sns-mvp",
+        "stage": "angle",
+        "portraitAsset": "assets/visuals/a-phone-iphone17.png"
+      }
+    },
+    {
+      "id": "sns-angle-to-person",
+      "range": [
+        138.411,
+        138.911
+      ],
+      "ready": false,
+      "social": {
+        "type": "sns-mvp",
+        "stage": "dissolve",
+        "portraitAsset": "assets/visuals/a-phone-iphone17.png"
+      }
+    },
+    {
+      "id": "sns-holding-phone",
+      "range": [
+        138.911,
+        142.998
+      ],
+      "ready": false,
+      "social": {
+        "type": "sns-mvp",
+        "stage": "portrait",
+        "portraitAsset": "assets/visuals/a-phone-iphone17.png"
+      }
+    },
+    {
+      "id": "memory-prayer-repeat",
+      "range": [
+        142.998,
+        154.1
+      ],
+      "ready": false,
+      "performance": {
+        "stage": "memory-prayer"
+      }
+    },
+    {
+      "id": "passing-brush-pan",
+      "range": [
+        154.1,
+        162.8
+      ],
+      "ready": false,
+      "interaction": true
+    },
+    {
+      "id": "seated-calm",
+      "range": [
+        162.8,
+        175.8
+      ],
+      "ready": false,
+      "trainSeatBackground": {
+        "thoughts": true
+      },
+      "layers": [
+        {
+          "asset": "assets/visuals/pair-calm.png",
+          "keys": [
+            {
+              "t": 162.8,
+              "x": -60.48,
+              "y": 13.5,
+              "w": 1017.6,
+              "h": 572.4
+            }
+          ],
+          "patches": [
+            {
+              "asset": "assets/runtime/expression-patches/pair-closed-local-patch.png",
+              "visible": [
+                171.73,
+                175.8
+              ],
+              "source": [
+                450,
+                300,
+                244,
+                74
+              ],
+              "destination": [
+                273.88,
+                182.54,
+                148.52,
+                45.02
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seated-burst",
+      "range": [
+        175.8,
+        176.35
+      ],
+      "ready": false,
+      "burst": {
+        "under": "seated-calm",
+        "over": "seated-reaction"
+      }
+    },
+    {
+      "id": "seated-reaction",
+      "range": [
+        176.35,
+        178.56
+      ],
+      "ready": false,
+      "trainSeatBackground": {
+        "thoughts": false
+      },
+      "layers": [
+        {
+          "asset": "assets/visuals/pair-surprised.png",
+          "split": {
+            "side": "inside",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                840,
+                0
+              ],
+              [
+                840,
+                550
+              ],
+              [
+                790,
+                700
+              ],
+              [
+                770,
+                941
+              ],
+              [
+                0,
+                941
+              ]
+            ]
+          },
+          "keys": [
+            {
+              "t": 176.35,
+              "x": -30,
+              "y": 50,
+              "w": 960,
+              "h": 540
+            }
+          ]
+        },
+        {
+          "asset": "assets/visuals/pair-surprised.png",
+          "split": {
+            "side": "outside",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                840,
+                0
+              ],
+              [
+                840,
+                550
+              ],
+              [
+                790,
+                700
+              ],
+              [
+                770,
+                941
+              ],
+              [
+                0,
+                941
+              ]
+            ]
+          },
+          "keys": [
+            {
+              "t": 176.35,
+              "x": -30,
+              "y": -46,
+              "w": 960,
+              "h": 594
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transition-band-wipe",
+      "range": [
+        178.56,
+        180.446
+      ],
+      "ready": false,
+      "r52": {
+        "under": "seated-reaction",
+        "over": "fashion-third"
+      }
+    },
+    {
+      "id": "fashion-third",
+      "range": [
+        180.446,
+        195.25
+      ],
+      "ready": false,
+      "fashion": {
+        "stage": "fashion-third"
+      }
+    },
+    {
+      "id": "friends-glance-laugh",
+      "range": [
+        195.25,
+        206.175
+      ],
+      "ready": false,
+      "friends": true
+    },
+    {
+      "id": "ad-station-reveal",
+      "range": [
+        206.175,
+        206.926
+      ],
+      "adCode": {
+        "stage": "diamond"
+      },
+      "ready": false
+    },
+    {
+      "id": "ad-station",
+      "range": [
+        206.926,
+        210.179
+      ],
+      "adCode": {
+        "stage": "station"
+      },
+      "ready": false
+    },
+    {
+      "id": "ad-station-to-hall",
+      "range": [
+        210.179,
+        210.512
+      ],
+      "adCode": {
+        "stage": "station-to-hall"
+      },
+      "ready": false
+    },
+    {
+      "id": "ad-hall",
+      "range": [
+        210.512,
+        214.766
+      ],
+      "adCode": {
+        "stage": "hall"
+      },
+      "ready": false
+    },
+    {
+      "id": "ad-hall-to-city",
+      "range": [
+        214.766,
+        215.141
+      ],
+      "adCode": {
+        "stage": "hall-to-city"
+      },
+      "ready": false
+    },
+    {
+      "id": "ad-city",
+      "range": [
+        215.141,
+        220.979
+      ],
+      "adCode": {
+        "stage": "city"
+      },
+      "ready": false
+    },
+    {
+      "id": "ad-city-to-magazine",
+      "range": [
+        220.979,
+        221.313
+      ],
+      "adCode": {
+        "stage": "city-to-magazine"
+      },
+      "ready": false
+    },
+    {
+      "id": "ad-magazine",
+      "range": [
+        221.313,
+        223.899
+      ],
+      "adCode": {
+        "stage": "magazine"
+      },
+      "ready": false
+    },
+    {
+      "id": "ad-magazine-to-hand",
+      "range": [
+        223.899,
+        224.399
+      ],
+      "adCode": {
+        "stage": "magazine-hand-dissolve"
+      },
+      "ready": false
+    },
+    {
+      "id": "ad-hand",
+      "range": [
+        224.399,
+        227.777
+      ],
+      "adCode": {
+        "stage": "hand"
+      },
+      "ready": false
+    },
+    {
+      "id": "bookshop",
+      "range": [
+        227.777,
+        231.55
+      ],
+      "ready": false,
+      "bookshop": {
+        "type": "mv-bookshop"
+      }
+    },
+    {
+      "id": "r67-organic-wipe",
+      "range": [
+        231.55,
+        232.781
+      ],
+      "ready": false,
+      "coreTransition": {
+        "stage": "r67"
+      }
+    },
+    {
+      "id": "fashion-finale",
+      "range": [
+        232.781,
+        247.1
+      ],
+      "ready": false,
+      "fashion": {
+        "stage": "fashion-finale"
+      }
+    },
+    {
+      "id": "ending-stripes-diamond-portrait",
+      "range": [
+        247.1,
+        252.171
+      ],
+      "ready": false,
+      "opening": {
+        "stage": "ending"
+      }
+    }
+  ],
+  "transitions": []
+}

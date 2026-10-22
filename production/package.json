@@ -1,0 +1,12 @@
+{
+  "name": "ext01-kawaiku-naritai-mv",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "node mv/render-film.mjs",
+    "coverage": "node mv/render-film.mjs --coverage"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "0.1.100"
+  }
+}

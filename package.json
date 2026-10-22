@@ -1,0 +1,14 @@
+{
+  "name": "kawaii-naritai-code-mv",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "license": "BSD-2-Clause",
+  "scripts": {
+    "render": "node production/mv/render-film.mjs",
+    "coverage": "node production/mv/render-film.mjs --coverage"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "0.1.100"
+  }
+}

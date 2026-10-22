@@ -1,0 +1,181 @@
+{
+  "coordinate": "Pixels of original generated 1672x941 fixed body, prior to scene transform",
+  "mouths": {
+    "R037": {
+      "name": "closed",
+      "asset": "assets/runtime/expression-patches/mouth-closed.png",
+      "source": [
+        0,
+        0,
+        104,
+        69
+      ],
+      "destination": [
+        785,
+        441,
+        104,
+        69
+      ]
+    },
+    "R038": {
+      "name": "small-o",
+      "asset": "assets/runtime/expression-patches/mouth-small-o.png",
+      "source": [
+        0,
+        0,
+        104,
+        69
+      ],
+      "destination": [
+        785,
+        441,
+        104,
+        69
+      ]
+    },
+    "R039": {
+      "name": "mid-oval",
+      "asset": "assets/runtime/expression-patches/mouth-mid-oval.png",
+      "source": [
+        0,
+        0,
+        104,
+        69
+      ],
+      "destination": [
+        785,
+        441,
+        104,
+        69
+      ]
+    },
+    "R040": {
+      "name": "tiny-oval",
+      "asset": "assets/runtime/expression-patches/mouth-tiny-oval.png",
+      "source": [
+        0,
+        0,
+        104,
+        69
+      ],
+      "destination": [
+        785,
+        441,
+        104,
+        69
+      ]
+    },
+    "R041": {
+      "base": true,
+      "name": "teeth"
+    },
+    "R042": {
+      "name": "wide-a",
+      "asset": "assets/runtime/expression-patches/mouth-wide-a.png",
+      "source": [
+        0,
+        0,
+        104,
+        69
+      ],
+      "destination": [
+        785,
+        441,
+        104,
+        69
+      ]
+    },
+    "R043": {
+      "name": "wide-flat",
+      "asset": "assets/runtime/expression-patches/mouth-wide-flat.png",
+      "source": [
+        0,
+        0,
+        104,
+        69
+      ],
+      "destination": [
+        785,
+        441,
+        104,
+        69
+      ]
+    }
+  },
+  "eyes": {
+    "open": {
+      "asset": "assets/runtime/expression-patches/eyes-open.png",
+      "source": [
+        0,
+        0,
+        278,
+        104
+      ],
+      "destination": [
+        694,
+        340,
+        278,
+        104
+      ]
+    }
+  },
+  "cheeks": {
+    "lidded": {
+      "asset": "assets/runtime/expression-patches/cheeks-lidded.png",
+      "source": [
+        0,
+        0,
+        300,
+        105
+      ],
+      "destination": [
+        685,
+        350,
+        300,
+        105
+      ]
+    }
+  },
+  "verification": [
+    {
+      "patch": "mouth-closed",
+      "changedInsidePixels": 6596,
+      "changedOutsidePixels": 0
+    },
+    {
+      "patch": "mouth-small-o",
+      "changedInsidePixels": 6612,
+      "changedOutsidePixels": 0
+    },
+    {
+      "patch": "mouth-mid-oval",
+      "changedInsidePixels": 6602,
+      "changedOutsidePixels": 0
+    },
+    {
+      "patch": "mouth-tiny-oval",
+      "changedInsidePixels": 6590,
+      "changedOutsidePixels": 0
+    },
+    {
+      "patch": "mouth-wide-a",
+      "changedInsidePixels": 6638,
+      "changedOutsidePixels": 0
+    },
+    {
+      "patch": "mouth-wide-flat",
+      "changedInsidePixels": 6583,
+      "changedOutsidePixels": 0
+    },
+    {
+      "patch": "eyes-open",
+      "changedInsidePixels": 27800,
+      "changedOutsidePixels": 0
+    },
+    {
+      "patch": "cheeks-lidded",
+      "changedInsidePixels": 30328,
+      "changedOutsidePixels": 0
+    }
+  ]
+}
