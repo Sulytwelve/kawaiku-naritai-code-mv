@@ -253,7 +253,7 @@ REFUSED: Unsupported encoder "h264_vaapi"; supported encoders: libx264, libx265,
 
 ## 问题与最小修复建议
 
-> 后续状态（本次修复已提交）：F1–F4 均已按建议修复——`cli-plan` 测试改为对照 `fs.existsSync` 判断 `sourceExists`，不再要求本地字幕；覆盖报告的 draft 模式提示改为按实际旗标输出，`--preview-release` 不再被写成 `--qa`；图片加载统一经 `load-asset.mjs`，缺图/坏图错误带 `assets/...` 相对路径；编码失败时会删除本次新建的不完整输出（运行前已存在的 `--out` 不会被主动删除）。F5 已由运行时安装解决，F6 仍是已知限制。本页其余计数与证据仍是基线 `8a344e2` 的测试记录。
+> 后续状态（本次修复已提交）：F1–F4 均已按建议修复——`cli-plan` 测试改为对照 `fs.existsSync` 判断 `sourceExists`，不再要求本地字幕；覆盖报告的 draft 模式提示改为按实际旗标输出，`--preview-release` 不再被写成 `--qa`；图片加载统一经 `load-asset.mjs`，缺图/坏图错误带 `assets/...` 相对路径；编码失败时会删除本次新建的不完整输出（运行前已存在的 `--out` 不会被主动删除）。F5 已由运行时安装解决，F6 仍是已知限制。**F4 复核补记**：`43eca7b` 的失败清理在 frame 0 时存在竞态（打印 `removed` 后 ffmpeg 仍可能重建 261 字节头部文件），已由 `765c2d5` 改为等待编码子进程 `close` 后再删除，并对仍存活的子进程 `SIGKILL` + 3 秒兜底；复验 frame 0 ×4、后段失败、运行前已存在输出对照与成功路径均通过，证据在 `qa/linux/kaby_lake/logs/fixcheck-fixed2-f4-*.log`（已忽略）。本页其余计数与证据仍是基线 `8a344e2` 的测试记录。
 
 ### F1（重要）测试对本地字幕文件存在隐式依赖
 
