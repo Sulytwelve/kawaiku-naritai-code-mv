@@ -2,7 +2,7 @@
 
 本工程使用 Node.js 与 `@napi-rs/canvas` 绘制二维动画，再将 RGBA 帧送入 FFmpeg 编码。人物主要由透明图片、局部表情、图层变换与镜头运动组成；背景和转场混合使用 Canvas 几何、SVG、登记数据及预处理图片。
 
-主入口是 [`production/mv/render-film.mjs`](../production/mv/render-film.mjs)。从该入口的静态导入与再导出可达 49 个本地 JavaScript 模块，其中包括 `spin-transition/src/` 中的两个 `.js` 模块。运行素材能否取得，与代码模块能否加载是两项独立条件；公开资源范围见 [许可说明](../LICENSING.md) 和 [逐文件素材清单](../assets/asset-licenses.json)。
+主入口是 [`production/mv/render-film.mjs`](../production/mv/render-film.mjs)。从该入口的静态导入与再导出可达 53 个本地 JavaScript 模块，包括入口自身与 `spin-transition/src/` 中的两个 `.js` 模块。运行素材能否取得，与代码模块能否加载是两项独立条件；公开资源范围见 [许可说明](../LICENSING.md) 和 [逐文件素材清单](../assets/asset-licenses.json)。
 
 ## 数据如何变成视频
 
@@ -15,13 +15,23 @@ flowchart LR
   Images["assets/visuals 与第三方派生素材"] --> Scene
   Scene --> Frame["Canvas RGBA 帧"]
   Frame --> FF["FFmpeg 编码与封装"]
-  Audio["ASSET_INDEX.audio：歌曲音轨"] --> FF
+  Audio["MV_AUDIO_PATH 或 ASSET_INDEX.audio：歌曲音轨"] --> FF
   FF --> Output["MP4 与 .render.json"]
 ```
 
 `render-film.mjs` 解析参数、计算整片输出时钟、扫描覆盖情况、建立一个可复用 Canvas，并按帧调用 `renderReference()`。Canvas 像素通过 FFmpeg 标准输入传递；绘图端遵守管道背压，避免把整片 RGBA 帧同时留在内存。
 
-FFmpeg 接收固定宽高、固定帧率的 `rawvideo/rgba`，转换到 `yuv420p`，写入 BT.709 色彩标记并启用 MP4 faststart。带音轨时，歌曲另作 FFmpeg 输入，按选定区间定位，经过 `apad` 补足输出长度，再编码成 44.1 kHz、256 kbps AAC。完整渲染不会对歌曲做变速或变调。
+FFmpeg 接收固定宽高、固定帧率的 `rawvideo/rgba` 输入（始终 8-bit），输出像素格式由编码器与位深决定：默认 `libx264` 为 `yuv420p`，10-bit 只与 `libx265` 组合并输出 `yuv420p10le`。入口仍传 BT.709 三项色彩参数并启用 MP4 faststart；实测本机 FFmpeg n9.0.2 的 `libx264`/`libx265` 输出只有 `color_space=bt709`，`color_primaries` 与 `color_transfer` 为 `unknown`，参数意图不等于完整标记。带音轨时，歌曲另作 FFmpeg 输入，按选定区间定位，经过 `apad` 补足输出长度，再编码成 44.1 kHz、256 kbps AAC。完整渲染不会对歌曲做变速或变调。
+
+## 编码与输入校验
+
+[`encoding.mjs`](../production/mv/encoding.mjs) 是编码器注册表：`libx264` 8-bit `yuv420p`（`-preset`/`-crf`）、`libx265` 8-bit `yuv420p` 或 10-bit `yuv420p10le`（同为 `-preset`/`-crf`）、`av1_amf` 仅 8-bit `yuv420p`（`-quality`/`-b:v`）。其他编码器名、非法位深和不兼容组合在编码前以 `REFUSED` 退出 2；未知编码器不会套用 libx264 参数，显式 10-bit 也不会静默退回 8-bit。真实编码前用 `ffmpeg -hide_banner -encoders` 探测列表；列表存在不代表硬件后端能初始化，`--dry-run` 不探测。
+
+`-pix_fmt` 只是请求：入口编码前读取 `ffmpeg -h encoder=<名称>` 的 `Supported pixel formats:`，目标格式不受支持时 `ERROR` 退出 1；编码后再用 ffprobe 核对实际 `pix_fmt`，不一致同样失败且不写 SRT/旁车。ffprobe 依次取 `FFPROBE_PATH`、所选 FFmpeg 同目录、PATH，缺失时只降级为 WARNING 并在旁车记 `actualOutput.verified: false`。
+
+其余输入同样在启动时解析和校验：[`font-slots.mjs`](../production/mv/font-slots.mjs) 记录三个字体槽位的 `registered`/`missing-file`/`register-failed`/`not-configured` 状态并各打印一次 WARNING；[`audio-input.mjs`](../production/mv/audio-input.mjs) 解析 `MV_AUDIO_PATH` 或 `ASSET_INDEX.audio`，真实有声渲染要求文件存在，coverage/dry-run/`--no-audio` 不要求；[`srt.mjs`](../production/mv/srt.mjs) 只接受 `ja`/`bilingual`，非法值在编码前拒绝，并按输出窗口 `[AUDIO_SEEK, AUDIO_SEEK + n/fps)` 平移、裁剪并重新编号。
+
+`--dry-run` 的 plan 与旁车记录对应关系为：plan 的 `encoder` 与旁车的 `encoding` 是同一结构；plan 的 `probe` 与 `formatProbe` 在 dry-run 为 `null`，旁车的 `encoderProbe`、`formatProbe` 与 `actualOutput` 保存真实的编码器列表、像素格式列表与 ffprobe 实测结果；`audio`、`fonts`、`subtitles` 两侧都记录。`subtitles.stats` 只有实际读取并裁剪 cue 后才有统计，规划阶段保持 `null`；片段内没有歌词时 `stats.output` 为 0、写出空 SRT，不视为错误。契约违反退出 2；运行期失败（FFmpeg 无法启动、编码器初始化失败、非零退出、像素格式不符）退出 1。
 
 ## 三种时间不要混用
 

@@ -24,22 +24,33 @@
 
 ```sh
 npm ci
+npm test
 npm run coverage
 ```
 
-FFmpeg 默认从 PATH 查找，也可通过 `FFMPEG_PATH` 或 `--ffmpeg` 指定。字体可用 `MV_FONT_PATH`、`MV_TITLE_FONT_PATH`、`MV_SOURCE_FONT_PATH` 配置；Windows 默认使用现有系统字体，标题源字体需按其自身许可另行准备。更换字体会影响字形与排版。
+`npm test` 运行 `production/mv/tests/*.test.mjs` 的 `node:test` 用例，不需要额外依赖。`npm run coverage` 检查整片帧路由；默认 60fps 为 15135 帧、252.25 秒。
 
-音乐、字体、原 MV 派生图及未获再分发许可的素材不随代码仓库提供。音乐和字体目录仅随仓库提供 [音轨准备说明](assets/audio/README.md) 与 [字体替换说明](assets/fonts/README.md)；音轨获取默认优先雨宮天版，也可使用 Sana 版，现有制作按 Sana 版校时。完整渲染前，按 [素材清单](assets/asset-licenses.json) 准备对应输入；正式音轨的位置由 `assets/ASSET_INDEX.json` 声明。人物素材的源图与运行时派生图有各自文件记录，不应相互替代。
+FFmpeg 默认从 PATH 查找，也可通过 `FFMPEG_PATH` 或 `--ffmpeg` 指定。字体可用 `MV_FONT_PATH`、`MV_TITLE_FONT_PATH`、`MV_SOURCE_FONT_PATH` 配置；Windows 默认使用现有系统字体，标题源字体需按其自身许可另行准备。更换字体会影响字形与排版。某个字体槽位无法注册时，启动阶段只打印一次 WARNING，状态同时写入 dry-run 的 plan 与旁车 `fonts`；这不会阻断 `coverage`，但文字仍需视觉验收。
 
-AMD GPU 的 720p60 快速输出：
+音乐、字体、原 MV 派生图及未获再分发许可的素材不随代码仓库提供。音乐和字体目录仅随仓库提供 [音轨准备说明](assets/audio/README.md) 与 [字体替换说明](assets/fonts/README.md)；音轨获取默认优先雨宮天版，也可使用 Sana 版，现有制作按 Sana 版校时。完整渲染前，按 [素材清单](assets/asset-licenses.json) 准备对应输入；正式音轨的位置由 `assets/ASSET_INDEX.json` 声明，也可以用 `MV_AUDIO_PATH` 临时覆盖本地音轨，覆盖不会改写该清单。人物素材的源图与运行时派生图有各自文件记录，不应相互替代。
+
+默认使用 CPU `libx264`、8-bit、MP4，720p60 快速输出：
 
 ```sh
-npm run render -- --width 1280 --fps 60 --encoder av1_amf --quality speed --bitrate 8M --preview-release --out deliverables/mv-720p60.mp4
+npm run render -- --width 1280 --fps 60 --preview-release --out renders/mv-720p60-h264.mp4
 ```
 
-CPU 编码可将编码选项替换为 `--encoder libx264 --preset fast --crf 19`。输出 4K60 时使用 `--width 3840 --fps 60`。`--preview-release` 关闭内部检查水印；`--output-range 44 56` 可只输出歌曲时间 44–56 秒，保持整片时钟与取样相位。
+帧尺寸按 16:9 由 `--width` 推导，`--width` 必须是 32 的倍数（例如 320、640、1280、1920、3840）；其他值会让高度不是整数或偶数，入口会在规划前拒绝，而不是把小数尺寸传给 FFmpeg。
 
-歌曲从零开始，维持原速与原音高。歌词使用单独 SRT，不默认烧入画面。`--no-audio` 可导出无音轨的画面；`--srt ja` 可同时写出日文外挂字幕，需要另行准备相应歌词文件。
+默认编码参数为 `--preset fast --crf 19`，可用同名参数覆盖。若本机 FFmpeg 构建、AMD 硬件与驱动同时支持 AV1 AMF，可显式选择硬件编码：
+
+```sh
+npm run render -- --width 1280 --fps 60 --encoder av1_amf --quality speed --bitrate 8M --preview-release --out renders/mv-720p60-av1.mp4
+```
+
+`av1_amf` 是可选路径，不能假定所有机器可用，硬件初始化也不能只靠编码器列表判断；它可能把非 16 倍数尺寸填充到 16 的倍数，需用 ffprobe 核对实际输出。`--bit-depth 10` 只与 `libx265` 组合，输出 `yuv420p10le`；它把仍是 8-bit 的 Canvas 输入编码为 10-bit，不恢复色阶细节，也不等于端到端 10-bit 制作，兼容性低于 8-bit H.264。输出 4K60 时使用 `--width 3840 --fps 60`。`--preview-release` 关闭内部检查水印；`--output-range 44 56` 可只输出歌曲时间 44–56 秒，保持整片时钟与取样相位。
+
+歌曲从零开始，维持原速与原音高。歌词使用单独 SRT，不默认烧入画面。`--no-audio` 可导出无音轨的画面；`--srt` 只接受 `ja` 或 `bilingual`，视频成功编码后写出同名外挂字幕，并按输出区间平移、裁剪和重新编号。需要另行准备相应歌词文件，文件名与校时约定见 [字幕占位与替换说明](assets/subtitles/README.md)。
 
 ## 目录
 
@@ -55,6 +66,7 @@ CPU 编码可将编码选项替换为 `--encoder libx264 --preset fast --crf 19`
 | `assets/runtime/` | 登记数据、表情补层与烘焙画面 |
 | `assets/third-party-derived/` | 需自行准备的原片派生素材 |
 | `assets/audio/`、`assets/fonts/` | 需自行准备的音乐与字体 |
+| `assets/subtitles/` | 需自行准备的歌词与字幕源（SRT） |
 
 SNS 烘焙帧、人物表情补层及轨迹数据都是渲染输入。`runtime/` 只分发 JSON 和白名单图片，具体边界见 [运行输入说明](assets/runtime/README.md)。替换素材时应保留登记坐标、透明通道与图像比例；技术参数相同不代表替换后画面一致。
 

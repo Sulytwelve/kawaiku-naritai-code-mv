@@ -6,7 +6,8 @@
   "license": "BSD-2-Clause",
   "scripts": {
     "render": "node production/mv/render-film.mjs",
-    "coverage": "node production/mv/render-film.mjs --coverage"
+    "coverage": "node production/mv/render-film.mjs --coverage",
+    "test": "node --test \"production/mv/tests/*.test.mjs\""
   },
   "dependencies": {
     "@napi-rs/canvas": "0.1.100"

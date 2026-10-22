@@ -26,6 +26,7 @@ import {drawHome} from './home-scenes.mjs';
 import {drawBookshop} from './bookshop-scenes.mjs';
 import {drawFriendAdSquare,FRIEND_AD_SQUARE} from './friend-ad-square-transition.mjs';
 import {drawTrainSeatBackground} from './train-seat-background-canvas.mjs';
+import {registerFontSlot} from './font-slots.mjs';
 const require=createRequire(import.meta.url);
 export const {createCanvas,loadImage,GlobalFonts}=require('@napi-rs/canvas');
 export const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
@@ -33,10 +34,11 @@ export const SOURCE={width:960,height:540,fps:24000/1001,firstPTS:.129,lastFrame
 export const sanaToReference=t=>Math.max(SOURCE.firstPTS,Math.min(SOURCE.lastFramePTS,t-.064));
 export const tracks=JSON.parse(fs.readFileSync(path.join(ROOT,'production/mv/tracks.json'),'utf8'));
 const windowsFonts=process.platform==='win32'?path.join(process.env.WINDIR||'C:/Windows','Fonts'):null;
-const mainFont=process.env.MV_FONT_PATH||(windowsFonts?path.join(windowsFonts,'msyh.ttc'):null);
-if(mainFont&&fs.existsSync(mainFont))GlobalFonts.registerFromPath(mainFont,'MV Gothic');
+// Missing fonts are recorded by font-slots.mjs and warned about once at startup;
+// they must never abort coverage or a bounded render.
+registerFontSlot({slot:'MV Gothic',family:'MV Gothic',env:'MV_FONT_PATH',defaultPath:windowsFonts?path.join(windowsFonts,'msyh.ttc'):null,defaultSource:'platform-default'});
 // SourceDisplay contains Chinese glyphs; Japanese credits intentionally keep MV Gothic fallback.
-try{GlobalFonts.registerFromPath(process.env.MV_SOURCE_FONT_PATH||path.join(ROOT,'assets/fonts/汉仪跳跳体简5.0.ttf'),'SourceDisplay')}catch{}
+registerFontSlot({slot:'SourceDisplay',family:'SourceDisplay',env:'MV_SOURCE_FONT_PATH',defaultPath:path.join(ROOT,'assets/fonts/汉仪跳跳体简5.0.ttf'),defaultSource:'repository-default'});
 const cache=new Map();
 export async function asset(relative){if(!cache.has(relative)){cache.set(relative,loadImage(path.join(ROOT,relative)));if(cache.size>96)cache.delete(cache.keys().next().value)}else{const v=cache.get(relative);cache.delete(relative);cache.set(relative,v)}return await cache.get(relative)}
 // A sequence may be inline or a path to a JSON file, so long per-frame mappings

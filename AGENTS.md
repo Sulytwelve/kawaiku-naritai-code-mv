@@ -29,6 +29,10 @@
 - `production/mv/render-film.mjs`：命令解析、覆盖检查、逐帧合成、FFmpeg 编码及外挂字幕输出。
 - `production/mv/scene.mjs`：`renderReference()`、场景选择、图层与场景调度。
 - `production/mv/film-clock.mjs`：歌曲时间与 source PTS 映射。
+- `production/mv/encoding.mjs`：编码器注册表、位深与拒绝规则、编码器列表探测。
+- `production/mv/srt.mjs`：字幕语言解析、SRT 解析、按输出窗口裁剪与序列化。
+- `production/mv/font-slots.mjs`：三个字体槽位的注册诊断与一次性 WARNING。
+- `production/mv/audio-input.mjs`：`MV_AUDIO_PATH` 与 `ASSET_INDEX.audio` 的解析和存在性校验。
 - `production/mv/tracks.json`：场景区间、路由配置、图层、关键帧和转场。
 - `assets/runtime/`：各模块的登记数据、局部补层、轨迹和 SNS 烘焙输入。
 - `assets/visuals/`：图像原件；不能假定相邻文件具有相同许可。
@@ -38,6 +42,10 @@
 
 - 保持歌曲输出时钟与 source PTS 区分。`--output-range` 与 `--range` 的时间基准不同，详见复现文档。
 - 入口没有实现 `--help`，也不校验所有未知参数。查询选项应读源码和复现文档；规划输出时使用已记录的 `--dry-run` 命令，不能用猜测的参数启动长渲染。
+- 入口在编码前校验编码器、位深、`--srt` 与音轨输入。契约违反打印 `REFUSED:` 并退出 2；运行期失败打印 `ERROR:`（含所选 ffmpeg、编码器和 stderr 末段）并退出 1，不要用同一种退出码描述两类失败。
+- 字幕只接受 `--srt ja` 与 `--srt bilingual`；其他值与缺值在编码前拒绝，字幕按输出窗口平移、裁剪并重新编号。
+- 本地音轨用 `MV_AUDIO_PATH` 覆盖，不改 `assets/ASSET_INDEX.json`；coverage、`--dry-run` 与 `--no-audio` 不要求音轨存在，真实有声编码会拒绝错误路径。
+- 测试用 `npm test`（`node --test "production/mv/tests/*.test.mjs"`）；不要改用目录参数。
 - 先沿 `tracks.json` 的活动路由找到消费者，再改文件。JSON 中的来源说明或未消费字段，不代表对应图像仍在渲染。
 - 修改图片位置或文件名时，修复代码、登记 JSON、序列清单和许可清单。SNS 屏幕、投影帧、眼区补层及纸片图都是输入，不是可随意删除的缓存。
 - 保留图像比例、透明通道、裁切与配准关系。重新生成一张图不会自动保持眼区、手部或人物锚点。
@@ -49,9 +57,9 @@
 
 ## 验证与交接
 
-1. 确认依赖、输入资源、活动路径与覆盖区间；记录实际运行命令。
+1. 确认依赖、输入资源、活动路径与覆盖区间；运行 `npm test` 和 `npm run coverage`，记录实际运行命令。
 2. 修改镜头前后输出相同时间区间、分辨率、帧率与字体配置的短片。检查受影响片段及两端衔接。
-3. 用 ffprobe 核对尺寸、帧率、帧数、时长、编码和音轨；适用时完整解码并检查声画同步及字幕。
+3. 用 ffprobe 核对尺寸、帧率、帧数、时长、编码、像素格式、色彩标记和音轨；短片旁车 `.render.json` 记录编码器、位深、`formatProbe`、`actualOutput`、字体与字幕统计。`actualOutput.verified: false` 表示未达到 ffprobe 核对，不能当作已验证。完整解码可用 `ffmpeg -v error -xerror -i <文件> -f null -`，再检查声画同步及字幕。
 4. 人物替换、镜头与转场改动应实际查看动态画面。像素回归只证明所采样画面相同，不能证明未采样帧或新的创作质量。
 5. 最后检查 Git 暂存文件与许可白名单、链接和命令是否一致。交接时分别说明做了什么、运行了什么验证、缺哪些输入、哪些质量判断尚未完成。
 

@@ -25,7 +25,8 @@ renders/
 # Music, lyrics, fonts, and mixed source packages retain separate rights
 assets/audio/*
 !assets/audio/README.md
-assets/subtitles/
+assets/subtitles/*
+!assets/subtitles/README.md
 assets/source-packs/
 assets/fonts/*
 !assets/fonts/README.md

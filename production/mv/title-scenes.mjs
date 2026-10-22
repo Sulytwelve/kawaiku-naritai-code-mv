@@ -1,10 +1,9 @@
-import {createRequire} from 'node:module';
 import path from 'node:path';
 import {drawPinkRiceBackground} from './pink-rice-background.mjs';
-const require=createRequire(import.meta.url);
-const {GlobalFonts}=require('@napi-rs/canvas');
-const titleFont=process.env.MV_TITLE_FONT_PATH||(process.platform==='win32'?path.join(process.env.WINDIR||'C:/Windows','Fonts','YuGothM.ttc'):null);
-try{if(titleFont)GlobalFonts.registerFromPath(titleFont,'TitleRound')}catch{}
+import {registerFontSlot} from './font-slots.mjs';
+const titleFont=process.platform==='win32'?path.join(process.env.WINDIR||'C:/Windows','Fonts','YuGothM.ttc'):null;
+// A missing title font is reported once by reportFontWarnings(), not swallowed.
+registerFontSlot({slot:'TitleRound',family:'TitleRound',env:'MV_TITLE_FONT_PATH',defaultPath:titleFont,defaultSource:'platform-default'});
 // ---------------------------------------------------------------------------
 // Pink dessert artboard: preserve the previously measured infinite scroll.
 //
