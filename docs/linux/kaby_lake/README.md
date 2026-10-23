@@ -3,6 +3,8 @@
 对象：`kawaiku-naritai-code-mv` 公开克隆（commit `8a344e2`），Arch Linux + Intel Core i5-7200U / HD Graphics 620。
 环境细节见 [environment.md](environment.md)，逐项结果与证据见 [results.json](results.json)。原始视频、边车、日志和硬件探测输出全部放在被忽略的 `qa/linux/kaby_lake/`。
 
+本文保留所列提交及后续修复复验的历史结果。自 `84ba420` 起，项目入口已增加软件 AV1、NVENC/QSV 预设，并接受其他 FFmpeg 编码器名；下文的入口拒绝结果仅描述当时版本，原始日志与结果不作追改。当前用法见[编码器与位深](../../REPRODUCING.md#编码器与位深)。这里的独立 FFmpeg 硬件测试不能替代新增项目入口的实机验收；需要硬件上传滤镜的后端也不保证仅传入编码器名即可运行。
+
 ## 结论
 
 1. **能渲染，但只能渲染公开素材齐全的区间。** 当前克隆可以安装、测试、跑覆盖检查、做 CPU `libx264` dry-run，并真实渲染标题、色彩网格、片尾等不依赖缺失素材的区间；实际输出了 640×360@60fps 和 320×180@60fps 的 H.264 短片，ffprobe 与完整解码均通过。
@@ -11,7 +13,7 @@
 4. **Intel GPU 编解码：VAAPI 与 QSV 均已实测通过。**
    - VAAPI：`h264_vaapi` 实际硬件编码成功（`VAProfileH264High` / `VAEntrypointEncSlice`），640×360 与 1280×720@60fps 短样本均成功；`-hwaccel vaapi` 硬件解码成功；HEVC 编/解码、VP9 解码同样成功。
    - QSV：使用者补齐 `intel-media-driver` + `intel-media-sdk` 后复测，`h264_qsv`/`hevc_qsv` 编码、QSV H.264/HEVC/VP9 解码、1280×720@60 编码、真实 MV 片段重编码与项目 CPU 输出硬解全部 exit 0。日志显示 oneVPL `implementation version 1.35`，普通 `h264_qsv` 明确报告 `hardware accelerated implementation`；坏 `qsv_device` 对照 exit 234，未发生软件回退。
-   - 首轮因缺 oneVPL GPU 运行时 QSV 曾记为 blocked；运行时由使用者安装后该问题已解决，报告按最终状态记录并保留历史证据。项目入口仍拒绝 `h264_qsv`/`h264_vaapi`（`REFUSED`，exit 2），这是设计约束，不是硬件能力证据。
+   - 首轮因缺 oneVPL GPU 运行时 QSV 曾记为 blocked；运行时由使用者安装后该问题已解决，报告按最终状态记录并保留历史证据。当时的项目入口拒绝 `h264_qsv`/`h264_vaapi`（`REFUSED`，exit 2），这是当时的设计约束，不是硬件能力证据。
 5. **测试基线曾与公开克隆不完全兼容（F1，已修复）。** 基线 `8a344e2` 上，未准备本地字幕时 `npm test` 为 72 项中 67 通过、1 失败、4 跳过；补齐本地 `ja` SRT 后为 68 通过、0 失败、4 跳过。失败项是测试对本地字幕文件的隐式依赖，不是渲染代码失败。修复后公开克隆无需本地字幕同样全通过（当前 75 项），详见[问题与处理结果](#问题与处理结果)。
 6. **没有修改源码、动画、时间轴、素材或 `assets/ASSET_INDEX.json`。** 新增内容只有本报告与忽略目录 `qa/linux/kaby_lake/`；QSV 运行时由使用者安装，不属于本轮代码或素材变更。
 
@@ -179,7 +181,7 @@ ERROR: frame 0 at source PTS 49.436 failed: Invalid URL
 
 ## Intel 硬件编解码（独立 FFmpeg 测试）
 
-项目入口只接受 `libx264`、`libx265`、`av1_amf`，不包含 QSV/VAAPI 渲染后端。因此本节全部用独立 FFmpeg 对自产测试图（`testsrc2`）和项目自产短片测试，不经过项目入口，也不把入口的 `REFUSED` 当作硬件结论。
+测试时的项目入口只接受 `libx264`、`libx265`、`av1_amf`，不包含 QSV/VAAPI 渲染后端。因此本节全部用独立 FFmpeg 对自产测试图（`testsrc2`）和项目自产短片测试，不经过项目入口，也不把入口的 `REFUSED` 当作硬件结论。
 
 实测入口行为：
 
@@ -283,7 +285,7 @@ REFUSED: Unsupported encoder "h264_vaapi"; supported encoders: libx264, libx265,
 ### F5（已解决）QSV 需要额外运行时
 
 - 首轮：i965 VAAPI 正常，但 QSV 缺 oneVPL GPU 运行时（iHD/旧 MSDK 未安装），session 初始化失败，如实记为 blocked。
-- 处理：使用者在两轮测试之间安装 `intel-media-driver` 26.3.5 + `intel-media-sdk` 23.2.2；复测 QSV H.264/HEVC 编解码、VP9 解码、720p60 与真实片段重编码全部通过，坏设备对照失败。该问题已关闭；安装由使用者完成，测试 Agent 未执行系统修改，项目入口也仍不接入 QSV。
+- 处理：使用者在两轮测试之间安装 `intel-media-driver` 26.3.5 + `intel-media-sdk` 23.2.2；复测 QSV H.264/HEVC 编解码、VP9 解码、720p60 与真实片段重编码全部通过，坏设备对照失败。该问题已关闭；安装由使用者完成，测试 Agent 未执行系统修改，当时项目入口尚未接入 QSV。
 - `vpl-gpu-rt` 仅声明支持 Tiger Lake 及更新，本机 Kaby Lake 不需要。
 
 ### F6（已知限制，非回归）色彩标记不完整

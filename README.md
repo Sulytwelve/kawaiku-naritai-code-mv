@@ -51,7 +51,7 @@ npm run render -- --width 1280 --fps 60 --preview-release --out renders/mv-720p6
 npm run render -- --width 1280 --fps 60 --encoder av1_amf --quality speed --bitrate 8M --preview-release --out renders/mv-720p60-av1.mp4
 ```
 
-`av1_amf` 是可选路径，不能假定所有机器可用，硬件初始化也不能只靠编码器列表判断；它可能把非 16 倍数尺寸填充到 16 的倍数，需用 ffprobe 核对实际输出。`--bit-depth 10` 可用于软件 AV1、HEVC 及支持该位深的硬件后端，通常输出 `yuv420p10le`；它把仍是 8-bit 的 Canvas 输入编码为 10-bit，不恢复色阶细节，也不等于端到端 10-bit 制作，兼容性低于 8-bit H.264。输出 4K60 时使用 `--width 3840 --fps 60`。`--preview-release` 关闭内部检查水印；`--output-range 44 56` 可只输出歌曲时间 44–56 秒，保持整片时钟与取样相位。
+`av1_amf` 是可选路径，不能假定所有机器可用，硬件初始化也不能只靠编码器列表判断；它可能产生对齐填充，其中 1920×1080 可编码为 1920×1082 并通过容器信息裁掉底部两行；应分别核对编码尺寸、显示尺寸和播放器兼容性。需要准确 AV1 编码尺寸时可用 `libsvtav1`。`--bit-depth 10` 可用于软件 AV1、HEVC 及支持该位深的硬件后端，通常输出 `yuv420p10le`；它把仍是 8-bit 的 Canvas 输入编码为 10-bit，不恢复色阶细节，也不等于端到端 10-bit 制作，兼容性低于 8-bit H.264。输出 4K60 时使用 `--width 3840 --fps 60`。`--preview-release` 关闭内部检查水印；`--output-range 44 56` 可只输出歌曲时间 44–56 秒，保持整片时钟与取样相位。
 
 歌曲从零开始，维持原速与原音高。歌词使用单独 SRT，不默认烧入画面。`--no-audio` 可导出无音轨的画面；`--srt` 只接受 `ja` 或 `bilingual`，视频成功编码后写出同名外挂字幕，并按输出区间平移、裁剪和重新编号。需要另行准备相应歌词文件，文件名与校时约定见 [字幕占位与替换说明](assets/subtitles/README.md)。
 

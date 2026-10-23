@@ -31,7 +31,7 @@
 - `production/mv/scene-content-routes.mjs`：背景与通用图层之间的有序、可叠加内容路由；`scene-renderers.mjs` 绑定具体绘制模块。
 - `production/mv/film-clock.mjs`：歌曲时间与 source PTS 映射。
 - `production/mv/render-range.mjs`：将已校验的范围参数转换为帧取样窗口与音轨定位；不依赖 Canvas 或文件系统。
-- `production/mv/encoding.mjs`：编码器注册表、位深与拒绝规则、编码器列表探测。
+- `production/mv/encoding.mjs`：编码器预设、专用选项、位深与像素格式校验、编码器探测及实际输出核对；使用入口见[编码器与位深](docs/REPRODUCING.md#编码器与位深)。
 - `production/mv/srt.mjs`：字幕语言解析、SRT 解析、按输出窗口裁剪与序列化。
 - `production/mv/font-slots.mjs`：三个字体槽位的注册诊断与一次性 WARNING。
 - `production/mv/audio-input.mjs`：`MV_AUDIO_PATH` 与 `ASSET_INDEX.audio` 的解析和存在性校验。
@@ -45,6 +45,8 @@
 - 保持歌曲输出时钟与 source PTS 区分。`--output-range` 与 `--range` 的时间基准不同，详见复现文档。
 - 入口没有实现 `--help`，也不校验所有未知参数。查询选项应读源码和复现文档；规划输出时使用已记录的 `--dry-run` 命令，不能用猜测的参数启动长渲染。
 - 入口在编码前校验编码器、位深、`--srt` 与音轨输入。契约违反打印 `REFUSED:` 并退出 2；运行期失败打印 `ERROR:`（含所选 ffmpeg、编码器和 stderr 末段）并退出 1，不要用同一种退出码描述两类失败。
+- 输出格式与硬件后端分别选择，不把某次交付要求使用 AV1 或某台机器使用 AMD 加速写成工程限制。`--encoder` 的注册表提供便捷预设，不是白名单；其他合法 FFmpeg 编码器名无需修改源码即可传入，不自动继承 libx264 参数或回退到其他编码格式。
+- 软件 AV1 可用 `libsvtav1`，默认 preset 6、CRF 28，无目标码率；AMD AMF、NVIDIA NVENC、Intel QSV 均为可选后端，实际支持取决于 FFmpeg 构建、设备和驱动。专用参数通过 `--encoder-options` JSON 对象传入，编码器输入格式通过 `--pixel-format` 指定；具体组合、命令与限制见复现文档，不凭品牌或编码器列表断言硬件可用。
 - 字幕只接受 `--srt ja` 与 `--srt bilingual`；其他值与缺值在编码前拒绝，字幕按输出窗口平移、裁剪并重新编号。
 - 本地音轨用 `MV_AUDIO_PATH` 覆盖，不改 `assets/ASSET_INDEX.json`；coverage、`--dry-run` 与 `--no-audio` 不要求音轨存在，真实有声编码会拒绝错误路径。
 - 测试用 `npm test`（`node --test "production/mv/tests/*.test.mjs"`）；不要改用目录参数。
@@ -62,6 +64,7 @@
 1. 确认依赖、输入资源、活动路径与覆盖区间；运行 `npm test` 和 `npm run coverage`，记录实际运行命令。
 2. 修改镜头前后输出相同时间区间、分辨率、帧率与字体配置的短片。检查受影响片段及两端衔接。
 3. 用 ffprobe 核对尺寸、帧率、帧数、时长、编码、像素格式、色彩标记和音轨；短片旁车 `.render.json` 记录编码器、位深、`formatProbe`、`actualOutput`、字体与字幕统计。`actualOutput.verified: false` 表示未达到 ffprobe 核对，不能当作已验证。完整解码可用 `ffmpeg -v error -xerror -i <文件> -f null -`，再检查声画同步及字幕。
+   编码尺寸与容器裁剪后的显示尺寸分别核对：`actualOutput.width/height` 是编码尺寸，`displayWidth/displayHeight` 是应用裁剪后的显示尺寸。AMD AV1 的 1080P 可能编码为 1082 行并标记底部裁剪两行；不能仅看编码高度判为失败，也不能据裁剪信息断言所有播放器兼容。NV12/P010 编码器输入对应解码后的 yuv420p/yuv420p10le。dry-run 只证明参数规划，硬件初始化、真实编码和播放器显示须分别验证。
 4. 人物替换、镜头与转场改动应实际查看动态画面。像素回归只证明所采样画面相同，不能证明未采样帧或新的创作质量。
 5. 最后检查 Git 暂存文件与许可白名单、链接和命令是否一致。交接时分别说明做了什么、运行了什么验证、缺哪些输入、哪些质量判断尚未完成。
 
