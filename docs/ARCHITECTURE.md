@@ -2,7 +2,7 @@
 
 本工程使用 Node.js 与 `@napi-rs/canvas` 绘制二维动画，再将 RGBA 帧送入 FFmpeg 编码。人物主要由透明图片、局部表情、图层变换与镜头运动组成；背景和转场混合使用 Canvas 几何、SVG、登记数据及预处理图片。
 
-主入口是 [`production/mv/render-film.mjs`](../production/mv/render-film.mjs)。从该入口的静态导入与再导出可达 54 个本地 JavaScript 模块，包括入口自身与 `spin-transition/src/` 中的两个 `.js` 模块。运行素材能否取得，与代码模块能否加载是两项独立条件；公开资源范围见 [许可说明](../LICENSING.md) 和 [逐文件素材清单](../assets/asset-licenses.json)。
+主入口是 [`production/mv/render-film.mjs`](../production/mv/render-film.mjs)，通过静态导入与再导出连接各场景模块及 `spin-transition/src/` 中的绘制实现。运行素材能否取得，与代码模块能否加载是两项独立条件；公开资源范围见 [许可说明](../LICENSING.md) 和 [逐文件素材清单](../assets/asset-licenses.json)。
 
 ## 数据如何变成视频
 
@@ -62,6 +62,8 @@ outputFrames = ceil(max(SANA_SECONDS, endPTS + audioOffset) * fps)
 
 局部导出有两个不同接口：`--output-range A B` 使用整片的输出帧网格；`--range A B` 使用 source PTS。两者的帧数、音频定位与采样相位不同，详见 [复现方法](REPRODUCING.md)。
 
+[`render-range.mjs`](../production/mv/render-range.mjs) 的 `resolveRenderRange()` 接收已通过 CLI 校验的范围参数和时钟依赖，返回帧数、首末 source PTS、音轨定位及逐帧取样函数。它不读取文件或启动编码器，可由其他导出入口复用。为保持现有命令行为，同时提供两种范围时以 `--output-range` 为准；输出范围使用四舍五入后的帧索引和不含末端的窗口，source PTS 范围保持原有含末端取样规则。
+
 ## 轨道与路由
 
 [`tracks.json`](../production/mv/tracks.json) 包含 `coordinate`、`renderReady`、`scenes` 和 `transitions`。现有 `scenes` 有 54 项。每项至少有 `id`、`range`、`ready`，再通过 `opening`、`home`、`fashion`、`social` 等字段选择绘制系统。
@@ -74,6 +76,8 @@ outputFrames = ceil(max(SANA_SECONDS, endPTS + audioOffset) * fps)
 4. 根据场景字段调用对应的场景系统。
 5. 绘制通用 `layers`、入口效果、社交界面及 `foregroundLayers`。
 6. 恢复上下文；入口再处理跨场叠加与可选检查水印。
+
+第 4 步由 [`scene-content-routes.mjs`](../production/mv/scene-content-routes.mjs) 的有序路由负责，[`scene-renderers.mjs`](../production/mv/scene-renderers.mjs) 注入实际绘制函数。路由可以同时命中，并按登记顺序逐个等待完成；它不是首命中即停止的选择器。扩展内容类型时，在路由中登记条件与依赖接口，在绑定模块导入绘制实现，并补充顺序与参数测试。相机、背景、通用图层和图层之后的 entry/social 合成仍由 `scene.mjs` 管理；不要把需要覆盖通用图层的效果放进内容路由。
 
 `transitions` 是跨场叠加接口，支持溶解、菱形、圆和矩形遮罩；当前轨道中的此数组为空。现有大多数转场由专用场景模块完成。新增叠加转场仍需要有效的底层场景，不能仅添加一条 `transitions` 就假定主场景路由存在。
 

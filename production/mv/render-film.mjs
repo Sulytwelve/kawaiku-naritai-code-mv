@@ -18,6 +18,7 @@ import {resolveEncoding,probeEncoder,probeEncoderPixels,probeOutputPixelFormat,S
 import {resolveSrtLanguage,parseSrt,cropCues,serializeSrt,SRT_LANGUAGES,SrtError} from './srt.mjs';
 import {fontStatuses,reportFontWarnings} from './font-slots.mjs';
 import {resolveAudioInput,AudioInputError} from './audio-input.mjs';
+import {resolveRenderRange} from './render-range.mjs';
 
 const args=process.argv.slice(2);
 const has=k=>args.includes(k);
@@ -314,26 +315,18 @@ fs.writeFileSync(covJson,JSON.stringify({
 if(coverageOnly){console.log(`\ncoverage written: ${path.relative(ROOT,covJson)}`);process.exit(0)}
 
 // --- range: --range A B, or --range-start / --range-end --------------------
-const outputRange=cli.outputRange;
-const rangeArg=cli.range;
-const outputRangeStartFrame=outputRange===null?0:Math.round(outputRange.start*fps);
-const outputRangeEndFrame=outputRange===null?0:Math.round(outputRange.end*fps);
-if(outputRange!==null&&(!Number.isFinite(outputRangeEndFrame)||outputRangeStartFrame<0||outputRangeEndFrame<=outputRangeStartFrame||outputRangeEndFrame>OUT_FRAMES))refuse('invalid --output-range; use an increasing range within the complete film clock.');
-const isFull=rangeArg===null&&cli.rangeStart===null&&cli.rangeEnd===null&&outputRange===null;
-const rangeStart=rangeArg!==null?rangeArg.start:cli.rangeStart??FILM_START;
-const rangeEnd=rangeArg!==null?rangeArg.end:cli.rangeEnd??SOURCE.lastFramePTS;
-const startPTS=outputRange!==null?clock.sourceAtFrame(outputRangeStartFrame):isFull?FILM_START:Math.max(FILM_START,rangeStart);
-const endPTS=outputRange!==null?clock.sourceAtFrame(outputRangeEndFrame-1):isFull?SOURCE.lastFramePTS:Math.min(SOURCE.lastFramePTS,rangeEnd);
-const n=outputRange!==null?outputRangeEndFrame-outputRangeStartFrame:isFull?OUT_FRAMES:Math.max(1,Math.round((endPTS-startPTS)*fps)+1);
-const AUDIO_SEEK=outputRange!==null?outputRangeStartFrame/fps:isFull?0:startPTS+AUDIO_OFFSET;
-const framePTS=k=>outputRange!==null?clock.sourceAtFrame(outputRangeStartFrame+k):isFull?clock.sourceAtFrame(k):Math.min(SOURCE.lastFramePTS,startPTS+k/fps);
-
-// A source-PTS range is only meaningful while it advances inside the reference
-// span. Without this check an inverted or out-of-span --range silently planned a
-// single frame and logged a contradictory span.
-if(outputRange===null&&!isFull&&!(endPTS>startPTS)){
-  refuse(`invalid --range; the clipped span ${startPTS.toFixed(3)} .. ${endPTS.toFixed(3)} is empty. Use increasing source-PTS values within ${FILM_START} .. ${SOURCE.lastFramePTS}.`);
+let rangePlan;
+try{
+  rangePlan=resolveRenderRange({
+    outputRange:cli.outputRange,range:cli.range,rangeStart:cli.rangeStart,rangeEnd:cli.rangeEnd,
+    fps,audioOffset:AUDIO_OFFSET,sourceStart:FILM_START,sourceEnd:SOURCE.lastFramePTS,
+    outputFrames:OUT_FRAMES,sourceAtOutputFrame:clock.sourceAtFrame,
+  });
+}catch(error){
+  refuse(error.message);
 }
+const {isFull,startPTS,endPTS,frames:n,audioSeek:AUDIO_SEEK,framePTS}=rangePlan;
+const outputRange=cli.outputRange;
 
 // Refuse anything we cannot draw, rather than emitting a film with holes.
 if(!qa){

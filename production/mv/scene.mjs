@@ -1,6 +1,5 @@
+import {drawSceneContent} from './scene-renderers.mjs';
 import {drawSnsMvp} from './social-mvp-scenes.mjs';
-import {drawAdCodeMvp} from './ad-code-mvp-scenes.mjs';
-import {drawColorGridCanvas} from './color-grid-canvas.mjs';
 import {drawColorStripes} from './color-stripes-native.mjs';
 // Source-coordinate compositor and scene dispatcher for the MV.
 import fs from 'node:fs';
@@ -8,22 +7,9 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createRequire} from 'node:module';
 import {drawPostPhone,drawSearchFeed,drawPerspectivePanel} from './social-ui.mjs';
-import {drawFashion} from './fashion-scenes.mjs';
 import {drawSocial as drawSocialScene} from './social-scenes.mjs';
-import {drawTitle} from './title-scenes.mjs';
-import {drawPhotos} from './photo-scenes.mjs';
-import {drawPerformance} from './performance-scenes.mjs';
 import {drawAds} from './ad-scenes.mjs';
-import {drawMagazine} from './magazine-scenes.mjs';
-import {drawInteraction} from './interaction-scenes.mjs';
-import {drawFriends} from './friend-scenes.mjs';
-import {drawOpening} from './opening-scenes.mjs';
-import {drawR10} from './r10-scenes.mjs';
 import {drawTvEntry} from './tvroom-entry.mjs';
-import {drawR52,drawBurst} from './r52-scenes.mjs';
-import {drawCoreTransition} from './core-transition-scenes.mjs';
-import {drawHome} from './home-scenes.mjs';
-import {drawBookshop} from './bookshop-scenes.mjs';
 import {drawFriendAdSquare,FRIEND_AD_SQUARE} from './friend-ad-square-transition.mjs';
 import {drawTrainSeatBackground} from './train-seat-background-canvas.mjs';
 import {registerFontSlot} from './font-slots.mjs';
@@ -131,23 +117,7 @@ export async function drawScene(g,scene,t,{qa=false,skipLegacyDiamond=false,back
   drawColorStripes(g,(t-start)/(end-start));
  }else if(scene.background||scene.backgroundSequence){const bg=await asset(scene.backgroundSequence?sequenceFrame(sequenceAt(scene.backgroundSequence),t).asset:scene.background);g.drawImage(bg,0,0,960,540)}
  else {g.fillStyle=scene.color??'#fff';g.fillRect(0,0,960,540)}
- if(scene.colorGrid){if(t<36.32){await drawScene(g,tracks.scenes.find(x=>x.id==='fashion-first'),Math.min(t,33.999),{qa});drawColorGridCanvas(g,t)}else await drawScene(g,tracks.scenes.find(x=>x.id==='tv-room'),t,{qa})}
- if(scene.adCode)await drawAdCodeMvp(g,scene,t,{asset,createCanvas});
- if(scene.bookshop)await drawBookshop(g,scene,t,{asset,createCanvas});
- if(scene.home)await drawHome(g,scene,t,{asset,createCanvas,drawScene,tracks,qa});
- if(scene.opening)await drawOpening(g,scene,t,{asset,createCanvas});
- if(scene.r10)await drawR10(g,scene,t,{asset,createCanvas,drawScene,tracks,qa});
- if(scene.coreTransition)await drawCoreTransition(g,scene,t,{asset,createCanvas,drawScene,tracks,qa});
- if(scene.r52)await drawR52(g,scene,t,{asset,createCanvas,drawScene,tracks,qa});
- if(scene.burst)await drawBurst(g,scene,t,{asset,createCanvas,
-  drawScene:(cg,cs,ct,options={})=>drawScene(cg,cs,ct,{...options,backgroundTime}),tracks,qa});
- if(scene.fashion)await drawFashion(g,scene,t,{asset,createCanvas});
- if(scene.title)await drawTitle(g,scene,t,{asset,createCanvas});
- if(scene.photo?.type==='mv-photos')await drawPhotos(g,scene,t,{asset,createCanvas});
- if(scene.performance)await drawPerformance(g,scene,t,{asset,createCanvas});
- if(scene.magazine)await drawMagazine(g,scene,t,{asset,createCanvas});
- if(scene.interaction)await drawInteraction(g,scene,t,{asset,createCanvas});
- if(scene.friends)await drawFriends(g,scene,t,{asset,createCanvas,skipLegacyDiamond});
+ await drawSceneContent(g,scene,t,{asset,createCanvas,drawScene,tracks,qa,skipLegacyDiamond,backgroundTime});
  for(const layer of scene.layers??[])await drawLayer(g,layer,t);
  // The panel entry masks what is already composited (the still plate carries the
  // finished border and captions), so it must run after the layers, not before.

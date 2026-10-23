@@ -28,7 +28,9 @@
 
 - `production/mv/render-film.mjs`：命令解析、覆盖检查、逐帧合成、FFmpeg 编码及外挂字幕输出。
 - `production/mv/scene.mjs`：`renderReference()`、场景选择、图层与场景调度。
+- `production/mv/scene-content-routes.mjs`：背景与通用图层之间的有序、可叠加内容路由；`scene-renderers.mjs` 绑定具体绘制模块。
 - `production/mv/film-clock.mjs`：歌曲时间与 source PTS 映射。
+- `production/mv/render-range.mjs`：将已校验的范围参数转换为帧取样窗口与音轨定位；不依赖 Canvas 或文件系统。
 - `production/mv/encoding.mjs`：编码器注册表、位深与拒绝规则、编码器列表探测。
 - `production/mv/srt.mjs`：字幕语言解析、SRT 解析、按输出窗口裁剪与序列化。
 - `production/mv/font-slots.mjs`：三个字体槽位的注册诊断与一次性 WARNING。

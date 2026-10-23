@@ -38,7 +38,7 @@ ffmpeg -version
 
 参考运行环境为 Windows、Node.js 24.19.0、`@napi-rs/canvas` 0.1.100，以及 FFmpeg n9.0.2（含 `libx264`、`libx265`、`av1_amf`、AAC、rawvideo 与 MP4 支持）。Canvas 的原生二进制由对应平台 npm 包提供；不要把别的平台 `node_modules/` 当作跨平台安装包。
 
-`npm test` 运行 `node --test "production/mv/tests/*.test.mjs"`，使用 `node:test`、不新增依赖，也不要求音乐、字体或字幕文件存在；当前 75 项通过。测试命令保留在 `package.json`，不要自行改成目录参数。
+`npm test` 运行 `node --test "production/mv/tests/*.test.mjs"`，使用 `node:test`、不新增依赖，也不要求音乐、字体或字幕文件存在。测试命令保留在 `package.json`，不要自行改成目录参数。
 
 FFmpeg 默认从 PATH 查找。也可设置 `FFMPEG_PATH`，或给渲染命令添加 `--ffmpeg`；命令行参数优先于环境变量。参数应是可执行文件本身的路径，不包含额外 FFmpeg 参数。
 
