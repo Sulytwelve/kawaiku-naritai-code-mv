@@ -21,11 +21,11 @@ flowchart LR
 
 `render-film.mjs` 解析参数、计算整片输出时钟、扫描覆盖情况、建立一个可复用 Canvas，并按帧调用 `renderReference()`。Canvas 像素通过 FFmpeg 标准输入传递；绘图端遵守管道背压，避免把整片 RGBA 帧同时留在内存。
 
-FFmpeg 接收固定宽高、固定帧率的 `rawvideo/rgba` 输入（始终 8-bit），输出像素格式由编码器与位深决定：默认 `libx264` 为 `yuv420p`，10-bit 只与 `libx265` 组合并输出 `yuv420p10le`。入口仍传 BT.709 三项色彩参数并启用 MP4 faststart；实测本机 FFmpeg n9.0.2 的 `libx264`/`libx265` 输出只有 `color_space=bt709`，`color_primaries` 与 `color_transfer` 为 `unknown`，参数意图不等于完整标记。带音轨时，歌曲另作 FFmpeg 输入，按选定区间定位，经过 `apad` 补足输出长度，再编码成 44.1 kHz、256 kbps AAC。完整渲染不会对歌曲做变速或变调。
+FFmpeg 接收固定宽高、固定帧率的 `rawvideo/rgba` 输入（始终 8-bit），输出像素格式由编码器与位深决定：默认 `libx264` 为 `yuv420p`，10-bit 可用于软件 AV1、HEVC 及支持该位深的硬件后端，解码输出通常为 `yuv420p10le`。入口仍传 BT.709 三项色彩参数并启用 MP4 faststart；实测本机 FFmpeg n9.0.2 的 `libx264`/`libx265` 输出只有 `color_space=bt709`，`color_primaries` 与 `color_transfer` 为 `unknown`，参数意图不等于完整标记。带音轨时，歌曲另作 FFmpeg 输入，按选定区间定位，经过 `apad` 补足输出长度，再编码成 44.1 kHz、256 kbps AAC。完整渲染不会对歌曲做变速或变调。
 
 ## 编码与输入校验
 
-[`encoding.mjs`](../production/mv/encoding.mjs) 是编码器注册表：`libx264` 8-bit `yuv420p`（`-preset`/`-crf`）、`libx265` 8-bit `yuv420p` 或 10-bit `yuv420p10le`（同为 `-preset`/`-crf`）、`av1_amf` 仅 8-bit `yuv420p`（`-quality`/`-b:v`）。其他编码器名、非法位深和不兼容组合在编码前以 `REFUSED` 退出 2；未知编码器不会套用 libx264 参数，显式 10-bit 也不会静默退回 8-bit。真实编码前用 `ffmpeg -hide_banner -encoders` 探测列表；列表存在不代表硬件后端能初始化，`--dry-run` 不探测。
+[`encoding.mjs`](../production/mv/encoding.mjs) 提供软件 H.264/HEVC/AV1、AMD AMF、NVIDIA NVENC 和 Intel QSV 的参数预设，同时接受其他 FFmpeg 编码器名。注册表是默认参数集合，不是白名单；未知预设仅使用显式参数，不继承 libx264 的 preset/crf。`--encoder-options` 可覆盖专用参数，`--pixel-format` 可指定编码器输入格式。NVENC/QSV 的 NV12/P010 输入与解码后的 yuv420p/yuv420p10le 分别校验。非法名称、位深或选项在编码前拒绝；真实运行仍探测编码器列表与输入像素格式，并检查最终解码像素格式。列表存在不代表驱动或硬件初始化成功，dry-run 不探测。具体参数及限制见复现文档。
 
 `-pix_fmt` 只是请求：入口编码前读取 `ffmpeg -h encoder=<名称>` 的 `Supported pixel formats:`，目标格式不受支持时 `ERROR` 退出 1；编码后再用 ffprobe 核对实际 `pix_fmt`，不一致同样失败且不写 SRT/旁车。ffprobe 依次取 `FFPROBE_PATH`、所选 FFmpeg 同目录、PATH，缺失时只降级为 WARNING 并在旁车记 `actualOutput.verified: false`。
 

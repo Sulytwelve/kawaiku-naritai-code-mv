@@ -31,7 +31,9 @@ class CliError extends Error{constructor(message){super(message);this.name='CliE
 
 const VALUE_HINTS={
   '--srt':`expected one of ${SRT_LANGUAGES.join(', ')}`,
-  '--encoder':`expected one of ${SUPPORTED_ENCODERS.join(', ')}`,
+  '--encoder':`expected an FFmpeg encoder name; presets: ${SUPPORTED_ENCODERS.join(', ')}`,
+  '--encoder-options':'expected a JSON object of FFmpeg encoder options',
+  '--pixel-format':'expected an FFmpeg pixel format, for example yuv420p',
   '--bit-depth':'expected 8 or 10',
   '--quality':'expected a non-empty quality preset, for example balanced or speed',
   '--bitrate':'expected a bitrate such as 24M or 8000k',
@@ -122,7 +124,12 @@ function parseCli(){
   if(has('--crf'))overrides.crf=valueOf('--crf');
   if(has('--quality'))overrides.quality=valueOf('--quality');
   if(has('--bitrate'))overrides.bitrate=valueOf('--bitrate');
+  let encoderOptions={};
+  if(has('--encoder-options')){
+    try{encoderOptions=JSON.parse(valueOf('--encoder-options'))}catch(error){throw new CliError(`invalid --encoder-options: ${error.message}`)}
+  }
   return{outputRange,range,rangeStart,rangeEnd,width,fps,audioOffset,encoder,bitDepth,srt,overrides,
+    encoderOptions,pixelFormat:has('--pixel-format')?valueOf('--pixel-format'):undefined,
     ffmpeg:valueOf('--ffmpeg',process.env.FFMPEG_PATH||'ffmpeg'),
     out:valueOf('--out',null)};
 }
@@ -232,7 +239,7 @@ const ffprobePath=process.env.FFPROBE_PATH||(()=>{
 let srtChoice=null;
 let audioInput;
 try{
-  encoding=resolveEncoding({encoder:cli.encoder,bitDepth:cli.bitDepth,overrides:cli.overrides});
+  encoding=resolveEncoding({encoder:cli.encoder,bitDepth:cli.bitDepth,overrides:cli.overrides,encoderOptions:cli.encoderOptions,pixelFormat:cli.pixelFormat});
   if(cli.srt!==null)srtChoice=resolveSrtLanguage(cli.srt);
   audioInput=resolveAudioInput({root:ROOT,envAudioPath:process.env.MV_AUDIO_PATH,enabled:audioInputRequired});
 }catch(error){
@@ -462,7 +469,9 @@ if(subtitles.enabled){
 // 960x544 with a 30:17 display aspect. A delivery must never be silently padded.
 const padded=encoding.paddingUnit!==null&&(width%encoding.paddingUnit!==0||height%encoding.paddingUnit!==0);
 if(padded){
-  const msg=`${encoding.encoder} will pad ${width}x${height} to a multiple of ${encoding.paddingUnit} (coded ${Math.ceil(width/encoding.paddingUnit)*encoding.paddingUnit}x${Math.ceil(height/encoding.paddingUnit)*encoding.paddingUnit}). Use a multiple-of-${encoding.paddingUnit} size, or --encoder libx264.`;
+  const codedWidth=width===1920&&height===1080?1920:Math.ceil(width/64)*64;
+  const codedHeight=width===1920&&height===1080?1082:Math.ceil(height/16)*16;
+  const msg=`${encoding.encoder} will pad ${width}x${height} (expected coded ${codedWidth}x${codedHeight}); display size depends on container cropping support. Use --encoder libsvtav1 for exact AV1 coded dimensions.`;
   if(isFull&&!qa)refuse(msg);
   console.warn(`WARNING: ${msg}`);
 }
@@ -487,8 +496,8 @@ const encoderProbe={...probe,note:'scope is the FFmpeg encoder list only; a list
 // E02: -pix_fmt is a request, not a guarantee. Check the build's format list
 // first (refuse before encoding), then verify the actual stream afterwards.
 const formatProbe=await probeEncoderPixels(ffmpegPath,encoding.encoder);
-if(formatProbe.pixelFormatListRead&&!formatProbe.supported.includes(encoding.outputPixelFormat)){
-  runtimeFailure(`${encoding.encoder} in this FFmpeg build does not list ${encoding.outputPixelFormat}; supported pixel formats: ${formatProbe.supported.join(', ')}. Use a supported bit depth/encoder, or a build that provides ${encoding.outputPixelFormat}.`,{stderrTail:formatProbe.stderrTail});
+if(formatProbe.pixelFormatListRead&&!formatProbe.supported.includes(encoding.pixelFormatArgs[1])){
+  runtimeFailure(`${encoding.encoder} in this FFmpeg build does not list input format ${encoding.pixelFormatArgs[1]}; supported pixel formats: ${formatProbe.supported.join(', ')}. Use a supported bit depth/encoder, or --pixel-format with a supported format.`,{stderrTail:formatProbe.stderrTail});
 }
 if(!formatProbe.pixelFormatListRead)console.warn(`WARNING: could not read the supported pixel formats for ${encoding.encoder}; relying on the post-encode ffprobe check. ${formatProbe.detail}`);
 
@@ -580,6 +589,13 @@ console.log(`format check     ${encoding.outputPixelFormat} via ${ffprobePath}`)
 const actualOutput=await probeOutputPixelFormat(out,{ffprobePath});
 if(actualOutput.verified&&actualOutput.pixelFormat!==encoding.outputPixelFormat){
   runtimeFailure(`requested ${encoding.outputPixelFormat} but ffprobe reports ${actualOutput.pixelFormat} for ${path.relative(ROOT,out)}; the encoder did not honour the pixel format.`,{argsLine:ffargs.join(' ')});
+}
+if(actualOutput.verified&&(actualOutput.displayWidth!==width||actualOutput.displayHeight!==height)){
+  runtimeFailure(`requested ${width}x${height}, but ffprobe reports display ${actualOutput.displayWidth}x${actualOutput.displayHeight} (coded ${actualOutput.width}x${actualOutput.height}).`,{argsLine:ffargs.join(' ')});
+}
+if(actualOutput.verified&&actualOutput.averageFrameRate){
+  const [numerator,denominator]=actualOutput.averageFrameRate.split('/').map(Number);
+  if(!Number.isFinite(numerator/denominator)||Math.abs(numerator/denominator-fps)>0.001)runtimeFailure(`requested ${fps} fps, but ffprobe reports ${actualOutput.averageFrameRate}.`);
 }
 if(!actualOutput.verified){
   console.warn(`WARNING: could not verify the encoded pixel format with ffprobe; requested ${encoding.outputPixelFormat}. ${actualOutput.detail}`);

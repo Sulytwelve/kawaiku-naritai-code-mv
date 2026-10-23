@@ -83,13 +83,15 @@ test('invalid bit depth is rejected with allowed values',()=>{
   assert.match(nine.message,/9/);
 });
 
-test('unknown encoders are rejected without libx264 fallback',()=>{
-  for(const encoder of ['h264_amf','hevc_amf','av1','LIBX264','','nope',null]){
+test('malformed encoder names are rejected without libx264 fallback',()=>{
+  for(const encoder of ['','-bad','bad name',null]){
     const error=fails(()=>resolveEncoding({encoder}),'INVALID_ENCODER');
-    for(const name of SUPPORTED_ENCODERS)assert.match(error.message,new RegExp(name));
     assert.doesNotMatch(error.message,/-preset|-crf/);
   }
-  assert.deepEqual(SUPPORTED_ENCODERS,['libx264','libx265','av1_amf']);
+  const custom=resolveEncoding({encoder:'libvpx-vp9',encoderOptions:{deadline:'good'}});
+  assert.deepEqual(custom.codecArgs,['-c:v','libvpx-vp9','-deadline','good']);
+  assert.ok(SUPPORTED_ENCODERS.includes('av1_qsv'));
+  assert.ok(SUPPORTED_ENCODERS.includes('av1_nvenc'));
 });
 
 test('incompatible encoder/bit-depth combinations offer alternatives',()=>{

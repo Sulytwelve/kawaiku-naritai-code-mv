@@ -8,7 +8,10 @@ const OPTION_ORDER=['preset','crf','quality','bitrate'];
 const OPTION_FLAGS={preset:'-preset',crf:'-crf',quality:'-quality',bitrate:'-b:v'};
 const BITRATE_PATTERN=/^\d+(?:\.\d+)?[kKmM]?$/;
 
-export const SUPPORTED_ENCODERS=['libx264','libx265','av1_amf'];
+// Convenience presets, not an allow-list. Other FFmpeg encoder names are
+// accepted without inheriting another encoder's defaults.
+export const SUPPORTED_ENCODERS=['libx264','libx265','av1_amf','libsvtav1','libaom-av1',
+  'h264_amf','hevc_amf','h264_nvenc','hevc_nvenc','av1_nvenc','h264_qsv','hevc_qsv','av1_qsv'];
 
 // bitDepths maps a supported depth to the encoder's output pixel format.
 // rawvideo input is always 8-bit rgba, even on the 10-bit route.
@@ -26,6 +29,52 @@ const TEN_BIT_NOTES=[
   '把 8-bit Canvas/位图转换为 10-bit 编码不会恢复原素材中不存在的色阶细节，也不等于端到端 10-bit 制作流程。',
   '10-bit HEVC 的输出兼容性低于 8-bit H.264，编码成本更高；不要假定所有播放器都能播放，色彩参数仍按 BT.709 SDR 设置。',
 ];
+
+function flexibleEncoding(name,depth,overrides,options,pixelFormat){
+  const software=name==='libsvtav1'||name==='libaom-av1';
+  const known=SUPPORTED_ENCODERS.includes(name);
+  const qsv=known&&name.endsWith('_qsv'),nvenc=known&&name.endsWith('_nvenc'),amf=known&&name.endsWith('_amf');
+  if(depth===10&&name==='h264_qsv')throw new EncodingError('h264_qsv does not support 10-bit; use hevc_qsv or av1_qsv.',{code:'UNSUPPORTED_COMBINATION'});
+  const family=name.startsWith('h264_')?'h264':name.startsWith('hevc_')?'hevc':software||name.startsWith('av1_')?'av1':'custom';
+  const values=software?(name==='libsvtav1'?{preset:'6',crf:'28'}:{'cpu-used':'6',crf:'28','b:v':'0'})
+    :nvenc?{preset:'p4',rc:'constqp',qp:'23'}:qsv?{global_quality:'23'}:amf?{quality:'balanced',rc:'cqp',qp_i:'23',qp_p:'23'}:{};
+  const ignoredOptions=[];
+  for(const [key,value] of Object.entries(overrides)){
+    if(value===undefined)continue;
+    if(!OPTION_ORDER.includes(key))throw new EncodingError(`Unknown override option ${show(key)}.`,{code:'INVALID_OPTION'});
+    if(key==='crf'){
+      const limit=software?63:51;
+      const number=Number(value);
+      if(!/^[0-9]+$/.test(String(value))||!Number.isInteger(number)||number>limit)throw new EncodingError(`crf must be an integer between 0 and ${limit}.`,{code:'INVALID_OPTION'});
+    }
+    if(key==='bitrate'&&parseBitrate(value)===null)throw new EncodingError('Invalid bitrate.',{code:'INVALID_OPTION'});
+    if(String(value).trim()==='')throw new EncodingError(`Empty ${key}.`,{code:'INVALID_OPTION'});
+    const flag={preset:name==='libaom-av1'?'cpu-used':'preset',crf:'crf',quality:'quality',bitrate:'b:v'}[key];
+    values[flag]=String(value);
+    if(key==='bitrate'&&(nvenc||qsv||amf)){
+      values.rc=nvenc?'vbr':amf?'vbr_peak':undefined;
+      delete values.qp;delete values.qp_i;delete values.qp_p;delete values.global_quality;
+    }
+  }
+  Object.assign(values,options);
+  const outputPixelFormat=pixelFormat??(depth===10?'yuv420p10le':'yuv420p');
+  const inputFormat=pixelFormat??(qsv||nvenc?(depth===10?'p010le':'nv12'):outputPixelFormat);
+  const decodedFormat={nv12:'yuv420p',p010le:'yuv420p10le'}[outputPixelFormat]??outputPixelFormat;
+  return{encoder:name,family,backend:software?'cpu':qsv||nvenc||amf?'gpu':'custom',bitDepth:depth,
+    inputPixelFormat:'rgba',outputPixelFormat:decodedFormat,
+    codecArgs:['-c:v',name,...Object.entries(values).filter(([,v])=>v!==undefined).flatMap(([key,value])=>['-'+key,String(value)])],
+    pixelFormatArgs:['-pix_fmt',inputFormat],colorArgs:[...COLOR_ARGS],quality:values,
+    ignoredOptions,notes:depth===10?[TEN_BIT_NOTES[0],TEN_BIT_NOTES[1],'10-bit 输出的兼容性和编码成本取决于编码器；输入及色彩流程仍为 BT.709 SDR。']:[],warnings:known?[]:[`${name} has no built-in preset; only explicitly supplied encoding options are used. FFmpeg validates availability at runtime.`],paddingUnit:null};
+}
+
+function validateEncoderOptions(options){
+  if(options===null||typeof options!=='object'||Array.isArray(options))throw new EncodingError('encoder-options must be a JSON object.',{code:'INVALID_OPTION'});
+  for(const [key,value] of Object.entries(options)){
+    if(!/^[a-zA-Z][a-zA-Z0-9_-]*(?::[a-zA-Z0-9_:]+)?$/.test(key)||['i','y','n','c','c:v','codec','vcodec','pix_fmt','s','s:v','r','r:v','t','frames:v','f','map','an','vn','filter_complex','filter_script','vf'].includes(key))throw new EncodingError(`encoder-options cannot set ${show(key)}; use the renderer's corresponding option.`,{code:'INVALID_OPTION'});
+    if(!['string','number','boolean'].includes(typeof value)||String(value).trim()===''||(typeof value==='number'&&!Number.isFinite(value)))throw new EncodingError(`Invalid encoder-options value for ${key}.`,{code:'INVALID_OPTION'});
+  }
+  return Object.fromEntries(Object.entries(options).map(([key,value])=>[key,typeof value==='boolean'?(value?'1':'0'):String(value)]));
+}
 
 export class EncodingError extends Error{
   constructor(message,{code,details}={}){
@@ -72,7 +121,7 @@ function parseBitrate(raw){
 function alternativesFor(encoder,bitDepth){
   const hints=[];
   for(const name of SUPPORTED_ENCODERS){
-    if(name!==encoder&&REGISTRY[name].bitDepths[bitDepth])hints.push(`--encoder ${name} --bit-depth ${bitDepth}`);
+    if(name!==encoder&&REGISTRY[name]?.bitDepths[bitDepth])hints.push(`--encoder ${name} --bit-depth ${bitDepth}`);
   }
   for(const depth of Object.keys(REGISTRY[encoder].bitDepths).map(Number)){
     if(depth!==bitDepth)hints.push(`--encoder ${encoder} --bit-depth ${depth}`);
@@ -80,13 +129,17 @@ function alternativesFor(encoder,bitDepth){
   return hints;
 }
 
-export function resolveEncoding({encoder='libx264',bitDepth=8,overrides={}}={}){
+export function resolveEncoding({encoder='libx264',bitDepth=8,overrides={},encoderOptions={},pixelFormat}={}){
   const name=typeof encoder==='string'?encoder.trim():String(encoder??'');
+  if(!/^[a-zA-Z0-9][a-zA-Z0-9_-]*$/.test(name))throw new EncodingError(`Invalid encoder name ${show(encoder)}.`,{code:'INVALID_ENCODER'});
+  const options=validateEncoderOptions(encoderOptions);
+  if(pixelFormat!==undefined&&!/^[a-z0-9_]+$/.test(pixelFormat))throw new EncodingError('Invalid pixel-format.',{code:'INVALID_OPTION'});
   const spec=REGISTRY[name];
   if(!spec){
-    throw new EncodingError(
-      `Unsupported encoder ${show(encoder)}; supported encoders: ${SUPPORTED_ENCODERS.join(', ')}.`,
-      {code:'INVALID_ENCODER',details:{encoder:encoder??null,supported:[...SUPPORTED_ENCODERS]}});
+    const depth=parseBitDepth(bitDepth);
+    if(depth===null)throw new EncodingError('Unsupported bit depth; allowed values: 8, 10.',{code:'INVALID_BIT_DEPTH'});
+    if(overrides===null||typeof overrides!=='object'||Array.isArray(overrides))throw new EncodingError('overrides must be an object.',{code:'INVALID_OPTION'});
+    return flexibleEncoding(name,depth,overrides,options,pixelFormat);
   }
 
   const depth=parseBitDepth(bitDepth);
@@ -168,6 +221,11 @@ export function resolveEncoding({encoder='libx264',bitDepth=8,overrides={}}={}){
   const codecArgs=['-c:v',name];
   if(name==='av1_amf')codecArgs.push('-quality',quality.quality,'-b:v',quality.bitrate);
   else codecArgs.push('-preset',quality.preset,'-crf',quality.crf);
+  for(const [key,value] of Object.entries(options)){
+    const index=codecArgs.indexOf('-'+key);
+    if(index>=0)codecArgs[index+1]=value;
+    else codecArgs.push('-'+key,value);
+  }
 
   return{
     encoder:name,
@@ -175,9 +233,9 @@ export function resolveEncoding({encoder='libx264',bitDepth=8,overrides={}}={}){
     backend:spec.backend,
     bitDepth:depth,
     inputPixelFormat:'rgba',
-    outputPixelFormat,
+    outputPixelFormat:pixelFormat??outputPixelFormat,
     codecArgs,
-    pixelFormatArgs:['-pix_fmt',outputPixelFormat],
+    pixelFormatArgs:['-pix_fmt',pixelFormat??outputPixelFormat],
     colorArgs:[...COLOR_ARGS],
     quality,
     ignoredOptions,
@@ -286,7 +344,7 @@ export async function probeOutputPixelFormat(file,{ffprobePath='ffprobe',timeout
     ?'ffprobe':String(ffprobePath);
   const target=String(file??'');
   const args=['-v','error','-select_streams','v:0','-show_entries',
-    'stream=codec_name,profile,pix_fmt,width,height,bits_per_raw_sample','-of','json',target];
+    'stream=codec_name,profile,pix_fmt,width,height,bits_per_raw_sample,avg_frame_rate:stream_side_data=side_data_type,crop_top,crop_bottom,crop_left,crop_right','-of','json',target];
   const result=await runProcess(command,args,{timeoutMs});
   if(result.error){
     return{verified:false,pixelFormat:null,codecName:null,profile:null,width:null,height:null,bitsPerRawSample:null,
@@ -306,6 +364,13 @@ export async function probeOutputPixelFormat(file,{ffprobePath='ffprobe',timeout
     return{verified:false,pixelFormat:null,codecName:null,profile:null,width:null,height:null,bitsPerRawSample:null,
       detail:`ffprobe reported no video stream for ${show(target)}.`,stderrTail:tail(result.stderr)};
   }
+  const cropping=stream.side_data_list?.find(item=>item.side_data_type==='Frame Cropping')??{};
+  const crop={};
+  for(const edge of ['top','bottom','left','right']){
+    const value=cropping['crop_'+edge]??0;
+    if(!Number.isInteger(value)||value<0)return{verified:false,detail:'Invalid container cropping metadata.',pixelFormat:null};
+    crop[edge]=value;
+  }
   return{
     verified:typeof stream.pix_fmt==='string'&&stream.pix_fmt!=='',
     pixelFormat:stream.pix_fmt??null,
@@ -313,6 +378,10 @@ export async function probeOutputPixelFormat(file,{ffprobePath='ffprobe',timeout
     profile:stream.profile??null,
     width:stream.width??null,
     height:stream.height??null,
+    displayWidth:stream.width===undefined?null:stream.width-crop.left-crop.right,
+    displayHeight:stream.height===undefined?null:stream.height-crop.top-crop.bottom,
+    cropping:crop,
+    averageFrameRate:stream.avg_frame_rate??null,
     bitsPerRawSample:stream.bits_per_raw_sample??null,
     detail:typeof stream.pix_fmt==='string'&&stream.pix_fmt!==''
       ?`ffprobe reports ${stream.pix_fmt} (${stream.codec_name??'unknown codec'}, profile ${stream.profile??'unknown'}).`

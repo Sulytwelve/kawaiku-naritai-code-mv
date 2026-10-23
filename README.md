@@ -43,13 +43,15 @@ npm run render -- --width 1280 --fps 60 --preview-release --out renders/mv-720p6
 
 帧尺寸按 16:9 由 `--width` 推导，`--width` 必须是 32 的倍数（例如 320、640、1280、1920、3840）；其他值会让高度不是整数或偶数，入口会在规划前拒绝，而不是把小数尺寸传给 FFmpeg。
 
+软件 AV1 可使用 `--encoder libsvtav1`（默认 preset 6、CRF 28，无目标码率）。NVIDIA 和 Intel 可分别选择 `av1_nvenc`、`av1_qsv`，也支持相应 H.264/HEVC 编码器。注册表提供预设，其他 FFmpeg 编码器可通过名称及专用选项使用，无需修改源码；硬件支持仍取决于构建、设备及驱动。详见[编码器与位深](docs/REPRODUCING.md#编码器与位深)。
+
 默认编码参数为 `--preset fast --crf 19`，可用同名参数覆盖。若本机 FFmpeg 构建、AMD 硬件与驱动同时支持 AV1 AMF，可显式选择硬件编码：
 
 ```sh
 npm run render -- --width 1280 --fps 60 --encoder av1_amf --quality speed --bitrate 8M --preview-release --out renders/mv-720p60-av1.mp4
 ```
 
-`av1_amf` 是可选路径，不能假定所有机器可用，硬件初始化也不能只靠编码器列表判断；它可能把非 16 倍数尺寸填充到 16 的倍数，需用 ffprobe 核对实际输出。`--bit-depth 10` 只与 `libx265` 组合，输出 `yuv420p10le`；它把仍是 8-bit 的 Canvas 输入编码为 10-bit，不恢复色阶细节，也不等于端到端 10-bit 制作，兼容性低于 8-bit H.264。输出 4K60 时使用 `--width 3840 --fps 60`。`--preview-release` 关闭内部检查水印；`--output-range 44 56` 可只输出歌曲时间 44–56 秒，保持整片时钟与取样相位。
+`av1_amf` 是可选路径，不能假定所有机器可用，硬件初始化也不能只靠编码器列表判断；它可能把非 16 倍数尺寸填充到 16 的倍数，需用 ffprobe 核对实际输出。`--bit-depth 10` 可用于软件 AV1、HEVC 及支持该位深的硬件后端，通常输出 `yuv420p10le`；它把仍是 8-bit 的 Canvas 输入编码为 10-bit，不恢复色阶细节，也不等于端到端 10-bit 制作，兼容性低于 8-bit H.264。输出 4K60 时使用 `--width 3840 --fps 60`。`--preview-release` 关闭内部检查水印；`--output-range 44 56` 可只输出歌曲时间 44–56 秒，保持整片时钟与取样相位。
 
 歌曲从零开始，维持原速与原音高。歌词使用单独 SRT，不默认烧入画面。`--no-audio` 可导出无音轨的画面；`--srt` 只接受 `ja` 或 `bilingual`，视频成功编码后写出同名外挂字幕，并按输出区间平移、裁剪和重新编号。需要另行准备相应歌词文件，文件名与校时约定见 [字幕占位与替换说明](assets/subtitles/README.md)。
 

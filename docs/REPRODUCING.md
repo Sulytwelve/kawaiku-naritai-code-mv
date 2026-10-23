@@ -60,23 +60,46 @@ $env:MV_SOURCE_FONT_PATH = (Resolve-Path ".local/fonts/display-font.ttf").Path
 
 ## 编码器与位深
 
-默认输出为 MP4、CPU `libx264`、8-bit `yuv420p`，参数 `-preset fast -crf 19`。入口只支持下列组合：
+默认输出为 MP4、CPU `libx264`、8-bit `yuv420p`，参数 `-preset fast -crf 19`。内置预设包括下列组合；预设表不是编码器白名单：
 
 | `--encoder` | `--bit-depth` | 输出像素格式 | 质量参数 |
 | --- | --- | --- | --- |
 | `libx264`（默认） | `8` | `yuv420p` | `-preset` / `-crf` |
 | `libx265` | `8` 或 `10` | `yuv420p` / `yuv420p10le` | `-preset` / `-crf` |
 | `av1_amf` | `8` | `yuv420p` | `-quality` / `-b:v`（默认 `balanced` / `24M`） |
+| `libsvtav1` | `8` 或 `10` | `yuv420p` / `yuv420p10le` | 默认 `-preset 6 -crf 28`，不设置目标码率 |
+| `libaom-av1` | `8` 或 `10` | `yuv420p` / `yuv420p10le` | 默认 `-cpu-used 6 -crf 28 -b:v 0` |
+| `h264_nvenc` / `hevc_nvenc` / `av1_nvenc` | 由构建及硬件决定 | 输入 `nv12` / `p010le`，解码后为 planar 4:2:0 | 默认 `-preset p4 -rc constqp -qp 23` |
+| `h264_qsv` / `hevc_qsv` / `av1_qsv` | H.264 为 `8`；其余由硬件决定 | 输入 `nv12` / `p010le`，解码后为 planar 4:2:0 | 默认 `-global_quality 23` |
+| `h264_amf` / `hevc_amf` | 由构建及硬件决定 | `yuv420p` / `yuv420p10le` | 默认 `-quality balanced -rc cqp -qp_i 23 -qp_p 23` |
 
-`--bit-depth` 只接受 `8`、`10`，默认 8。10-bit 只有 `libx265` 可用；`libx264` 或 `av1_amf` 加 10 位会在编码前被拒绝并给出替代组合，不会静默退回 8 位。rawvideo 输入始终是 8-bit RGBA：10-bit 只改变编码位深，不恢复输入中不存在的色阶，也不等于端到端 10-bit 制作；其播放兼容性低于 8-bit H.264，编码成本更高。
+`--bit-depth` 只接受 `8`、`10`，默认 8。10-bit 可用于软件 AV1、HEVC 及支持该位深的硬件编码器；`libx264` 或 `av1_amf` 加 10 位会在编码前被拒绝并给出替代组合，不会静默退回 8 位。rawvideo 输入始终是 8-bit RGBA：10-bit 只改变编码位深，不恢复输入中不存在的色阶，也不等于端到端 10-bit 制作；其播放兼容性低于 8-bit H.264，编码成本更高。
 
-未知编码器（例如 `h264_amf`）会被拒绝并列出 `libx264, libx265, av1_amf`，不会套用 libx264 参数。真实编码前，入口执行 `ffmpeg -hide_banner -encoders` 探测列表；`--dry-run` 不探测，plan 中 `probe` 为 `null`。编码器出现在列表中只说明该 FFmpeg 构建提供它，不代表硬件后端或驱动能初始化。
+其他合法 FFmpeg 编码器名也可传入，不需要修改注册表；无内置预设时不注入默认质量参数。通过 `--encoder-options` 传 JSON 对象设置专用选项，通过 `--pixel-format` 指定输入给编码器的像素格式。选项对象的键不带前导短横线，值支持字符串、数值及布尔值；会作为独立 argv 传给 FFmpeg，不经过 shell。选项优先于内置默认值及通用质量参数。不能借此覆盖输入、输出、编码器、帧率、尺寸和滤镜等渲染器管理的选项；需要独立硬件上传滤镜的后端不保证仅指定编码器名就能工作。真实编码前，入口执行 `ffmpeg -hide_banner -encoders` 探测列表；`--dry-run` 不探测，plan 中 `probe` 为 `null`。编码器出现在列表中只说明该 FFmpeg 构建提供它，不代表硬件后端或驱动能初始化。
 
-`-pix_fmt` 只是请求，FFmpeg 可能自动换成别的格式并仍然成功，所以入口还有两层校验：编码前用 `ffmpeg -h encoder=<名称>` 读取 `Supported pixel formats:`，目标格式不在列表里就打印 `ERROR`（含支持的格式）并退出 1、不启动编码；编码后用 ffprobe 核对实际 `pix_fmt`，与请求不一致同样 `ERROR` 退出 1，并且不写旁车与 SRT。ffprobe 依次取 `FFPROBE_PATH`、所选 FFmpeg 同目录的 `ffprobe`、PATH；找不到时只打印 WARNING 并在旁车把 `actualOutput.verified` 记为 `false`，请求值不会被当成已验证的输出。旁车记录 `formatProbe`（真实支持列表）与 `actualOutput`（实际 codec/profile/pix_fmt/宽高）；dry-run 不探测，plan 的 `formatProbe` 为 `null`。不要把请求值当作实测结果。
+`-pix_fmt` 只是请求，FFmpeg 可能自动换成别的格式并仍然成功，所以入口还有两层校验：编码前用 `ffmpeg -h encoder=<名称>` 读取 `Supported pixel formats:`，目标格式不在列表里就打印 `ERROR`（含支持的格式）并退出 1、不启动编码；编码后用 ffprobe 核对实际 `pix_fmt`，与请求不一致同样 `ERROR` 退出 1，并且不写旁车与 SRT。NV12/P010 编码器输入分别按解码后的 yuv420p/yuv420p10le 校验；同时检查应用容器裁剪后的显示宽高和平均帧率，编码尺寸与显示尺寸分别记录。AMD AV1 的 1920×1082 配合底部裁剪两行可满足 1920×1080 显示要求，但具体播放器是否采用裁剪信息仍需验证。ffprobe 依次取 `FFPROBE_PATH`、所选 FFmpeg 同目录的 `ffprobe`、PATH；找不到时只打印 WARNING 并在旁车把 `actualOutput.verified` 记为 `false`，请求值不会被当成已验证的输出。旁车记录 `formatProbe`（真实支持列表）与 `actualOutput`（实际 codec/profile/pix_fmt/宽高）；dry-run 不探测，plan 的 `formatProbe` 为 `null`。不要把请求值当作实测结果。
 
-契约违反（未知编码器、非法位深、不兼容组合、非法或缺失的 `--srt`、字幕源缺失、音轨覆盖路径不存在）在启动编码前打印 `REFUSED: ...` 并退出 2；运行期失败（FFmpeg 无法启动、编码器初始化失败、FFmpeg 非零退出）打印 `ERROR: ...` 并退出 1，同时给出所选 ffmpeg 路径、编码器和 stderr 末尾 3000 字符。
+契约违反（非法编码器名称、非法位深、不兼容组合、非法或缺失的 `--srt`、字幕源缺失、音轨覆盖路径不存在）在启动编码前打印 `REFUSED: ...` 并退出 2；运行期失败（FFmpeg 无法启动、编码器初始化失败、FFmpeg 非零退出）打印 `ERROR: ...` 并退出 1，同时给出所选 ffmpeg 路径、编码器和 stderr 末尾 3000 字符。
 
 入口向 FFmpeg 传 BT.709 的 `-color_primaries`、`-color_trc`、`-colorspace`。本机 FFmpeg n9.0.2 的 `libx264`/`libx265` 输出经 ffprobe 只显示 `color_space=bt709`，`color_primaries` 与 `color_transfer` 为 `unknown`；这是本轮实测的既有编码器行为，没有通过加滤镜修正。不要把它当成完整的 BT.709 标记。
+
+### 跨设备选择示例
+
+软件 AV1 不依赖显卡，也不要求指定码率：
+
+```powershell
+npm run render -- --width 1920 --fps 60 --encoder libsvtav1 --preview-release --out renders/mv-1080p60-av1.mp4
+```
+
+选择 NVIDIA 或 Intel 硬件时，将编码器改为 `av1_nvenc` 或 `av1_qsv`；也可以选择相应的 H.264/HEVC 名称。用户显式选择的编码器不可用时会报错，不自动换格式。并非所有 NVIDIA、Intel 或 AMD GPU 都支持 AV1 硬编码。
+
+专用选项示例（PowerShell）：
+
+```powershell
+npm run render -- --encoder av1_nvenc --encoder-options '{"preset":"p6","qp":20}' --width 1920 --fps 60 --preview-release --out renders/mv-nvenc.mp4
+```
+
+各后端质量数值不能直接比较。QSV/NVENC 预设的参数规划不等于硬件实机验收。软件 AV1 可避免本机 AMD AV1 在 1080P 下编码为 1082 行、再依赖容器裁剪两行的兼容性问题；720P 和 UHD 4K 不触发该特例。
 
 ## 覆盖检查与参数规划
 
@@ -161,7 +184,7 @@ npm run render -- --width 3840 --fps 60 --encoder av1_amf --quality balanced --b
 
 4K 输出的程序背景、几何与 SVG 按输出密度绘制，原始人物图片的细节取决于其母版。CPU 编码速度和内存消耗也取决于场景、图片缓存和系统，不应直接按 720p 速度预测。整片 4K 本轮没有重新渲染，不能把 720p 短片结果外推到 4K 耗时或画质。
 
-入口只接受 `libx264`、`libx265`、`av1_amf`；不支持的名字（例如 `h264_amf`）会在编码前被拒绝并列出支持列表，不会套用其他编码器的参数。
+内置预设提供便捷默认值；其他编码器走显式选项路径。不存在的编码器在真实运行的能力探测阶段失败，dry-run 只规划、不证明编码器或硬件可用。
 
 AV1 AMF 对某些非 16 倍数尺寸可能产生编码尺寸填充。1280×720 与 3840×2160 都符合此约束；使用其他尺寸时应实际核对 ffprobe 报告，避免把 960×540 请求当成未填充的输出。
 
@@ -222,10 +245,10 @@ ffmpeg -v error -xerror -i renders/mv-720p60-h264.mp4 -map 0:v:0 -f null -
 | --- | --- |
 | 无法加载 `@napi-rs/canvas` 或其原生包 | 在当前平台重新执行 `npm ci`，确认实际 Node 与 CPU 架构。 |
 | 模块导入阶段读取 JSON 失败 | 检查活动场景所需的 `assets/runtime/` 数据是否存在；coverage 也会加载这些数据。 |
-| `REFUSED:` 且退出码为 2 | 契约违反：未知编码器、非法位深或组合、非法宽度或区间、非法/空值参数、`--srt` 与字幕源问题、音轨覆盖路径问题、受保护的输出路径等。按 stderr 给出的合法值、替代组合或路径提示修正；此时尚未启动编码。 |
+| `REFUSED:` 且退出码为 2 | 契约违反：非法编码器名称、非法位深或组合、非法宽度或区间、非法/空值参数、`--srt` 与字幕源问题、音轨覆盖路径问题、受保护的输出路径等。按 stderr 给出的合法值、替代组合或路径提示修正；此时尚未启动编码。 |
 | `ERROR:` 且退出码为 1 | 运行期失败：FFmpeg 无法启动、编码器初始化失败或 FFmpeg 非零退出。stderr 会列出所选 ffmpeg、编码器和末尾日志；先核对 `FFMPEG_PATH` 与 `--ffmpeg`。 |
 | 编码器不在探测列表中 | 运行 `ffmpeg -hide_banner -encoders` 检查该构建；`av1_amf` 还需要 AMD 硬件与驱动，列表存在不代表初始化成功。可改用默认 `libx264`。 |
-| 非法位深或编码器组合被拒绝 | `--bit-depth` 只有 `8`、`10`；10-bit 仅 `libx265`，改用 `--encoder libx265 --bit-depth 10`。显式请求 10-bit 不会静默退回 8-bit。 |
+| 非法位深或编码器组合被拒绝 | `--bit-depth` 只有 `8`、`10`；选择支持该位深的编码器，例如 `--encoder libx265 --bit-depth 10` 或 `--encoder libsvtav1 --bit-depth 10`；实际能力以 FFmpeg 构建与硬件初始化为准。显式请求 10-bit 不会静默退回 8-bit。 |
 | 宽度不是 32 的倍数 | 16:9 高度会变成小数或奇数，入口在规划前拒绝（例如 `--width 1000` 的高度为 562.5）；改用 320、640、1280、1920、3840 等 32 的倍数。 |
 | 取值参数写成空字符串 | `--out ""`、`--audio-offset ""`、`--srt ""`、`--quality ""`、`--width ""` 等按缺值处理，打印 `REFUSED` 并退出 2；不要用空字符串表示默认值。 |
 | 字幕缺失、`--srt` 非法 | 只接受 `ja`、`bilingual`，并读取 `assets/subtitles/` 下的固定文件名；准备字幕源或去掉 `--srt`。片段内没有歌词不算错误，会写出空字幕并在旁车记 `stats.output: 0`。 |
@@ -260,4 +283,4 @@ ffmpeg -v error -xerror -i renders/mv-720p60-h264.mp4 -map 0:v:0 -f null -
 
 已知限制：本机 FFmpeg 的 `libx264`/`libx265` 输出只有 `color_space=bt709`，`color_primaries` 与 `color_transfer` 为 `unknown`；入口虽仍传 BT.709 三项参数，本轮未加滤镜修正。10-bit 只是把 8-bit RGBA 输入编码为 10-bit，不恢复色阶，也不是端到端 10-bit 制作，播放器兼容性未验证。Linux、macOS 与其他 GPU 未验证；整片 4K 未重新渲染。短片编码通过不代表动态画面、字幕同步或整片观感已验收。未在上表列出的平台、硬件与组合没有实际验证记录；参数规划与单元测试不能替代短片编码和播放检查。
 
-Linux 上的公开克隆实机记录（Arch Linux + Intel Kaby Lake，commit `8a344e2`）见 [Arch Linux / Intel Kaby Lake 测试记录](linux/kaby_lake/README.md)：记录了可渲染区间、因缺失素材 blocked 的项、测试在无本地字幕时的历史失败项，以及 VAAPI/QSV 硬件编解码的独立 FFmpeg 结论。该记录的硬件结论不来自本项目入口——入口仍只接受 `libx264`、`libx265`、`av1_amf`。
+Linux 上的公开克隆实机记录（Arch Linux + Intel Kaby Lake，commit `8a344e2`）见 [Arch Linux / Intel Kaby Lake 测试记录](linux/kaby_lake/README.md)：记录了可渲染区间、因缺失素材 blocked 的项、测试在无本地字幕时的历史失败项，以及 VAAPI/QSV 硬件编解码的独立 FFmpeg 结论。该记录的硬件结论不来自本项目入口——该历史测试使用当时仅含三个编码器的入口；当前入口已开放其他编码器，但该记录不构成新增后端的实机验证。

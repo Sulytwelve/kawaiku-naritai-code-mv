@@ -113,10 +113,11 @@ test('explicit av1_amf keeps -quality/-b:v, paddingUnit and the size warning', (
   assert.match(result.stderr, /WARNING: av1_amf will pad 320x180/);
 });
 
-test('an unsupported encoder is refused before any plan is written', () => {
-  const result = refused(['--encoder', 'h264_amf']);
-  assert.match(result.stderr, /Supported encoder|supported encoders/);
-  for (const name of ['libx264', 'libx265', 'av1_amf']) assert.ok(result.stderr.includes(name));
+test('other FFmpeg encoders can be planned without a registry edit', () => {
+  const {plan}=successfulPlan(['--encoder','ffv1','--encoder-options','{"level":3}']);
+  assert.equal(plan.encoder.name,'ffv1');
+  assert.deepEqual(plan.encoder.params,['-level','3']);
+  assert.equal(plan.ffmpegArgs.includes('-crf'),false);
 });
 
 test('10-bit is refused for the default libx264 route and names libx265', () => {
