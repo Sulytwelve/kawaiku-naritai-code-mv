@@ -4,16 +4,30 @@
   "licensePolicy": "Each commitAllowed value applies only to the individual file. Third-party music, fonts and original MV footage are not covered by the code or character-image licenses.",
   "entries": [
     {
-      "path": "assets/props/dafeiyu-rice-bowl/dafeiyu-rice-bowl.svg",
+      "path": "assets/props/dafeiyu-rice-bowl/dafeiyu-rice-bowl-with-logo.local.svg",
       "sha256": "2430c9c3e8a48ca7d3d740d8ab8c94c65087c9ba9787b723979e7cd3dfe5dc30",
       "role": "provided-vector-prop",
       "authors": [
         "Sulytwelve"
       ],
       "sourceUrls": [],
-      "changes": "项目提供的道具矢量原件；没有独立图像素材许可声明。",
+      "changes": "本地保留的含标志原件；鲸鱼图案为官方 SVG 改版，不纳入公开分发许可，渲染使用另列的去标志版本。",
       "license": "NOASSERTION",
       "commitAllowed": false
+    },
+    {
+      "path": "assets/props/dafeiyu-rice-bowl/dafeiyu-rice-bowl-no-logo.svg",
+      "sha256": "86e0f97e98970218cc36d1a2d11c2ed453617762d16fb407fbc2a2981c477b87",
+      "role": "logo-free-vector-prop",
+      "authors": [
+        "Sulytwelve"
+      ],
+      "sourceUrls": [],
+      "generator": "DeepSeek (reported by the project owner)",
+      "changes": "DeepSeek 生成的饭碗 SVG；Codex 移除独立的鲸鱼标志组，保留碗身、米饭、蒸汽与其余矢量内容。",
+      "license": "BSD-2-Clause",
+      "licenseFile": "LICENSE",
+      "commitAllowed": true
     },
     {
       "path": "assets/runtime/ad-assets/city-4k.png",

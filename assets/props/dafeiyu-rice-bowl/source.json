@@ -1,11 +1,12 @@
 {
-  "file": "dafeiyu-rice-bowl.svg",
-  "received_date": "2026-10-12",
-  "purpose": "大肥鱼专属饭碗道具",
-  "appearance": "白色碗身、金色碗口、蓝色鲸鱼标识",
-  "source": "Original SVG supplied by the project owner",
+  "file": "dafeiyu-rice-bowl-no-logo.svg",
+  "purpose": "Rice bowl vector prop",
+  "appearance": "White bowl, gold rim, rice grains and steam; no brand logo",
+  "source": "SVG generated with DeepSeek and supplied by Sulytwelve",
   "generator": "DeepSeek (reported by the project owner)",
-  "copied_verbatim": true,
-  "sha256": "2430c9c3e8a48ca7d3d740d8ab8c94c65087c9ba9787b723979e7cd3dfe5dc30",
-  "license": "未另行指定独立素材许可证"
+  "modifications": "Codex removed the separate whale logo group; other SVG geometry is retained.",
+  "sha256": "86e0f97e98970218cc36d1a2d11c2ed453617762d16fb407fbc2a2981c477b87",
+  "license": "BSD-2-Clause",
+  "license_file": "../../../LICENSE",
+  "rights_scope": "Applies to the no-logo SVG to the extent of the contributor rights; no license to DeepSeek trademarks or third-party material."
 }

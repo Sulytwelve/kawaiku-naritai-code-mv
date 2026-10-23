@@ -7,7 +7,7 @@ import {drawTealMotifs,drawFloralBackground,setCanvasFactory} from './pattern-ba
 const require=createRequire(import.meta.url);
 const {loadImage:loadSvgImage}=require('@napi-rs/canvas');
 let riceBowlPromise;
-async function riceBowl(){return riceBowlPromise??=(async()=>{const svg=fs.readFileSync(path.join(ROOT,'assets/props/dafeiyu-rice-bowl/dafeiyu-rice-bowl.svg'));return loadSvgImage('data:image/svg+xml;base64,'+svg.toString('base64'))})()}
+async function riceBowl(){return riceBowlPromise??=(async()=>{const svg=fs.readFileSync(path.join(ROOT,'assets/props/dafeiyu-rice-bowl/dafeiyu-rice-bowl-no-logo.svg'));return loadSvgImage('data:image/svg+xml;base64,'+svg.toString('base64'))})()}
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const shadowCache=new Map();
 async function shadowSprite(style,color,{asset,createCanvas}){const key=style.asset+color;if(shadowCache.has(key))return shadowCache.get(key);const im=await asset(style.asset),c=createCanvas(im.width,im.height),q=c.getContext('2d');q.drawImage(im,0,0);q.globalCompositeOperation='source-in';q.fillStyle=color;q.fillRect(0,0,c.width,c.height);shadowCache.set(key,c);return c}

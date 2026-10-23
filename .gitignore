@@ -61,6 +61,7 @@ production/**/final-release-description.txt
 production/**/release-task-route.md
 
 # Asset exceptions with documented redistribution terms are generated below.
+!/assets/props/dafeiyu-rice-bowl/dafeiyu-rice-bowl-no-logo.svg
 !/assets/runtime/expression-patches/cheeks-lidded.png
 !/assets/runtime/expression-patches/eyes-open.png
 !/assets/runtime/expression-patches/mouth-closed.png

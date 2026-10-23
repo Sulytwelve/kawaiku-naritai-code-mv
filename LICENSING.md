@@ -7,6 +7,7 @@
 | 内容 | 许可或使用边界 |
 | --- | --- |
 | 本工程原创程序代码、脚本与技术文档 | BSD-2-Clause；保留已有第三方版权与许可声明。 |
+| 不带标志的饭碗 SVG | `assets/props/dafeiyu-rice-bowl/dafeiyu-rice-bowl-no-logo.svg` 沿用项目 [BSD-2-Clause](LICENSE)；DeepSeek 生成，Codex 移除独立鲸鱼标志。该许可不授予 DeepSeek 商标或其他第三方材料的权利。 |
 | 清单中明确标注的大肥鱼单角色生成图及其图像衍生层 | CC BY-NC-SA 4.0；保留原型、女仆设计、实际采用的换装参考与本项目改编署名，非商业使用，公开分享改编时遵循相同许可。 |
 | Claude、GPT、Gemini 候选形象、Kimi、GLM、千问、Seed、Grok、MiniMax 等其他角色及混合角色图 | 不适用大肥鱼的 CC 许可。参考作者与已有取用条件见素材清单；未取得明确再分发许可的文件不纳入代码仓库。 |
 | HoneyWorks 歌曲、原 MV 画面及其抽帧、抠图、清理底板 | 原权利人保留权利；不适用 BSD 或大肥鱼的 CC 许可。 |
